@@ -1,0 +1,230 @@
+<template>
+  <div class="main-container">
+
+    <el-row :gutter="0">
+      <el-col :span="6" class="main-sidebar">
+        <div class="main-logo">
+          <img src="/img/logo.svg" width="180" height="65" class="img-fluid" alt="Агентство инноваций города Москвы">
+        </div>
+        <div class="main-nav">
+          <router-link to="/">Стартапы и тех.компании</router-link>
+          <router-link to="/">Корпорации</router-link>
+          <router-link to="/">Венчурные фонды</router-link>
+          <router-link to="/">Акселераторы и инкубаторы</router-link>
+          <router-link to="/">Стартап-студии </router-link>
+          <!-- <router-link to="/">Площадки пилотное тестирова...</router-link>
+          <router-link to="/">Инжиниринговые центры </router-link>
+          <router-link to="/">Коворкинги и офисы</router-link>
+          <router-link to="/">Институты развития / ассоциац...</router-link> -->
+        </div>
+        <div class="main-nav dark">
+          <router-link to="/">Гид по венчурному рынку Москвы Venture Guide</router-link>
+          <router-link to="/">Москва для стартапов: новости, аналитика</router-link>
+        </div>
+      </el-col>
+      <el-col :span="18" class="main-content">
+        <header class="main-header">
+          <el-row :gutter="0">
+            <el-col :span="18" class="main-header-logo">
+              <input type="search" class="search-bar" placeholder="Найти стартап, инвестора, сервисы">
+            </el-col>
+            <el-col :span="6" class="login-box">
+              <a href="#">Зарегистрироваться</a>
+              <a href="#">войти</a>
+            </el-col>
+          </el-row>
+        </header>
+        <div class="content-wrapper">
+          <h1>СТАРТАП-НАВИГАТОР МОСКВЫ</h1>
+          <h3>Вся информация, необходимая для роста бизнеса</h3>
+        </div>
+        <router-view></router-view>
+      </el-col>
+    </el-row>
+
+    <footer class="main-footer">
+      <el-row :gutter="0">
+        <el-col :span="6" class="footer-logo-box" justify="center" align="middle">
+          <a href="/" target="_blank" class="footer-logo">
+              <img src="/img/aim-logo.svg" width="180" height="65" class="img-fluid" alt="Агентство инноваций города Москвы">
+          </a>
+        </el-col>
+        <el-col :span="18" class="footer-content">
+          <a href="/" target="_blank"><h5>О проекте</h5></a>
+          <a href="/" target="_blank">Политика в отношении обработки персональных данных</a>
+        </el-col>
+      </el-row>
+    </footer>
+  </div>
+</template>
+
+
+
+<script>
+// import router from '@/router'
+export default {
+  name: 'App'
+}
+</script>
+
+<style lang="scss">
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: IBM Plex Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #000;
+    background: #0458FE;
+  }
+  .main-container {
+    max-width: 1740px;
+    margin: 0 auto;
+    background: #24314A;
+  }
+  .main-header {
+    width: 100%;
+    height: 93px;
+
+    .search-bar {
+      padding: 10px 16px;
+      margin: 26px 40px;
+      width: 90%;
+    }
+
+    .login-box {
+      background: #FF1F55;
+      height: 93px;
+      text-align: center;
+      padding-top: 28px;
+      a {
+        display: block;
+        text-transform: uppercase;
+        color: #fff;
+        text-decoration: none;
+        font-size: 14px;
+        line-height: 18px;
+      }
+    }
+  }
+  .main-sidebar {
+    .main-logo {
+      width: 100%;
+      background: #fff;
+      img {
+        padding: 28px 22px;
+      }
+    }
+    .main-nav {
+      background: #fff;
+      padding: 20px 0;
+      a {
+        position: relative;
+        display: block;
+        padding: 0 32px 0 78px;
+        text-decoration: none;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 42px;
+        text-transform: uppercase;
+        color: #1D2435;
+        height: 42px;
+
+        &:before {
+          position: absolute;
+          content: '';
+          left: 32px;
+          top: 13px;
+          width: 22px;
+          height: 15px;
+          background: url(/img/st-icon.svg) left top no-repeat;
+        }
+
+        &.active {
+          background: #E1E4F4;
+        }
+        &:hover {
+          background: #E1E4F4;
+        }
+      }
+      &.dark {
+        background: none;
+        a {
+          color: #fff;
+          &:before {
+            filter: invert(50%);
+          }
+        }
+        &:hover {
+          background: none;
+        }
+      }
+    }
+  }
+  .main-content {
+    background: #fff url(/img/bg.png) left top no-repeat;
+    background-size: 100%;
+    .content-wrapper {
+      padding: 40px 20px;
+    }
+  }
+  .main-footer {
+    width: 100%;
+    height: 179px;
+    background: #1D2435;
+    color: #878B95;
+
+    .footer-content {
+      color: rgba(242, 243, 246, 0.5);
+      padding: 52px !important;
+      font-size: 11px;
+
+      h5 {
+        font-weight: bold;
+        margin: 8px 0 16px;
+        font-size: 14px;
+        line-height: 1.28;
+        -webkit-text-decoration-line: underline;
+        text-decoration-line: underline;
+        text-transform: uppercase;
+      }
+
+      a {
+        text-decoration: none;
+        color: rgba(242, 243, 246, 0.5);
+      }
+    }
+
+    .footer-logo-box {
+      height: 179px;
+      background: #171E2D;
+
+      .footer-logo {
+        opacity: .5;
+        color: #F2F3F6;
+        img {
+          margin-top: 60px;
+        }
+      }
+    }
+  }
+
+  a {
+    transition-property: color, background-color, border-color, opacity;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+  }
+  img {
+    vertical-align: middle;
+    border-style: none;
+  }
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+  }
+
+</style>
