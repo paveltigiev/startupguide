@@ -29,8 +29,7 @@
               <input type="search" class="search-bar" placeholder="Найти стартап, инвестора, сервисы">
             </el-col>
             <el-col :span="6" class="login-box">
-              <a href="#">Зарегистрироваться</a>
-              <a href="#">войти</a>
+              <Regform></Regform>
             </el-col>
           </el-row>
         </header>
@@ -58,12 +57,20 @@
   </div>
 </template>
 
-
-
 <script>
 // import router from '@/router'
+const Regform = () => import('@/components/Regform')
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    Regform
+  },
+  data() {
+    return {
+    }
+  },
+  methods: {
+  }
 }
 </script>
 
@@ -100,7 +107,7 @@ export default {
       height: 93px;
       text-align: center;
       padding-top: 28px;
-      a {
+      a.dialogbtn {
         display: block;
         text-transform: uppercase;
         color: #fff;
