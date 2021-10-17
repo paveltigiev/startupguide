@@ -7,11 +7,11 @@
           <img src="/img/logo.svg" width="180" height="65" class="img-fluid" alt="Агентство инноваций города Москвы">
         </div>
         <div class="main-nav">
-          <router-link to="/">Стартапы и тех.компании</router-link>
-          <router-link to="/">Корпорации</router-link>
-          <router-link to="/">Венчурные фонды</router-link>
-          <router-link to="/">Акселераторы и инкубаторы</router-link>
-          <router-link to="/">Стартап-студии </router-link>
+          <router-link to="/startups">Стартапы и тех.компании</router-link>
+          <router-link to="/companies">Корпорации</router-link>
+          <router-link to="/companies">Венчурные фонды</router-link>
+          <router-link to="/companies">Акселераторы и инкубаторы</router-link>
+          <router-link to="/companies">Стартап-студии </router-link>
           <!-- <router-link to="/">Площадки пилотное тестирова...</router-link>
           <router-link to="/">Инжиниринговые центры </router-link>
           <router-link to="/">Коворкинги и офисы</router-link>

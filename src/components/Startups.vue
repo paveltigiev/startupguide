@@ -6,14 +6,13 @@
     <el-table
       :data="startups"
       style="width: 100%">
-      <el-table-column width="142">
+      <el-table-column width="120" align="center" label="Название">
         <template scope="scope">
-          <img :src="scope.row.image" alt="">
+          <img :src="scope.row.image" alt="" height="40">
         </template>
       </el-table-column>
       <el-table-column
         prop="name"
-        label="Название"
         width="140">
       </el-table-column>
       <el-table-column
@@ -44,39 +43,39 @@ export default {
     return {
       startups: [
         {
-          image: 'https://portal.inno.msk.ru/img/crm/company/logo/43/bd/0fe5350a721fb99eccbc671a914bde0c4bc7db81d34421c1fa4abaa0423f.jpg',
+          image: 'https://portal.inno.msk.ru/img/crm/company/logo/3a/22/12a98809671424f2441921a42f6f87b163767e212601a2fc7537dc65434f.png',
           name: 'Tele2',
-          desc: 'Телекоммуникационная компания и оператор сотовой связи. Реализуя стратегию lifestyle enabler, оператор выходит за рамки телекома и создает новую экосистему мобильных сервисов в партнерстве с лидерами...',
-          market: 'Telecom',
-          est: '2013'
+          desc: 'Онлайн-школа и разработчик интерактивных образовательных курсов для детей 6-12 лет по блогингу, 3D-моделированию и разработке игр.',
+          market: 'EdTech',
+          est: '2019'
         },
         {
-          image: 'https://portal.inno.msk.ru/img/crm/company/logo/43/bd/0fe5350a721fb99eccbc671a914bde0c4bc7db81d34421c1fa4abaa0423f.jpg',
+          image: 'https://portal.inno.msk.ru/img/crm/company/logo/3a/22/12a98809671424f2441921a42f6f87b163767e212601a2fc7537dc65434f.png',
           name: 'Tele2',
-          desc: 'Телекоммуникационная компания и оператор сотовой связи. Реализуя стратегию lifestyle enabler, оператор выходит за рамки телекома и создает новую экосистему мобильных сервисов в партнерстве с лидерами...',
-          market: 'Telecom',
-          est: '2013'
+          desc: 'Онлайн-школа и разработчик интерактивных образовательных курсов для детей 6-12 лет по блогингу, 3D-моделированию и разработке игр.',
+          market: 'EdTech',
+          est: '2019'
         },
         {
-          image: 'https://portal.inno.msk.ru/img/crm/company/logo/43/bd/0fe5350a721fb99eccbc671a914bde0c4bc7db81d34421c1fa4abaa0423f.jpg',
+          image: 'https://portal.inno.msk.ru/img/crm/company/logo/3a/22/12a98809671424f2441921a42f6f87b163767e212601a2fc7537dc65434f.png',
           name: 'Tele2',
-          desc: 'Телекоммуникационная компания и оператор сотовой связи. Реализуя стратегию lifestyle enabler, оператор выходит за рамки телекома и создает новую экосистему мобильных сервисов в партнерстве с лидерами...',
-          market: 'Telecom',
-          est: '2013'
+          desc: 'Онлайн-школа и разработчик интерактивных образовательных курсов для детей 6-12 лет по блогингу, 3D-моделированию и разработке игр.',
+          market: 'EdTech',
+          est: '2019'
         },
         {
-          image: 'https://portal.inno.msk.ru/img/crm/company/logo/43/bd/0fe5350a721fb99eccbc671a914bde0c4bc7db81d34421c1fa4abaa0423f.jpg',
+          image: 'https://portal.inno.msk.ru/img/crm/company/logo/3a/22/12a98809671424f2441921a42f6f87b163767e212601a2fc7537dc65434f.png',
           name: 'Tele2',
-          desc: 'Телекоммуникационная компания и оператор сотовой связи. Реализуя стратегию lifestyle enabler, оператор выходит за рамки телекома и создает новую экосистему мобильных сервисов в партнерстве с лидерами...',
-          market: 'Telecom',
-          est: '2013'
+          desc: 'Онлайн-школа и разработчик интерактивных образовательных курсов для детей 6-12 лет по блогингу, 3D-моделированию и разработке игр.',
+          market: 'EdTech',
+          est: '2019'
         },
         {
-          image: 'https://portal.inno.msk.ru/img/crm/company/logo/43/bd/0fe5350a721fb99eccbc671a914bde0c4bc7db81d34421c1fa4abaa0423f.jpg',
+          image: 'https://portal.inno.msk.ru/img/crm/company/logo/3a/22/12a98809671424f2441921a42f6f87b163767e212601a2fc7537dc65434f.png',
           name: 'Tele2',
-          desc: 'Телекоммуникационная компания и оператор сотовой связи. Реализуя стратегию lifestyle enabler, оператор выходит за рамки телекома и создает новую экосистему мобильных сервисов в партнерстве с лидерами...',
-          market: 'Telecom',
-          est: '2013'
+          desc: 'Онлайн-школа и разработчик интерактивных образовательных курсов для детей 6-12 лет по блогингу, 3D-моделированию и разработке игр.',
+          market: 'EdTech',
+          est: '2019'
         }
       ]
     }
