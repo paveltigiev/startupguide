@@ -87,6 +87,16 @@ export default {
     color: #000;
     background: #0458FE;
   }
+  .datatable-page {
+    background: #F2F3F6;
+    .el-table {
+      padding-bottom: 20px;
+      td.el-table__cell {
+        border: 0;
+        cursor: pointer;
+      }
+    }
+  }
   .main-container {
     max-width: 1740px;
     margin: 0 auto;

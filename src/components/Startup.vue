@@ -113,7 +113,7 @@
 
 <script>
 export default {
-  name: 'App',
+  name: 'Startup',
   components: {
   },
   data() {
