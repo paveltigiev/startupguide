@@ -33,10 +33,10 @@
             </el-col>
           </el-row>
         </header>
-        <div class="content-wrapper">
+        <!-- <div class="content-wrapper">
           <h1>СТАРТАП-НАВИГАТОР МОСКВЫ</h1>
           <h3>Вся информация, необходимая для роста бизнеса</h3>
-        </div>
+        </div> -->
         <router-view></router-view>
       </el-col>
     </el-row>
@@ -81,7 +81,7 @@ export default {
     font-family: IBM Plex Sans;
     font-style: normal;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 14px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #000;
@@ -232,6 +232,26 @@ export default {
   .img-fluid {
     max-width: 100%;
     height: auto;
+  }
+  .btn {
+    display: inline-block;
+    padding: 0.4375rem 0.8125rem 0.75rem 0.75rem;
+    border-radius: 2.9375rem;
+    box-shadow: 0px 10px 10px #e1e4f4, 0px -3px 10px #ffffff;
+    color: #0459FF;
+    font-weight: 500;
+    font-style: normal;
+    margin-bottom: 0.8125rem;
+    margin-right: 0.8125rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+  }
+
+  .pt-0 {
+    padding-top: 0 !important;
+  }
+  .pb-0 {
+    padding-bottom: 0 !important;
   }
 
 </style>
