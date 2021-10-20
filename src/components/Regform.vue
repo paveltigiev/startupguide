@@ -54,7 +54,7 @@
         </el-checkbox>
       </div>
       <div class="dialog-footer">
-          <el-button type="primary" @click="dialogVisible = false" class="sendBtn">Зарегистрироваться</el-button>
+          <el-button type="primary" @click="regUser()" class="sendBtn">Зарегистрироваться</el-button>
       </div>
     </el-dialog>
     <el-dialog :visible="loginDialogVisible">
@@ -93,7 +93,8 @@ export default {
       regDialogVisible: false,
       loginDialogVisible: false,
       form: {
-        name: ''
+        name: '',
+        
       },
       options: [
         {
@@ -112,12 +113,18 @@ export default {
           value: 'Органы власти'
         },
         {
-          value: 'Друго'
+          value: 'Другое'
         }
       ]
     }
   },
   methods: {
+    regUser () {
+      this.regDialogVisible = true
+      this.loginDialogVisible = false
+      let _user = this.form
+      this.$store.dispatch('regUser', _user)
+    }
   }
 }
 </script>
@@ -174,8 +181,8 @@ export default {
         .el-input__inner {
           border-radius: 0;
           background: transparent;
-          border-bottom: 1px solid #fff;
           border: 0;
+          border-bottom: 1px solid #fff;
           height: 50px;
         }
         .el-select {

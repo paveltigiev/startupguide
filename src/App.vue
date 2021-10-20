@@ -4,7 +4,9 @@
     <el-row :gutter="0">
       <el-col :span="6" class="main-sidebar">
         <div class="main-logo">
-          <img src="/img/logo.svg" width="180" height="65" class="img-fluid" alt="Агентство инноваций города Москвы">
+          <a href="/">
+            <img src="/img/logo.svg" width="180" height="65" class="img-fluid" alt="Агентство инноваций города Москвы">
+          </a>
         </div>
         <div class="main-nav">
           <router-link to="/startups">Стартапы и тех.компании</router-link>
