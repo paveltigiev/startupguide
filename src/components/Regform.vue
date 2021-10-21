@@ -13,28 +13,28 @@
       </div>
       <el-form :model="form">
         <el-form-item>
-          <el-input v-model="form.name" placeholder="Фамилия"></el-input>
+          <el-input v-model="form.lastname" placeholder="Фамилия"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-input v-model="form.name" placeholder="Имя"></el-input>
+          <el-input v-model="form.firstname" placeholder="Имя"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-input v-model="form.name" placeholder="Отчество"></el-input>
+          <el-input v-model="form.patronymic" placeholder="Отчество"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-input v-model="form.name" placeholder="E-mail"></el-input>
+          <el-input v-model="form.email" placeholder="E-mail"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-input v-model="form.name" placeholder="Телефон"></el-input>
+          <el-input v-model="form.phone" placeholder="Телефон"></el-input>
         </el-form-item>
         <el-form-item label="" label-width="200">
-          <el-input v-model="form.name" placeholder="Компания или ИНН"></el-input>
+          <el-input v-model="form.inn" placeholder="Компания или ИНН"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-input v-model="form.name" placeholder="Должность"></el-input>
+          <el-input v-model="form.position" placeholder="Должность"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-select v-model="form.name" placeholder="Я представляю">
+          <el-select v-model="form.representative" placeholder="Я представляю">
             <el-option
               v-for="item in options"
               :key="item.value"
@@ -44,7 +44,7 @@
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-input v-model="form.name" type="password" placeholder="Пароль"></el-input>
+          <el-input v-model="form.password" type="password" placeholder="Пароль"></el-input>
         </el-form-item>
       </el-form>
       <div class="agreement">
@@ -70,7 +70,7 @@
           <el-input v-model="form.email" placeholder="Email"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-input v-model="form.name" type="password" placeholder="Пароль"></el-input>
+          <el-input v-model="form.password" type="password" placeholder="Пароль"></el-input>
         </el-form-item>
       </el-form>
       <div class="agreement">
@@ -79,23 +79,33 @@
         </el-checkbox>
       </div>
       <div class="dialog-footer">
-        <el-button type="primary" @click="loginDialogVisible = false" class="sendBtn">Войти</el-button>
+        <el-button type="primary" @click="loginUser()" class="sendBtn">Войти</el-button>
       </div>
     </el-dialog>
   </div>
 </template>
 
 <script>
+const formFields = () => ({
+  firstname: '',
+  lastname: '',
+  patronymic: '',
+  email: '',
+  phone: '',
+  inn: '',
+  position: '',
+  representative: '',
+  password: ''
+})
 export default {
   name: 'App',
   data() {
     return {
+      form: {
+        ...formFields()
+      },
       regDialogVisible: false,
       loginDialogVisible: false,
-      form: {
-        name: '',
-        
-      },
       options: [
         {
           value: 'Стартап'
@@ -120,10 +130,16 @@ export default {
   },
   methods: {
     regUser () {
-      this.regDialogVisible = true
+      this.regDialogVisible = false
       this.loginDialogVisible = false
-      let _user = this.form
-      this.$store.dispatch('regUser', _user)
+      this.$store.dispatch('regUser', this.form)
+      this.form = {...formFields()}
+    },
+    loginUser () {
+      this.regDialogVisible = false
+      this.loginDialogVisible = false
+      this.$store.dispatch('loginUser', this.form)
+      this.form = {...formFields()}
     }
   }
 }
