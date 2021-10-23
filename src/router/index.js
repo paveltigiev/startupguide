@@ -32,9 +32,21 @@ const routes = [
     component: () => import('@/components/Company')
   },
   {
+    name: 'editCompany',
+    path: '/companies/edit/:id',
+    props: true,
+    component: () => import('@/components/EditCompany')
+  },
+  {
     name: 'profile',
     path: '/profile',
     component: () => import('@/components/Profile'),
+    meta: {requiresAuth: true}
+  },
+  {
+    name: 'newCompany',
+    path: '/newcompany',
+    component: () => import('@/components/NewCompany'),
     meta: {requiresAuth: true}
   }
 ]

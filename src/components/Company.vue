@@ -29,25 +29,37 @@
         <el-col :span="18">
           <div class="">
             <h1 class="startup-title">{{company.c_name}}</h1>                
-            <div class="company-description-icon">
-              <a href="#" class="add-to-favorite btn" data-user-id="" data-company-id="6193" data-is-oii="0">
+            <div class="company-description-icon" v-if="isOwner">
+              <a href="#" class="add-to-favorite btn" @click="goCompany(company.c_id)">
+                <img src="/img/edit.svg" alt="">
+                <span>Редактировать</span>
+              </a>
+            </div>
+            <div class="company-description-icon" v-else>
+              <a href="#" class="add-to-favorite btn">
                 <img src="/img/download.svg" alt="">
                 <span>Добавить в избранное</span>
               </a>
             </div>
           </div>
-          <div class="startup-year-title">
-            ИНН
-          </div>
-          <div class="startup-year">
-            {{company.c_inn}}
-          </div>
-          <div class="startup-year-title">
-            Основана
-          </div>
-          <div class="startup-year">
-            {{company.reg_date}}
-          </div>
+          <el-row :gutter="20">
+            <el-col :span="4">
+              <div class="startup-year-title">
+                ИНН
+              </div>
+              <div class="startup-year">
+                {{company.c_inn}}
+              </div>
+            </el-col>
+            <el-col :span="4">
+              <div class="startup-year-title">
+                Основана
+              </div>
+              <div class="startup-year">
+                {{company.reg_date}}
+              </div>
+            </el-col>
+          </el-row>
         </el-col>
       </el-row>
     </div>
@@ -121,6 +133,7 @@
 </template>
 
 <script>
+import router from '@/router'
 export default {
   name: 'Company',
   props: ['id'],
@@ -137,13 +150,21 @@ export default {
     },
     markets () {
       return this.$store.getters.markets
+    },
+    isOwner () {
+      return this.company.owner_id == localStorage.id
     }
   },
   methods: {
+    goCompany(id) {
+      router.push('/companies/edit/' + id)
+    }
   },
   watch: {
     company() {
-      this.sites = this.company.web_sites.split('§');
+      if (this.company.web_sites) {
+        this.sites = this.company.web_sites.split('§');
+      }
     }
   },
   created() {
@@ -175,7 +196,8 @@ export default {
     }
     .startup-title {
       margin-top: 0;
-      font-size: 1.6875rem;
+      margin-bottom: 32px;
+      font-size: 2rem;
       line-height: 2rem;
       font-weight: 600
     }

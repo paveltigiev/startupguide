@@ -4,7 +4,23 @@
       <div class="content-wrapper">
         <h1>Стартапы и технологические компании</h1>
       </div>
-
+      <el-row
+        :gutter="20"
+        class="company-row-header"
+      >
+        <el-col :span="6" class="name">
+          Название
+        </el-col>
+        <el-col :span="12" class="">
+          Описание
+        </el-col>
+        <el-col :span="3" class="">
+          Рынок
+        </el-col>
+        <el-col :span="3" class="">
+          Основана
+        </el-col>
+      </el-row>
       <div
         v-for="(item, index) in companies.items"
         :key="index"
@@ -94,6 +110,12 @@ export default {
         color: #1d2435;
         background: #f8f4df;
       }
+    }
+    .company-row-header {
+      color: #1D2435;
+      font-size: .875rem;
+      padding: 16px;
+      font-weight: bold;
     }
   }
 

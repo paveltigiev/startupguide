@@ -53,11 +53,29 @@
 
     <div class="companies">
       <div class="content-wrapper">
-        <a href="#" class="createCompanyBtn bnt">Создать компанию</a>
+        <a href="/newcompany" class="createCompanyBtn bnt">Создать компанию</a>
         <h1>Мои компании</h1>
-      <h2 v-if="myCompanies.items = []">У вас пока нет компаний. Но вы можете создать ее.</h2>
+      <h2 v-if="myCompanies.items == []">У вас пока нет компаний. Но вы можете <a href="/newcompany">создать её</a>.</h2>
       </div>
 
+
+      <el-row
+        :gutter="20"
+        class="company-row-header"
+      >
+        <el-col :span="6" class="name">
+          Название
+        </el-col>
+        <el-col :span="12" class="">
+          Описание
+        </el-col>
+        <el-col :span="3" class="">
+          Рынок
+        </el-col>
+        <el-col :span="3" class="">
+          Основана
+        </el-col>
+      </el-row>
       <div
         v-for="(item, index) in myCompanies.items"
         :key="index"
@@ -95,15 +113,15 @@ export default {
   data() {
     return {
       form: {
-        'email': '',
-        'fio': '',
-        'city': '',
-        'position': '',
-        'experience': '',
-        'avatar': '',
-        'contact': '',
-        'skils': '',
-        'role': 0
+        email: '',
+        fio: '',
+        city: '',
+        position: '',
+        experience: '',
+        avatar: '',
+        contact: '',
+        skils: '',
+        role: 0
       },
       skils: [
         {
@@ -124,10 +142,8 @@ export default {
   methods: {
     resetForm() {
       this.form = Object.assign({}, this.myProfile)
-      console.log(this.myProfile)
     },
     updateUser() {
-      // console.log(this.form)
       this.$store.dispatch('updateUser', this.form)
     },
     goCompany(id) {
@@ -139,7 +155,8 @@ export default {
       return this.$store.getters.myProfile
     },
     myCompanies () {
-      return this.$store.getters.companies
+      console.log(this.$store.getters.myCompanies)
+      return this.$store.getters.myCompanies
     },
     markets () {
       return this.$store.getters.markets
@@ -199,4 +216,30 @@ export default {
       }
     }
   }
+  .companies {
+    padding: 0 10px 20px;
+    .company-row {
+      cursor: pointer;
+      transition: none;
+      color: #1D2435;
+      font-size: .875rem;
+      padding: 16px;
+      .name {
+        img {
+          margin-right: 16px;
+        }
+      }
+      &:hover {
+        color: #1d2435;
+        background: #f8f4df;
+      }
+    }
+    .company-row-header {
+      color: #1D2435;
+      font-size: .875rem;
+      padding: 16px;
+      font-weight: bold;
+    }
+  }
+
 </style>

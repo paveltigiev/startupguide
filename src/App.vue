@@ -71,6 +71,14 @@ export default {
     }
   },
   methods: {
+  },
+  computed: {
+    myProfile () {
+      return this.$store.getters.myProfile
+    }
+  },
+  created() {
+    this.$store.dispatch('getMyProfile')
   }
 }
 </script>
@@ -79,7 +87,7 @@ export default {
   body {
     margin: 0;
     padding: 0;
-    font-family: IBM Plex Sans;
+    font-family: 'Open Sans', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;

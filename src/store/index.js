@@ -13,6 +13,7 @@ export default new Vuex.Store({
     myProfile: {},
     company: {},
     stages: [],
+    statuses: [],
     markets: [],
     isAuthenticated: false
   },
@@ -34,9 +35,17 @@ export default new Vuex.Store({
     },
     setMyProfile (state, payload) {
       state.myProfile = payload
+      localStorage.email = payload.email
+      localStorage.fio = payload.fio
+      localStorage.id = payload.id
+      localStorage.role = payload.role
+      localStorage.city = payload.city
     },
     setStages (state, payload) {
       state.stages = payload
+    },
+    setStatuses (state, payload) {
+      state.statuses = payload
     },
     setMarkets (state, payload) {
       state.markets = payload
@@ -44,9 +53,11 @@ export default new Vuex.Store({
     setUserData (state, payload) {
       console.log(payload)
       localStorage.access_token = payload.access_token
-      localStorage.user_name = payload.user.firstname
-      localStorage.user_email = payload.user.email
-
+      localStorage.email = payload.email
+      localStorage.fio = payload.fio
+      localStorage.id = payload.id
+      localStorage.role = payload.role
+      localStorage.city = payload.city
       state.isAuthenticated = true
     }
   },
@@ -103,6 +114,7 @@ export default new Vuex.Store({
     getMyCompanies ({commit}) {
       Vue.axios.get('https://startbase.online/api/web/companies/my')
       .then(response => {
+        console.log(response.data)
         commit('setMyCompanies', response.data)
       })
       .catch(error => {
@@ -128,6 +140,26 @@ export default new Vuex.Store({
       //   console.log(error)
       // })
     },
+    createCompany (_, payload) {
+      console.log(payload)
+      Vue.axios.post('https://startbase.online/api/web/companies', payload)
+      // .then(response => {
+      //   commit('setCompanies', response.data)
+      // })
+      // .catch(error => {
+      //   console.log(error)
+      // })
+    },
+    updateCompany (_, payload) {
+      console.log(payload)
+      Vue.axios.put('https://startbase.online/api/web/companies/' + payload.c_id, payload)
+      // .then(response => {
+      //   commit('setCompanies', response.data)
+      // })
+      // .catch(error => {
+      //   console.log(error)
+      // })
+    },
     getCompany ({commit}, id) {
       Vue.axios.get('https://startbase.online/api/web/companies/' + id)
       .then(response => {
@@ -141,6 +173,15 @@ export default new Vuex.Store({
       Vue.axios.get('https://startbase.online/api/web/stages')
       .then(response => {
         commit('setStages', response.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    },
+    getStatuses ({commit}) {
+      Vue.axios.get('https://startbase.online/api/web/statuses')
+      .then(response => {
+        commit('setStatuses', response.data)
       })
       .catch(error => {
         console.log(error)
@@ -192,6 +233,9 @@ export default new Vuex.Store({
     },
     stages (state) {
       return state.stages
+    },
+    statuses (state) {
+      return state.statuses
     },
     markets (state) {
       return state.markets
