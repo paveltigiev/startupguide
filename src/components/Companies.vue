@@ -1,90 +1,100 @@
 <template>
   <div class="datatable-page">
-    <div class="content-wrapper">
-      <h1>Корпорации</h1>
-    </div>
-    <el-table
-      :data="startups"
-      style="width: 100%">
-      <el-table-column width="120" align="center" label="Название">
-        <template scope="scope">
-          <img :src="scope.row.image" alt="" height="40">
-        </template>
-      </el-table-column>
-      <el-table-column
-        prop="name"
-        width="140">
-      </el-table-column>
-      <el-table-column
-        prop="desc"
-        label="Описание"
+    <div class="companies">
+      <div class="content-wrapper">
+        <h1>Стартапы и технологические компании</h1>
+      </div>
+
+      <div
+        v-for="(item, index) in companies.items"
+        :key="index"
+        @click="goCompany(item.c_id)"
+      >
+        <el-row
+          :gutter="20"
+          class="company-row"
         >
-      </el-table-column>
-      <el-table-column
-        prop="market"
-        label="Рынок"
-        width="120">
-      </el-table-column>
-      <el-table-column
-        prop="est"
-        label="Год создания"
-        width="120">
-      </el-table-column>
-    </el-table>
+          <el-col :span="6" class="name">
+            <img :src="item.logo_url" :alt="item.c_name" width="60">
+            {{item.c_name}}
+          </el-col>
+          <el-col :span="12" class="">
+            {{item.c_desc}} &nbsp;
+          </el-col>
+          <el-col :span="3" class="">
+            {{item.market_id}} &nbsp;
+          </el-col>
+          <el-col :span="3" class="">
+            {{item.reg_date}}
+          </el-col>
+        </el-row>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import router from '@/router'
 export default {
-  name: 'Startups',
+  name: 'Companies',
   components: {
   },
   data() {
     return {
-      startups: [
-        {
-          image: 'https://portal.inno.msk.ru/img/crm/company/logo/43/bd/0fe5350a721fb99eccbc671a914bde0c4bc7db81d34421c1fa4abaa0423f.jpg',
-          name: 'Tele2',
-          desc: 'Телекоммуникационная компания и оператор сотовой связи. Реализуя стратегию lifestyle enabler, оператор выходит за рамки телекома и создает новую экосистему мобильных сервисов в партнерстве с лидерами...',
-          market: 'Telecom',
-          est: '2013'
-        },
-        {
-          image: 'https://portal.inno.msk.ru/img/crm/company/logo/43/bd/0fe5350a721fb99eccbc671a914bde0c4bc7db81d34421c1fa4abaa0423f.jpg',
-          name: 'Tele2',
-          desc: 'Телекоммуникационная компания и оператор сотовой связи. Реализуя стратегию lifestyle enabler, оператор выходит за рамки телекома и создает новую экосистему мобильных сервисов в партнерстве с лидерами...',
-          market: 'Telecom',
-          est: '2013'
-        },
-        {
-          image: 'https://portal.inno.msk.ru/img/crm/company/logo/43/bd/0fe5350a721fb99eccbc671a914bde0c4bc7db81d34421c1fa4abaa0423f.jpg',
-          name: 'Tele2',
-          desc: 'Телекоммуникационная компания и оператор сотовой связи. Реализуя стратегию lifestyle enabler, оператор выходит за рамки телекома и создает новую экосистему мобильных сервисов в партнерстве с лидерами...',
-          market: 'Telecom',
-          est: '2013'
-        },
-        {
-          image: 'https://portal.inno.msk.ru/img/crm/company/logo/43/bd/0fe5350a721fb99eccbc671a914bde0c4bc7db81d34421c1fa4abaa0423f.jpg',
-          name: 'Tele2',
-          desc: 'Телекоммуникационная компания и оператор сотовой связи. Реализуя стратегию lifestyle enabler, оператор выходит за рамки телекома и создает новую экосистему мобильных сервисов в партнерстве с лидерами...',
-          market: 'Telecom',
-          est: '2013'
-        },
-        {
-          image: 'https://portal.inno.msk.ru/img/crm/company/logo/43/bd/0fe5350a721fb99eccbc671a914bde0c4bc7db81d34421c1fa4abaa0423f.jpg',
-          name: 'Tele2',
-          desc: 'Телекоммуникационная компания и оператор сотовой связи. Реализуя стратегию lifestyle enabler, оператор выходит за рамки телекома и создает новую экосистему мобильных сервисов в партнерстве с лидерами...',
-          market: 'Telecom',
-          est: '2013'
-        }
-      ]
     }
   },
   methods: {
+    goCompany(id) {
+      router.push('/companies/' + id)
+    }
+  },
+  computed: {
+    companies () {
+      return this.$store.getters.companies
+    },
+    markets () {
+      return this.$store.getters.markets
+    }
+  },
+  watch: {
+    companies () {
+      this.companies.items.forEach(comp => {
+        comp.logo_url = 'https://api.freelogodesign.org/assets/thumb/logo/22192360_400.png'
+
+        this.markets.items.forEach(market => {
+          if (market.market_id == comp.market_id) {
+            comp.market_id = market.market_name_ru
+          }
+        })
+      })
+    }
+  },
+  created() {
+    this.$store.dispatch('getMarkets')
+    this.$store.dispatch('getCompanies')
   }
 }
 </script>
 
 <style lang="scss">
+  .companies {
+    padding: 10px;
+    .company-row {
+      cursor: pointer;
+      transition: none;
+      color: #1D2435;
+      font-size: .875rem;
+      padding: 16px;
+      .name {
+        img {
+          margin-right: 16px;
+        }
+      }
+      &:hover {
+        color: #1d2435;
+        background: #f8f4df;
+      }
+    }
+  }
 
 </style>

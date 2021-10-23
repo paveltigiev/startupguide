@@ -1,6 +1,5 @@
 <template>
   <div class="main-container">
-
     <el-row :gutter="0">
       <el-col :span="6" class="main-sidebar">
         <div class="main-logo">
@@ -9,7 +8,7 @@
           </a>
         </div>
         <div class="main-nav">
-          <router-link to="/startups">Стартапы и тех.компании</router-link>
+          <router-link to="/companies">Стартапы и тех.компании</router-link>
           <router-link to="/companies">Корпорации</router-link>
           <router-link to="/companies">Венчурные фонды</router-link>
           <router-link to="/companies">Акселераторы и инкубаторы</router-link>
@@ -20,8 +19,8 @@
           <router-link to="/">Институты развития / ассоциац...</router-link> -->
         </div>
         <div class="main-nav dark">
-          <router-link to="/">Гид по венчурному рынку Москвы Venture Guide</router-link>
-          <router-link to="/">Москва для стартапов: новости, аналитика</router-link>
+          <!-- <router-link to="/">Гид по венчурному рынку Москвы Venture Guide</router-link>
+          <router-link to="/">Москва для стартапов: новости, аналитика</router-link> -->
         </div>
       </el-col>
       <el-col :span="18" class="main-content">
