@@ -26,7 +26,7 @@
         <el-input v-model="form.web_sites"></el-input>
       </el-form-item>
       <el-form-item label="Рынок">
-        <el-select v-model="form.market_id" placeholder="Выберите рынок">
+        <el-select v-model="form.market_id" placeholder="Выберите рынок" multiple>
             <el-option
             v-for="item in markets.items"
             :key="item.market_id"
@@ -37,16 +37,16 @@
       </el-form-item>
       <el-form-item label="Статус">
         <el-select v-model="form.status" placeholder="Выберите статус">
-            <el-option
-            v-for="item in statuses.items"
-            :key="item.stat_id"
-            :label="item.status_name"
-            :value="item.stat_id">
-            </el-option>
+          <el-option
+          v-for="item in statuses.items"
+          :key="item.stat_id"
+          :label="item.status_name"
+          :value="item.stat_id">
+          </el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="Стадия">
-        <el-select v-model="form.stage_id" placeholder="Выберите стадию">
+        <el-select v-model="form.stage_id" placeholder="Выберите стадию" multiple>
             <el-option
             v-for="item in stages.items"
             :key="item.sid"
@@ -61,7 +61,6 @@
       
       <el-form-item>
         <el-button type="primary" @click="createCompany">Создать</el-button>
-        <!-- <el-button @click="resetForm">Вернуть</el-button> -->
       </el-form-item>
     </el-form>
 
@@ -84,9 +83,9 @@ export default {
         add_okveds: '',
         logo_url: '',
         web_sites: '',
-        market_id: '',
+        market_id: [],
         status: '',
-        stage_id: '',
+        stage_id: [],
         isprivate: ''
       }
     }

@@ -26,7 +26,7 @@
         <el-input v-model="form.web_sites"></el-input>
       </el-form-item>
       <el-form-item label="Рынок">
-        <el-select v-model="form.market_id" placeholder="Выберите рынок">
+        <el-select v-model="form.market_id" placeholder="Выберите рынок" multiple>
             <el-option
             v-for="item in markets.items"
             :key="item.market_id"
@@ -46,7 +46,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="Стадия">
-        <el-select v-model="form.stage_id" placeholder="Выберите стадию">
+        <el-select v-model="form.stage_id" placeholder="Выберите стадию" multiple>
             <el-option
             v-for="item in stages.items"
             :key="item.sid"
@@ -85,9 +85,9 @@ export default {
         add_okveds: '',
         logo_url: '',
         web_sites: '',
-        market_id: '',
+        market_id: [],
         status: '',
-        stage_id: '',
+        stage_id: [],
         isprivate: ''
       }
     }
