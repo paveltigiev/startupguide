@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import router from '../router'
+// import router from '../router'
 // import _ from 'lodash'
 Vue.use(Vuex)
 
@@ -9,9 +9,12 @@ export default new Vuex.Store({
     user: null,
     users: [],
     companies: [],
+    myCompanies: [],
+    myProfile: {},
     company: {},
     stages: [],
-    markets: []
+    markets: [],
+    isAuthenticated: false
   },
   mutations: {
     setUser (state, payload) {
@@ -23,8 +26,14 @@ export default new Vuex.Store({
     setCompanies (state, payload) {
       state.companies = payload
     },
+    setMyCompanies (state, payload) {
+      state.myCompanies = payload
+    },
     setCompany (state, payload) {
       state.company = payload
+    },
+    setMyProfile (state, payload) {
+      state.myProfile = payload
     },
     setStages (state, payload) {
       state.stages = payload
@@ -37,6 +46,8 @@ export default new Vuex.Store({
       localStorage.access_token = payload.access_token
       localStorage.user_name = payload.user.firstname
       localStorage.user_email = payload.user.email
+
+      state.isAuthenticated = true
     }
   },
   actions: {
@@ -62,6 +73,7 @@ export default new Vuex.Store({
     regUser ({commit}, user) {
       Vue.axios.post('https://startbase.online/api/web/users/signup', user).then(response => {
         commit('setUserData', {access_token: response.data.access_token, user})
+        location.reload()
         // commit('setMessage', 'Вы успешно вошли в систему')
       })
       .catch(error => {
@@ -72,6 +84,7 @@ export default new Vuex.Store({
       Vue.axios.post('https://startbase.online/api/web/users/login', user)
       .then(response => {
         commit('setUserData', {access_token: response.data.access_token, user})
+        location.reload()
         // commit('setMessage', 'Вы успешно вошли в систему')
       })
       .catch(error => {
@@ -87,6 +100,34 @@ export default new Vuex.Store({
         console.log(error)
       })
     },
+    getMyCompanies ({commit}) {
+      Vue.axios.get('https://startbase.online/api/web/companies/my')
+      .then(response => {
+        commit('setMyCompanies', response.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    },
+    getMyProfile ({commit}) {
+      Vue.axios.get('https://startbase.online/api/web/users/profile')
+      .then(response => {
+        commit('setMyProfile', response.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    },
+    updateUser (_, payload) {
+      console.log(payload)
+      Vue.axios.put('https://startbase.online/api/web/users/' + payload.id, payload)
+      // .then(response => {
+      //   commit('setMyProfile', response.data)
+      // })
+      // .catch(error => {
+      //   console.log(error)
+      // })
+    },
     getCompany ({commit}, id) {
       Vue.axios.get('https://startbase.online/api/web/companies/' + id)
       .then(response => {
@@ -97,7 +138,7 @@ export default new Vuex.Store({
       })
     },
     getStages ({commit}) {
-      Vue.axios.get('http://startbase.online/api/web/stages')
+      Vue.axios.get('https://startbase.online/api/web/stages')
       .then(response => {
         commit('setStages', response.data)
       })
@@ -106,7 +147,7 @@ export default new Vuex.Store({
       })
     },
     getMarkets ({commit}) {
-      Vue.axios.get('http://startbase.online/api/web/markets')
+      Vue.axios.get('https://startbase.online/api/web/markets')
       .then(response => {
         commit('setMarkets', response.data)
       })
@@ -115,9 +156,9 @@ export default new Vuex.Store({
       })
     },
     logOut ({commit}) {
-      router.push('/')
       localStorage.clear()
       commit('setUser', null)
+      location.reload()
     }
   },
   modules: {
@@ -126,11 +167,25 @@ export default new Vuex.Store({
     user (state) {
       return state.user
     },
+    // isAuthenticated: (state) => !!state.user,
+    isAuthenticated () {
+      if (localStorage.access_token !== '' && localStorage.access_token !== 'undefined' && localStorage.access_token) {
+        return true
+      } else {
+        return false
+      }
+    },
     users (state) {
       return state.users
     },
     companies (state) {
       return state.companies
+    },
+    myCompanies (state) {
+      return state.myCompanies
+    },
+    myProfile (state) {
+      return state.myProfile
     },
     company (state) {
       return state.company

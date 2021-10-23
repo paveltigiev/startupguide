@@ -1,8 +1,14 @@
 <template>
   <div class="regform">
-    <a href="#" @click="regDialogVisible = true" class="dialogbtn">Зарегистрироваться</a>
-    <a href="#" @click="loginDialogVisible = true"  class="dialogbtn">войти</a>
 
+    <div v-if="isLoggedIn">
+      <a href="/profile" class="dialogbtn">Личный кабинет</a>
+      <a href="#" @click="logOut"  class="dialogbtn">выйти</a>
+    </div>
+    <div v-else>
+      <a href="#" @click="regDialogVisible = true" class="dialogbtn">Зарегистрироваться</a>
+      <a href="#" @click="loginDialogVisible = true"  class="dialogbtn">войти</a>
+    </div>
     <el-dialog :visible="regDialogVisible">
       <div class="form-header">
         <div class="loginBtn" @click="loginDialogVisible = true, regDialogVisible = false">У меня уже есть аккаунт</div>
@@ -128,6 +134,11 @@ export default {
       ]
     }
   },
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isAuthenticated
+    }
+  },
   methods: {
     regUser () {
       this.regDialogVisible = false
@@ -140,6 +151,9 @@ export default {
       this.loginDialogVisible = false
       this.$store.dispatch('loginUser', this.form)
       this.form = {...formFields()}
+    },
+    logOut () {
+      this.$store.dispatch('logOut')
     }
   }
 }
