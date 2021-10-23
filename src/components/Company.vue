@@ -37,6 +37,12 @@
             </div>
           </div>
           <div class="startup-year-title">
+            ИНН
+          </div>
+          <div class="startup-year">
+            {{company.c_inn}}
+          </div>
+          <div class="startup-year-title">
             Основана
           </div>
           <div class="startup-year">
@@ -196,6 +202,7 @@ export default {
       font-size: 14px;
       line-height: 18px;
       font-weight: 500;
+      margin-bottom: 32px;
       color: #1D2435;
     }
 
