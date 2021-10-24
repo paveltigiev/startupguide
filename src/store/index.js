@@ -13,6 +13,8 @@ export default new Vuex.Store({
     myProfile: {},
     findata: {},
     company: {},
+    supportactions: {},
+    innovations: {},
     stages: [],
     statuses: [],
     markets: [],
@@ -52,8 +54,14 @@ export default new Vuex.Store({
       state.markets = payload
     },
     setFindata (state, payload) {
-      console.log(payload)
       state.findata = payload
+    },
+    setInnovations (state, payload) {
+      state.innovations = payload
+    },
+    setSupportactions (state, payload) {
+      console.log(payload)
+      state.supportactions = payload
     },
     setUserData (state, payload) {
       console.log(payload)
@@ -90,6 +98,24 @@ export default new Vuex.Store({
       Vue.axios.get('https://startbase.online/api/web/findata/getbycompany/' + id)
       .then(response => {
         commit('setFindata', response.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    },
+    getSupportactions ({commit}) {
+      Vue.axios.get('https://startbase.online/api/web/supportactions')
+      .then(response => {
+        commit('setSupportactions', response.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    },
+    getInnovations ({commit}) {
+      Vue.axios.get('GET https://startbase.online/api/web/innovations')
+      .then(response => {
+        commit('setiInnovations', response.data)
       })
       .catch(error => {
         console.log(error)
@@ -256,6 +282,12 @@ export default new Vuex.Store({
     },
     findata (state) {
       return state.findata
+    },
+    supportactions (state) {
+      return state.supportactions
+    },
+    innovations (state) {
+      return state.innovations
     }
   }
 })

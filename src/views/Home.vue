@@ -130,6 +130,8 @@ export default {
   computed: {
   },
   created() {
+    // this.$store.dispatch('getSupportactions')
+    // this.$store.dispatch('getInnovations')
   }
 }
 </script>
