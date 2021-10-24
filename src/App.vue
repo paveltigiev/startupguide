@@ -78,8 +78,24 @@
               <img src="/img/aim-logo.svg" width="180" height="65" class="img-fluid" alt="Агентство инноваций города Москвы">
           </a>
         </el-col>
-        <el-col :span="18" class="footer-content">
-          <a href="/" target="_blank"><h5>О проекте</h5></a>
+        <el-col :span="6" class="footer-content partners">
+          <h5>Наши партнеры</h5>
+          <el-row :gutter="0">
+            <el-col :span="12">
+              <a href="/" target="_blank">Фонд "Атом"</a>
+              <a href="/" target="_blank">Connect +</a>
+              <a href="/" target="_blank">Startech.vc</a>
+              <a href="/" target="_blank">Napoleon.it</a>
+            </el-col>
+            <el-col :span="12">
+              <a href="/" target="_blank">Meetsapp</a>
+              <a href="/" target="_blank">Sber</a>
+              <a href="/" target="_blank">Skolkovo</a>
+            </el-col>
+          </el-row>
+        </el-col>
+        <el-col :span="10" class="footer-content">
+          <h5>О проекте</h5>
           <a href="/" target="_blank">Политика в отношении обработки персональных данных</a>
         </el-col>
       </el-row>
@@ -253,21 +269,20 @@ export default {
 
     .footer-content {
       color: rgba(242, 243, 246, 0.5);
-      padding: 52px !important;
-      font-size: 11px;
+      padding: 32px 50px !important;
+      font-size: 13px;
 
       h5 {
         font-weight: bold;
         margin: 8px 0 16px;
         font-size: 14px;
         line-height: 1.28;
-        -webkit-text-decoration-line: underline;
-        text-decoration-line: underline;
         text-transform: uppercase;
       }
 
       a {
-        text-decoration: none;
+        display: block;
+        text-decoration-line: underline;
         color: rgba(242, 243, 246, 0.5);
       }
     }
