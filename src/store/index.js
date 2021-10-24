@@ -52,6 +52,7 @@ export default new Vuex.Store({
       state.markets = payload
     },
     setFindata (state, payload) {
+      console.log(payload)
       state.findata = payload
     },
     setUserData (state, payload) {
@@ -76,7 +77,7 @@ export default new Vuex.Store({
         console.log(error)
       })
     },
-    getUser (commit, id) {
+    getUser ({commit}, id) {
       Vue.axios.get('http://startbase.online/api/web/users/' + id)
       .then(response => {
         commit('setUser', {payload: response.data})
@@ -85,8 +86,8 @@ export default new Vuex.Store({
         console.log(error)
       })
     },
-    getFindata (commit) {
-      Vue.axios.get('https://startbase.online/api/web/findata')
+    getFindata ({commit}, id) {
+      Vue.axios.get('https://startbase.online/api/web/findata/getbycompany/' + id)
       .then(response => {
         commit('setFindata', response.data)
       })

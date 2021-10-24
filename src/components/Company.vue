@@ -127,6 +127,93 @@
       </el-row>
     </div>
 
+    <div class="">
+      <template>
+        <el-table
+          :data="findata.items"
+          style="width: 100%">
+
+          <el-table-column
+            prop="cal_year"
+            label="Год">
+          </el-table-column>
+          <el-table-column
+            prop="earnings"
+            label="Заработок">
+          </el-table-column>
+          <el-table-column
+            prop="stuff"
+            label="Персонал">
+          </el-table-column>
+          <el-table-column
+            prop="reserves"
+            label="Резервы">
+          </el-table-column>
+          <el-table-column
+            prop="assets"
+            label="Ресурсы">
+          </el-table-column>
+          <el-table-column
+            prop="core_funds"
+            label="Основные фонды">
+          </el-table-column>
+          <el-table-column
+            prop="gross_profit"
+            label="Валовая прибыль">
+          </el-table-column>
+          <el-table-column
+            prop="investments"
+            label="Инвестиции">
+          </el-table-column>
+          <el-table-column
+            prop="other_income"
+            label="Другой доход">
+          </el-table-column>
+          <el-table-column
+            prop="net_profit"
+            label="Чистая прибыль">
+          </el-table-column>
+          <el-table-column
+            prop="profit_tax"
+            label="Налог на прибыль">
+          </el-table-column>
+          <el-table-column
+            prop="property_tax"
+            label="Налог на имущество">
+          </el-table-column>
+          <el-table-column
+            prop="nds"
+            label="НДС">
+          </el-table-column>
+          <el-table-column
+            prop="insurance_med"
+            label="Мед. страх.">
+          </el-table-column>
+          <el-table-column
+            prop="insurance_soc"
+            label="Соц. страх.">
+          </el-table-column>
+          <el-table-column
+            prop="pension_costs"
+            label="Пенс. отчисл.">
+          </el-table-column>
+          <el-table-column
+            prop="trade_fee"
+            label="Торговая комиссия">
+          </el-table-column>
+          <el-table-column
+            prop="moscow_profit_tax"
+            label="Московский налог на прибыль">
+          </el-table-column>
+          <el-table-column
+            prop="federal_profit_tax"
+            label="Федеральный налог на прибыль">
+          </el-table-column>
+
+        </el-table>
+      </template>
+    </div>
+
     <div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/33/vladikavkaz/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Владикавказ</a><a href="https://yandex.ru/maps/33/vladikavkaz/?ll=44.687550%2C43.035209&utm_medium=mapframe&utm_source=maps&z=17" style="color:#eee;font-size:12px;position:absolute;top:14px;">Яндекс.Карты — транспорт, навигация, поиск мест</a><iframe src="https://yandex.ru/map-widget/v1/-/CCUqRTUh8B" width="100%" height="340" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
 
   </div>
@@ -153,6 +240,9 @@ export default {
     },
     isOwner () {
       return this.company.owner_id == localStorage.id
+    },
+    findata () {
+      return this.$store.getters.findata
     }
   },
   methods: {
@@ -170,6 +260,7 @@ export default {
   created() {
     this.$store.dispatch('getMarkets')
     this.$store.dispatch('getCompany', this.id)
+    this.$store.dispatch('getFindata', this.id)
   }
 }
 </script>
@@ -183,6 +274,7 @@ export default {
       margin-bottom: 0.8125rem;
       &.bordered {
         border-bottom: 2px solid #fff;
+        margin-bottom: 0;
       }
     }
 

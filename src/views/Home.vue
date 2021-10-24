@@ -128,12 +128,8 @@ export default {
   methods: {
   },
   computed: {
-    // findata () {
-    //   return this.$store.getters.findata
-    // }
   },
   created() {
-    // this.$store.dispatch('getFindata')
   }
 }
 </script>
