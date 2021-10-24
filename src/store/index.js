@@ -11,6 +11,7 @@ export default new Vuex.Store({
     companies: [],
     myCompanies: [],
     myProfile: {},
+    findata: {},
     company: {},
     stages: [],
     statuses: [],
@@ -50,6 +51,9 @@ export default new Vuex.Store({
     setMarkets (state, payload) {
       state.markets = payload
     },
+    setFindata (state, payload) {
+      state.findata = payload
+    },
     setUserData (state, payload) {
       console.log(payload)
       localStorage.access_token = payload.access_token
@@ -72,15 +76,24 @@ export default new Vuex.Store({
         console.log(error)
       })
     },
-    // getUser (commit, id) {
-    //   Vue.axios.get('http://startbase.online/api/web/users/' + id)
-    //   .then(response => {
-    //     commit('setUser', {payload: response.data})
-    //   })
-    //   .catch(error => {
-    //     console.log(error)
-    //   })
-    // },
+    getUser (commit, id) {
+      Vue.axios.get('http://startbase.online/api/web/users/' + id)
+      .then(response => {
+        commit('setUser', {payload: response.data})
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    },
+    getFindata (commit) {
+      Vue.axios.get('https://startbase.online/api/web/findata')
+      .then(response => {
+        commit('setFindata', response.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    },
     regUser ({commit}, user) {
       Vue.axios.post('https://startbase.online/api/web/users/signup', user).then(response => {
         commit('setUserData', {access_token: response.data.access_token, user})
@@ -239,6 +252,9 @@ export default new Vuex.Store({
     },
     markets (state) {
       return state.markets
+    },
+    findata (state) {
+      return state.findata
     }
   }
 })

@@ -120,7 +120,21 @@
 
 <script>
 export default {
-  name: 'Home'
+  name: 'Home',
+  data() {
+    return {
+    }
+  },
+  methods: {
+  },
+  computed: {
+    // findata () {
+    //   return this.$store.getters.findata
+    // }
+  },
+  created() {
+    // this.$store.dispatch('getFindata')
+  }
 }
 </script>
 
