@@ -99,8 +99,8 @@ export default new Vuex.Store({
         this._vm.$message.error(error);
       })
     },
-    getFindata ({commit}, id) {
-      Vue.axios.get('https://startbase.online/api/web/findata/getbycompany/' + id)
+    getFindata ({commit}, payload) {
+      Vue.axios.get('https://startbase.online/api/web/findata/getbycompany/' + payload.id + '?page=' + payload.page)
       .then(response => {
         commit('setFindata', response.data)
       })
@@ -126,8 +126,8 @@ export default new Vuex.Store({
         this._vm.$message.error(error);
       })
     },
-    getSupportentities ({commit}) {
-      Vue.axios.get('https://startbase.online/api/web/supportentities')
+    getSupportentities ({commit}, payload) {
+      Vue.axios.get('https://startbase.online/api/web/supportentities?page=' + payload.page)
       .then(response => {
         commit('setSupportentities', response.data)
       })
@@ -135,8 +135,8 @@ export default new Vuex.Store({
         this._vm.$message.error(error);
       })
     },
-    getSupportentitiesForCompany ({commit}, id) {
-      Vue.axios.get('https://startbase.online/api/web/supportentities/relevant/' + id)
+    getSupportentitiesForCompany ({commit}, payload) {
+      Vue.axios.get('https://startbase.online/api/web/supportentities/relevant/' + payload.id + '?page=' + payload.page)
       .then(response => {
         commit('setSupportentities', response.data)
       })
@@ -183,8 +183,8 @@ export default new Vuex.Store({
         this._vm.$message.error(error);
       })
     },
-    getCompanies ({commit}) {
-      Vue.axios.get('https://startbase.online/api/web/companies')
+    getCompanies ({commit}, page) {
+      Vue.axios.get('https://startbase.online/api/web/companies?page=' + page)
       .then(response => {
         commit('setCompanies', response.data)
       })

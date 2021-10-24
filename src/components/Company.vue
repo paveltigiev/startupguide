@@ -127,7 +127,7 @@
       </el-row>
     </div>
 
-    <div class="supportentities">
+    <div class="supportentities bordered">
       <h2>Подходящие акселерационные программы для компании</h2>
       <el-row
         :gutter="20"
@@ -164,6 +164,15 @@
           </el-col>
         </el-row>
       </div>
+      <el-pagination
+        background
+        @current-change="changeSupportentitiesForCompany"
+        layout="prev, pager, next"
+        :page-size="20"
+        :pager-count="10"
+        :total="supportentities._meta.totalCount"
+        >
+      </el-pagination>
     </div>
 
     <div class="findata-table">
@@ -320,7 +329,15 @@
           label="Федеральный налог на прибыль">
         </el-table-column>
       </el-table>
-
+      <el-pagination
+        background
+        @current-change="changeFindataPage"
+        layout="prev, pager, next"
+        :page-size="20"
+        :pager-count="10"
+        :total="findata._meta.totalCount"
+        >
+      </el-pagination>
     </div>
 
     <div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/33/vladikavkaz/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Владикавказ</a><a href="https://yandex.ru/maps/33/vladikavkaz/?ll=44.687550%2C43.035209&utm_medium=mapframe&utm_source=maps&z=17" style="color:#eee;font-size:12px;position:absolute;top:14px;">Яндекс.Карты — транспорт, навигация, поиск мест</a><iframe src="https://yandex.ru/map-widget/v1/-/CCUqRTUh8B" width="100%" height="340" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
@@ -391,6 +408,12 @@ export default {
     },
     addFindata() {
       this.$store.dispatch('addFindata', this.newFindata)
+    },
+    changeFindataPage(page) {
+      this.$store.dispatch('getFindata', {id: this.id, page})
+    },
+    changeSupportentitiesForCompany(page) {
+      this.$store.dispatch('getSupportentitiesForCompany', {id: this.id, page})
     }
   },
   watch: {
@@ -403,8 +426,8 @@ export default {
   created() {
     this.$store.dispatch('getMarkets')
     this.$store.dispatch('getCompany', this.id)
-    this.$store.dispatch('getFindata', this.id)
-    this.$store.dispatch('getSupportentitiesForCompany', this.id)
+    this.$store.dispatch('getFindata', {id: this.id, page: 1})
+    this.$store.dispatch('getSupportentitiesForCompany', {id: this.id, page: 1})
   }
 }
 </script>

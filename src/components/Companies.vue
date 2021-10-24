@@ -45,6 +45,15 @@
           </el-col>
         </el-row>
       </div>
+      <el-pagination
+        background
+        @current-change="changePage"
+        layout="prev, pager, next"
+        :page-size="20"
+        :pager-count="10"
+        :total="companies._meta.totalCount"
+        >
+      </el-pagination>
     </div>
   </div>
 </template>
@@ -62,6 +71,9 @@ export default {
   methods: {
     goCompany(id) {
       router.push('/companies/' + id)
+    },
+    changePage(page) {
+      this.$store.dispatch('getCompanies', page)
     }
   },
   computed: {
@@ -87,7 +99,7 @@ export default {
   },
   created() {
     this.$store.dispatch('getMarkets')
-    this.$store.dispatch('getCompanies')
+    this.$store.dispatch('getCompanies', 1)
   }
 }
 </script>

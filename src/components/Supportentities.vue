@@ -39,6 +39,15 @@
           </el-col>
         </el-row>
       </div>
+      <el-pagination
+        background
+        @current-change="changeSupportentities"
+        layout="prev, pager, next"
+        :page-size="20"
+        :pager-count="10"
+        :total="supportentities._meta.totalCount"
+        >
+      </el-pagination>
     </div>
   </div>
 </template>
@@ -56,6 +65,9 @@ export default {
   methods: {
     goSupportentity(id) {
       router.push('/supportentities/' + id)
+    },
+    changeSupportentities(page) {
+      this.$store.dispatch('getSupportentities', {page})
     }
   },
   computed: {
@@ -66,7 +78,7 @@ export default {
   watch: {
   },
   created() {
-    this.$store.dispatch('getSupportentities')
+    this.$store.dispatch('getSupportentities', {page: 1})
   }
 }
 </script>

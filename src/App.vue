@@ -351,4 +351,8 @@ export default {
       font-weight: bold;
     }
   }
+  .el-pagination {
+    margin: 20px 0;
+    text-align: center;
+  }
 </style>
