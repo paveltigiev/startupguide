@@ -127,6 +127,45 @@
       </el-row>
     </div>
 
+    <div class="supportentities">
+      <h2>Подходящие акселерационные программы для компании</h2>
+      <el-row
+        :gutter="20"
+        class="supportentity-row-header"
+      >
+        <el-col :span="9" class="name">
+          Название
+        </el-col>
+        <el-col :span="12" class="">
+          Описание
+        </el-col>
+        <el-col :span="3" class="">
+          Статус
+        </el-col>
+      </el-row>
+      <div
+        v-for="(item, index) in supportentities.items"
+        :key="index"
+        @click="goSupportentity(item.sp_id)"
+      >
+        <el-row
+          :gutter="20"
+          class="supportentity-row"
+        >
+          <el-col :span="9" class="name">
+            <img src="https://seeklogo.com/images/B/business-company-logo-C561B48365-seeklogo.com.png" :alt="item.Name" width="60">
+            {{item.Name}}
+          </el-col>
+          <el-col :span="12" class="">
+            {{item.Desc}} &nbsp;
+          </el-col>
+          <el-col :span="3" class="">
+            {{item.status}} &nbsp;
+          </el-col>
+        </el-row>
+      </div>
+    </div>
+
     <div class="findata-table">
       <el-button type="primary" @click="findataDialog = true" class="btn pull-right" v-if="isOwner">Добавить запись</el-button>
       <el-dialog :visible="findataDialog">
@@ -335,11 +374,17 @@ export default {
     },
     findata () {
       return this.$store.getters.findata
+    },
+    supportentities () {
+      return this.$store.getters.supportentities
     }
   },
   methods: {
     goCompany(id) {
       router.push('/companies/edit/' + id)
+    },
+    goSupportentity(id) {
+      router.push('/supportentities/' + id)
     },
     getContur() {
       this.$message.error('Ошибка возобновления подписки.');
@@ -359,6 +404,7 @@ export default {
     this.$store.dispatch('getMarkets')
     this.$store.dispatch('getCompany', this.id)
     this.$store.dispatch('getFindata', this.id)
+    this.$store.dispatch('getSupportentitiesForCompany', this.id)
   }
 }
 </script>
@@ -517,7 +563,11 @@ export default {
         white-space: nowrap;
       }
     }
-
+    .supportentities {
+      h2 {
+        margin: 16px 0 16px 20px;
+        line-height: 40px;
+      }
+    }
   }
-
 </style>

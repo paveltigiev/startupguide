@@ -322,5 +322,33 @@ export default {
   .pull-right {
     float: right;
   }
-
+  .supportentities {
+    padding: 10px;
+    .supportentity-row {
+      background: #fff;
+      border-bottom: 1px solid #c0c0c0;
+      cursor: pointer;
+      transition: none;
+      color: #1D2435;
+      font-size: .875rem;
+      padding: 16px;
+      .name {
+        img {
+          margin-right: 16px;
+        }
+      }
+      &:hover {
+        color: #1d2435;
+        background: #f8f4df;
+      }
+    }
+    .supportentity-row-header {
+      background: #fff;
+      border-bottom: 1px solid #c0c0c0;
+      color: #1D2435;
+      font-size: .875rem;
+      padding: 16px;
+      font-weight: bold;
+    }
+  }
 </style>

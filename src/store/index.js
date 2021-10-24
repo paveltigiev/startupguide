@@ -135,6 +135,15 @@ export default new Vuex.Store({
         this._vm.$message.error(error);
       })
     },
+    getSupportentitiesForCompany ({commit}, id) {
+      Vue.axios.get('https://startbase.online/api/web/supportentities/relevant/' + id)
+      .then(response => {
+        commit('setSupportentities', response.data)
+      })
+      .catch(error => {
+        this._vm.$message.error(error);
+      })
+    },
     getSupportentity ({commit}, id) {
       Vue.axios.get('https://startbase.online/api/web/supportentities/' + id)
       .then(response => {
