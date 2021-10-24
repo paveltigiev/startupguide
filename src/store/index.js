@@ -108,10 +108,11 @@ export default new Vuex.Store({
         this._vm.$message.error(error);
       })
     },
-    addFindata (_, payload) {
+    addFindata ({dispatch}, payload) {
       Vue.axios.post('https://startbase.online/api/web/findata', payload)
       .then(() => {
         this._vm.$message.success('Запись добавлена!')
+        dispatch('getFindata', {id: payload.company_id, page: 1})
       })
       .catch(error => {
         this._vm.$message.error(error.message);

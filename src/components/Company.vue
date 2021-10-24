@@ -250,8 +250,8 @@
         </div>
       </el-dialog>
       <el-button type="secondary" @click="getContur()" class="btn pull-right">Запросить данные из системы Контур</el-button>
-      <h2 v-if="findata.items[0]">Финансовая отчетность</h2>
-      <div v-if="findata.items[0]">
+      <h2 v-if="findata.items">Финансовая отчетность</h2>
+      <div v-if="findata.items">
         <el-table
           :data="findata.items"
           style="width: 100%">
@@ -411,6 +411,8 @@ export default {
       this.$message.error('Ошибка возобновления подписки.');
     },
     addFindata() {
+      this.findataDialog = false
+      this.newFindata.company_id = this.id
       this.$store.dispatch('addFindata', this.newFindata)
     },
     changeFindataPage(page) {
@@ -422,7 +424,7 @@ export default {
   },
   watch: {
     company() {
-      if (this.company.web_sites) {
+      if (this.company.web_sites !== null && this.company.web_sites !== '') {
         this.sites = this.company.web_sites.split('§');
       }
     }

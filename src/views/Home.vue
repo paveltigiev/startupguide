@@ -30,6 +30,17 @@
       </el-row>
     </div>
 
+    <a href="/supportentities" class="supportBox">
+      <div class="index_helpers-grid_inner">
+        <h5 class="index_helpers-grid_title">ПОДБОР<br> акселерационных<br> программ</h5>
+        <p class="">Перейти &gt;</p>
+      </div>
+      <figure class="index_helpers-grid_img">
+        <img src="/static/img/content/helpers/accel-prog.jpg" class="img-fluid" alt="">
+      </figure>
+      <i class="fal fa-arrow-right"></i>
+    </a>
+
     <div class="nav-grid" role="grid">
       <el-row :gutter="0">
         <el-col :span="6" class="grid-item">
@@ -140,7 +151,51 @@ export default {
 <style lang="scss">
 
 .home-page {
-  // background: #fff;
+  .supportBox {
+    background-color: #1F5EFF;
+    border: none;
+    display: block;
+    .index_helpers-grid_inner {
+      padding: 3rem 3rem 2.5rem;
+    }
+    .index_helpers-grid_title {
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      line-height: 1.35;
+      color: #fff;
+      font-size: 20px;
+    }
+    .index_helpers-grid_img {
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 0;
+      img {
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+      }
+    }
+    i {
+      display: flex;
+      margin-left: auto;
+      align-items: center;
+      justify-content: center;
+      width: 5rem;
+      height: 4.875rem;
+      background-color: #FF1F55;
+      font-size: 1.6rem;
+      color: #fff;
+      transition: background-color .2s ease-out;
+    }
+    .fa-arrow-right:before {
+      content: "\f061";
+    }
+  }
 
   .home_indicators {
     padding: 2rem 2rem 1rem 2.5rem;
