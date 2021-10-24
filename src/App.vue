@@ -82,15 +82,15 @@
           <h5>Наши партнеры</h5>
           <el-row :gutter="0">
             <el-col :span="12">
-              <a href="/" target="_blank">Фонд "Атом"</a>
-              <a href="/" target="_blank">Connect +</a>
-              <a href="/" target="_blank">Startech.vc</a>
-              <a href="/" target="_blank">Napoleon.it</a>
+              <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwj9v7Sg8uPzAhUTi8MKHVt2ChwQFnoECAcQAQ&url=https%3A%2F%2Ffondatom.ru%2Fabout%2F&usg=AOvVaw2n256RCg26miZqxvpeS_UF" target="_blank">Фонд "Атом"</a>
+              <a href="https://connectim.pro" target="_blank">Connect +</a>
+              <a href="https://startech.vc/en" target="_blank">Startech.vc</a>
+              <a href="https://www.napoleonit.com" target="_blank">Napoleon.it</a>
             </el-col>
             <el-col :span="12">
-              <a href="/" target="_blank">Meetsapp</a>
-              <a href="/" target="_blank">Sber</a>
-              <a href="/" target="_blank">Skolkovo</a>
+              <a href="#" target="_blank">Meetsapp</a>
+              <a href="http://sberbank.ru" target="_blank">Sber</a>
+              <a href="https://sk.ru" target="_blank">Skolkovo</a>
             </el-col>
           </el-row>
         </el-col>
