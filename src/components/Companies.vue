@@ -96,6 +96,8 @@ export default {
   .companies {
     padding: 10px;
     .company-row {
+      background: #fff;
+      border-bottom: 1px solid #c0c0c0;
       cursor: pointer;
       transition: none;
       color: #1D2435;
@@ -112,6 +114,8 @@ export default {
       }
     }
     .company-row-header {
+      background: #fff;
+      border-bottom: 1px solid #c0c0c0;
       color: #1D2435;
       font-size: .875rem;
       padding: 16px;

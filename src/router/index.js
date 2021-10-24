@@ -50,6 +50,12 @@ const routes = [
     meta: {requiresAuth: true}
   },
   {
+    name: 'Supportentity',
+    props: true,
+    path: '/supportentities/:id',
+    component: () => import('@/components/Supportentity')
+  },
+  {
     name: 'Supportentities',
     path: '/supportentities',
     component: () => import('@/components/Supportentities')
