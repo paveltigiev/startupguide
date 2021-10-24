@@ -48,6 +48,11 @@ const routes = [
     path: '/newcompany',
     component: () => import('@/components/NewCompany'),
     meta: {requiresAuth: true}
+  },
+  {
+    name: 'Supportentities',
+    path: '/supportentities',
+    component: () => import('@/components/Supportentities')
   }
 ]
 

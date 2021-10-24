@@ -8,19 +8,48 @@
           </a>
         </div>
         <div class="main-nav">
-          <router-link to="/companies">Стартапы и тех.компании</router-link>
-          <router-link to="/companies">Корпорации</router-link>
-          <router-link to="/companies">Венчурные фонды</router-link>
-          <router-link to="/companies">Акселераторы и инкубаторы</router-link>
-          <router-link to="/companies">Стартап-студии </router-link>
+          <router-link to="/companies">
+            <svg width="28" height="30">
+              <use xlink:href="/img/svg-symbols.svg#startup_type_1"></use>
+            </svg>
+            <span>Стартапы и тех.компании</span>
+          </router-link>
+          <router-link to="/companies">
+            <svg width="28" height="30">
+              <use xlink:href="/img/svg-symbols.svg#startup_type_15"></use>
+            </svg>
+            <span>Корпорации</span>
+          </router-link>
+          <router-link to="/companies">
+            <svg width="28" height="15">
+              <use xlink:href="/img/svg-symbols.svg#startup_type_3"></use>
+            </svg>
+            <span>Венчурные фонды</span>
+          </router-link>
+          <router-link to="/companies">
+            <svg width="28" height="30">
+              <use xlink:href="/img/svg-symbols.svg#startup_type_5"></use>
+            </svg>
+            <span>Акселераторы и инкубаторы</span>
+          </router-link>
+          <router-link to="/companies">
+            <svg width="28" height="30">
+              <use xlink:href="/img/svg-symbols.svg#startup_type_4"></use>
+            </svg>
+            <span>Бизнес-инкубаторы</span>
+          </router-link>
           <!-- <router-link to="/">Площадки пилотное тестирова...</router-link>
           <router-link to="/">Инжиниринговые центры </router-link>
           <router-link to="/">Коворкинги и офисы</router-link>
           <router-link to="/">Институты развития / ассоциац...</router-link> -->
         </div>
         <div class="main-nav dark">
-          <!-- <router-link to="/">Гид по венчурному рынку Москвы Venture Guide</router-link>
-          <router-link to="/">Москва для стартапов: новости, аналитика</router-link> -->
+          <router-link to="/supportentities">
+            <svg width="28" height="30">
+              <use xlink:href="/img/svg-symbols.svg#growth-program"></use>
+            </svg>
+            <span>ПОДБОР АКСЕЛЕРАЦИОННЫХ ПРОГРАММ</span>
+          </router-link>
         </div>
       </el-col>
       <el-col :span="18" class="main-content">
@@ -117,7 +146,7 @@ export default {
 
     .search-bar {
       padding: 10px 16px;
-      margin: 22px 40px;
+      margin: 21px 40px;
       width: 90%;
       font-size: 1.6em;
     }
@@ -149,39 +178,56 @@ export default {
       background: #fff;
       padding: 20px 0;
       a {
-        position: relative;
-        display: block;
-        padding: 0 32px 0 78px;
+        display: inline-flex;
+        align-items: center;
+        padding: 16px 32px 16px 28px;
         text-decoration: none;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 12px;
-        line-height: 42px;
-        text-transform: uppercase;
-        color: #1D2435;
-        height: 42px;
-
-        &:before {
-          position: absolute;
-          content: '';
-          left: 32px;
-          top: 13px;
-          width: 22px;
-          height: 15px;
-          background: url(/img/st-icon.svg) left top no-repeat;
+        span {
+          font-style: normal;
+          font-weight: normal;
+          font-size: 16px;
+          text-transform: uppercase;
+          color: #1D2435;
+          position: relative;
         }
+
+         svg {
+          flex: 0 0 auto;
+          fill: none;
+          text-align: center;
+          margin-right: 1.75rem;
+          margin-top: 2px;
+          stroke: #1D2435;
+          transition: stroke .2s ease-out, fill .2s ease-out;
+        }
+
+        // &:before {
+        //   position: absolute;
+        //   content: '';
+        //   left: 32px;
+        //   top: 13px;
+        //   width: 22px;
+        //   height: 15px;
+        //   background: url(/img/st-icon.svg) left top no-repeat;
+        // }
 
         &.active {
           background: #E1E4F4;
         }
         &:hover {
-          background: #E1E4F4;
+          // background: #E1E4F4;
+          text-decoration: underline;
         }
       }
       &.dark {
         background: none;
         a {
-          color: #fff;
+          span {
+            color: #fff;
+          }
+          svg {
+            stroke: #FF1F55;
+          }
           &:before {
             filter: invert(50%);
           }

@@ -17,7 +17,8 @@ export default new Vuex.Store({
     innovations: {},
     stages: [],
     statuses: [],
-    markets: [],
+    supportentities: {},
+    markets: {},
     isAuthenticated: false
   },
   mutations: {
@@ -61,6 +62,9 @@ export default new Vuex.Store({
     },
     setSupportactions (state, payload) {
       state.supportactions = payload
+    },
+    setSupportentities (state, payload) {
+      state.supportentities = payload
     },
     setUserData (state, payload) {
       localStorage.access_token = payload.access_token
@@ -113,6 +117,15 @@ export default new Vuex.Store({
       Vue.axios.get('https://startbase.online/api/web/supportactions')
       .then(response => {
         commit('setSupportactions', response.data)
+      })
+      .catch(error => {
+        this._vm.$message.error(error);
+      })
+    },
+    getSupportentities ({commit}) {
+      Vue.axios.get('https://startbase.online/api/web/supportentities')
+      .then(response => {
+        commit('setSupportentities', response.data)
       })
       .catch(error => {
         this._vm.$message.error(error);
@@ -287,6 +300,9 @@ export default new Vuex.Store({
     },
     supportactions (state) {
       return state.supportactions
+    },
+    seupportentities (state) {
+      return state.supportentities
     },
     innovations (state) {
       return state.innovations
