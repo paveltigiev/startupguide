@@ -60,11 +60,9 @@ export default new Vuex.Store({
       state.innovations = payload
     },
     setSupportactions (state, payload) {
-      console.log(payload)
       state.supportactions = payload
     },
     setUserData (state, payload) {
-      console.log(payload)
       localStorage.access_token = payload.access_token
       localStorage.email = payload.email
       localStorage.fio = payload.fio
@@ -78,11 +76,10 @@ export default new Vuex.Store({
     getUsers (commit) {
       Vue.axios.get('http://startbase.online/api/web/users')
       .then(response => {
-        console.log(response.data)
         commit('setUsers', {payload: response.data})
       })
       .catch(error => {
-        console.log(error)
+        this._vm.$message.error(error);
       })
     },
     getUser ({commit}, id) {
@@ -91,7 +88,7 @@ export default new Vuex.Store({
         commit('setUser', {payload: response.data})
       })
       .catch(error => {
-        console.log(error)
+        this._vm.$message.error(error);
       })
     },
     getFindata ({commit}, id) {
@@ -100,7 +97,16 @@ export default new Vuex.Store({
         commit('setFindata', response.data)
       })
       .catch(error => {
-        console.log(error)
+        this._vm.$message.error(error);
+      })
+    },
+    addFindata (_, payload) {
+      Vue.axios.post('https://startbase.online/api/web/findata', payload)
+      .then(() => {
+        this._vm.$message.success('Запись добавлена!')
+      })
+      .catch(error => {
+        this._vm.$message.error(error.message);
       })
     },
     getSupportactions ({commit}) {
@@ -109,7 +115,7 @@ export default new Vuex.Store({
         commit('setSupportactions', response.data)
       })
       .catch(error => {
-        console.log(error)
+        this._vm.$message.error(error);
       })
     },
     getInnovations ({commit}) {
@@ -118,17 +124,17 @@ export default new Vuex.Store({
         commit('setiInnovations', response.data)
       })
       .catch(error => {
-        console.log(error)
+        this._vm.$message.error(error);
       })
     },
     regUser ({commit}, user) {
       Vue.axios.post('https://startbase.online/api/web/users/signup', user).then(response => {
         commit('setUserData', {access_token: response.data.access_token, user})
         location.reload()
-        // commit('setMessage', 'Вы успешно вошли в систему')
+        this._vm.$message.success('Вы зарегистрированы!')
       })
       .catch(error => {
-        console.log(error)
+        this._vm.$message.error(error);
       })
     },
     loginUser ({commit}, user) {
@@ -136,10 +142,10 @@ export default new Vuex.Store({
       .then(response => {
         commit('setUserData', {access_token: response.data.access_token, user})
         location.reload()
-        // commit('setMessage', 'Вы успешно вошли в систему')
+        this._vm.$message.success('Вы вошли в систему!');
       })
       .catch(error => {
-        console.log(error)
+        this._vm.$message.error(error);
       })
     },
     getCompanies ({commit}) {
@@ -148,17 +154,16 @@ export default new Vuex.Store({
         commit('setCompanies', response.data)
       })
       .catch(error => {
-        console.log(error)
+        this._vm.$message.error(error);
       })
     },
     getMyCompanies ({commit}) {
       Vue.axios.get('https://startbase.online/api/web/companies/my')
       .then(response => {
-        console.log(response.data)
         commit('setMyCompanies', response.data)
       })
       .catch(error => {
-        console.log(error)
+        this._vm.$message.error(error);
       })
     },
     getMyProfile ({commit}) {
@@ -167,38 +172,35 @@ export default new Vuex.Store({
         commit('setMyProfile', response.data)
       })
       .catch(error => {
-        console.log(error)
+        this._vm.$message.error(error);
       })
     },
     updateUser (_, payload) {
-      console.log(payload)
       Vue.axios.put('https://startbase.online/api/web/users/' + payload.id, payload)
-      // .then(response => {
-      //   commit('setMyProfile', response.data)
-      // })
-      // .catch(error => {
-      //   console.log(error)
-      // })
+      .then(() => {
+        this._vm.$message.success('Профиль обновлен!');
+      })
+      .catch(error => {
+        this._vm.$message.error(error);
+      })
     },
     createCompany (_, payload) {
-      console.log(payload)
       Vue.axios.post('https://startbase.online/api/web/companies', payload)
-      // .then(response => {
-      //   commit('setCompanies', response.data)
-      // })
-      // .catch(error => {
-      //   console.log(error)
-      // })
+      .then(() => {
+        this._vm.$message.success('Компания создана!');
+      })
+      .catch(error => {
+        this._vm.$message.error(error);
+      })
     },
     updateCompany (_, payload) {
-      console.log(payload)
       Vue.axios.put('https://startbase.online/api/web/companies/' + payload.c_id, payload)
-      // .then(response => {
-      //   commit('setCompanies', response.data)
-      // })
-      // .catch(error => {
-      //   console.log(error)
-      // })
+      .then(() => {
+        this._vm.$message.success('Компания обновлена!');
+      })
+      .catch(error => {
+        this._vm.$message.error(error);
+      })
     },
     getCompany ({commit}, id) {
       Vue.axios.get('https://startbase.online/api/web/companies/' + id)
@@ -206,7 +208,7 @@ export default new Vuex.Store({
         commit('setCompany', response.data)
       })
       .catch(error => {
-        console.log(error)
+        this._vm.$message.error(error);
       })
     },
     getStages ({commit}) {
@@ -215,7 +217,7 @@ export default new Vuex.Store({
         commit('setStages', response.data)
       })
       .catch(error => {
-        console.log(error)
+        this._vm.$message.error(error);
       })
     },
     getStatuses ({commit}) {
@@ -224,7 +226,7 @@ export default new Vuex.Store({
         commit('setStatuses', response.data)
       })
       .catch(error => {
-        console.log(error)
+        this._vm.$message.error(error);
       })
     },
     getMarkets ({commit}) {
@@ -233,7 +235,7 @@ export default new Vuex.Store({
         commit('setMarkets', response.data)
       })
       .catch(error => {
-        console.log(error)
+        this._vm.$message.error(error);
       })
     },
     logOut ({commit}) {

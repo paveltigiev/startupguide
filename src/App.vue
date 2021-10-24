@@ -117,8 +117,9 @@ export default {
 
     .search-bar {
       padding: 10px 16px;
-      margin: 26px 40px;
+      margin: 22px 40px;
       width: 90%;
+      font-size: 1.6em;
     }
 
     .login-box {
@@ -271,6 +272,9 @@ export default {
   }
   .pb-0 {
     padding-bottom: 0 !important;
+  }
+  .pull-right {
+    float: right;
   }
 
 </style>
