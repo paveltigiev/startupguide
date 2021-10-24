@@ -13,15 +13,12 @@
       <el-form-item label="Город">
         <el-input v-model="form.city"></el-input>
       </el-form-item>
-      <el-form-item label="Положение">
+      <el-form-item label="Должность">
         <el-input v-model="form.position"></el-input>
       </el-form-item>
       <el-form-item label="Опыт">
         <el-input v-model="form.experience"></el-input>
       </el-form-item>
-      <!-- <el-form-item label="Навыки">
-        <el-input v-model="form.skils"></el-input>
-      </el-form-item> -->
       <el-form-item label="Навыки">
       <el-select
         class="skills-selector"

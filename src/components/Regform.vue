@@ -19,27 +19,24 @@
       </div>
       <el-form :model="form">
         <el-form-item>
-          <el-input v-model="form.lastname" placeholder="Фамилия"></el-input>
+          <el-input v-model="form.fio" placeholder="ФИО"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-input v-model="form.firstname" placeholder="Имя"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-input v-model="form.patronymic" placeholder="Отчество"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-input v-model="form.email" placeholder="E-mail"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-input v-model="form.phone" placeholder="Телефон"></el-input>
-        </el-form-item>
-        <el-form-item label="" label-width="200">
-          <el-input v-model="form.inn" placeholder="Компания или ИНН"></el-input>
+          <el-input v-model="form.city" placeholder="Город"></el-input>
         </el-form-item>
         <el-form-item>
           <el-input v-model="form.position" placeholder="Должность"></el-input>
         </el-form-item>
         <el-form-item>
+          <el-input v-model="form.email" placeholder="E-mail"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-input v-model="form.experience" placeholder="Опыт"></el-input>
+        </el-form-item>
+        <el-form-item label="" label-width="200">
+          <el-input v-model="form.contact" placeholder="Контакты"></el-input>
+        </el-form-item>
+        <!-- <el-form-item>
           <el-select v-model="form.representative" placeholder="Я представляю">
             <el-option
               v-for="item in options"
@@ -48,7 +45,7 @@
               :value="item.value">
             </el-option>
           </el-select>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item>
           <el-input v-model="form.password" type="password" placeholder="Пароль"></el-input>
         </el-form-item>
