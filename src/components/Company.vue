@@ -83,8 +83,10 @@
           <h3 class="contacts-title">
             Контакты
           </h3>
-          <div class="contacts-row" v-for="(item, index) in sites" :key="index">
-            <a :href="item">{{item}}</a>
+          <div v-if="sites">
+            <div class="contacts-row" v-for="(item, index) in sites" :key="index">
+              <a :href="item">{{item}}</a>
+            </div>
           </div>
           <!-- <div class="contacts-row">
             <svg width="20" height="17" class="mr-2">
@@ -127,7 +129,7 @@
       </el-row>
     </div>
 
-    <div class="supportentities bordered">
+    <div class="supportentities bordered" v-if="supportentities.items">
       <h2>Подходящие акселерационные программы для компании</h2>
       <el-row
         :gutter="20"
@@ -175,7 +177,7 @@
       </el-pagination>
     </div>
 
-    <div class="findata-table">
+    <div class="findata-table" style="overflow: hidden">
       <el-button type="primary" @click="findataDialog = true" class="btn pull-right" v-if="isOwner">Добавить запись</el-button>
       <el-dialog :visible="findataDialog">
         <div class="form-header">
@@ -248,96 +250,98 @@
         </div>
       </el-dialog>
       <el-button type="secondary" @click="getContur()" class="btn pull-right">Запросить данные из системы Контур</el-button>
-      <h2>Финансовая отчетность</h2>
-      <el-table
-        :data="findata.items"
-        style="width: 100%">
-        <el-table-column
-          prop="cal_year"
-          label="Год">
-        </el-table-column>
-        <el-table-column
-          prop="earnings"
-          label="Заработок">
-        </el-table-column>
-        <el-table-column
-          prop="stuff"
-          label="Персонал">
-        </el-table-column>
-        <el-table-column
-          prop="reserves"
-          label="Резервы">
-        </el-table-column>
-        <el-table-column
-          prop="assets"
-          label="Ресурсы">
-        </el-table-column>
-        <el-table-column
-          prop="core_funds"
-          label="Основные фонды">
-        </el-table-column>
-        <el-table-column
-          prop="gross_profit"
-          label="Валовая прибыль">
-        </el-table-column>
-        <el-table-column
-          prop="investments"
-          label="Инвестиции">
-        </el-table-column>
-        <el-table-column
-          prop="other_income"
-          label="Другой доход">
-        </el-table-column>
-        <el-table-column
-          prop="net_profit"
-          label="Чистая прибыль">
-        </el-table-column>
-        <el-table-column
-          prop="profit_tax"
-          label="Налог на прибыль">
-        </el-table-column>
-        <el-table-column
-          prop="property_tax"
-          label="Налог на имущество">
-        </el-table-column>
-        <el-table-column
-          prop="nds"
-          label="НДС">
-        </el-table-column>
-        <el-table-column
-          prop="insurance_med"
-          label="Мед. страх.">
-        </el-table-column>
-        <el-table-column
-          prop="insurance_soc"
-          label="Соц. страх.">
-        </el-table-column>
-        <el-table-column
-          prop="pension_costs"
-          label="Пенс. отчисл.">
-        </el-table-column>
-        <el-table-column
-          prop="trade_fee"
-          label="Торговая комиссия">
-        </el-table-column>
-        <el-table-column
-          prop="moscow_profit_tax"
-          label="Московский налог на прибыль">
-        </el-table-column>
-        <el-table-column
-          prop="federal_profit_tax"
-          label="Федеральный налог на прибыль">
-        </el-table-column>
-      </el-table>
-      <el-pagination
-        background
-        @current-change="changeFindataPage"
-        layout="prev, pager, next"
-        :page-size="20"
-        :pager-count="10"
-        :total="findata._meta.totalCount"
-        >
-      </el-pagination>
+      <h2 v-if="findata.items[0]">Финансовая отчетность</h2>
+      <div v-if="findata.items[0]">
+        <el-table
+          :data="findata.items"
+          style="width: 100%">
+          <el-table-column
+            prop="cal_year"
+            label="Год">
+          </el-table-column>
+          <el-table-column
+            prop="earnings"
+            label="Заработок">
+          </el-table-column>
+          <el-table-column
+            prop="stuff"
+            label="Персонал">
+          </el-table-column>
+          <el-table-column
+            prop="reserves"
+            label="Резервы">
+          </el-table-column>
+          <el-table-column
+            prop="assets"
+            label="Ресурсы">
+          </el-table-column>
+          <el-table-column
+            prop="core_funds"
+            label="Основные фонды">
+          </el-table-column>
+          <el-table-column
+            prop="gross_profit"
+            label="Валовая прибыль">
+          </el-table-column>
+          <el-table-column
+            prop="investments"
+            label="Инвестиции">
+          </el-table-column>
+          <el-table-column
+            prop="other_income"
+            label="Другой доход">
+          </el-table-column>
+          <el-table-column
+            prop="net_profit"
+            label="Чистая прибыль">
+          </el-table-column>
+          <el-table-column
+            prop="profit_tax"
+            label="Налог на прибыль">
+          </el-table-column>
+          <el-table-column
+            prop="property_tax"
+            label="Налог на имущество">
+          </el-table-column>
+          <el-table-column
+            prop="nds"
+            label="НДС">
+          </el-table-column>
+          <el-table-column
+            prop="insurance_med"
+            label="Мед. страх.">
+          </el-table-column>
+          <el-table-column
+            prop="insurance_soc"
+            label="Соц. страх.">
+          </el-table-column>
+          <el-table-column
+            prop="pension_costs"
+            label="Пенс. отчисл.">
+          </el-table-column>
+          <el-table-column
+            prop="trade_fee"
+            label="Торговая комиссия">
+          </el-table-column>
+          <el-table-column
+            prop="moscow_profit_tax"
+            label="Московский налог на прибыль">
+          </el-table-column>
+          <el-table-column
+            prop="federal_profit_tax"
+            label="Федеральный налог на прибыль">
+          </el-table-column>
+        </el-table>
+        <el-pagination
+          background
+          @current-change="changeFindataPage"
+          layout="prev, pager, next"
+          :page-size="20"
+          :pager-count="10"
+          :total="findata._meta.totalCount"
+          >
+        </el-pagination>
+      </div>
     </div>
 
     <div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/33/vladikavkaz/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Владикавказ</a><a href="https://yandex.ru/maps/33/vladikavkaz/?ll=44.687550%2C43.035209&utm_medium=mapframe&utm_source=maps&z=17" style="color:#eee;font-size:12px;position:absolute;top:14px;">Яндекс.Карты — транспорт, навигация, поиск мест</a><iframe src="https://yandex.ru/map-widget/v1/-/CCUqRTUh8B" width="100%" height="340" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>

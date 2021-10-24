@@ -355,4 +355,7 @@ export default {
     margin: 20px 0;
     text-align: center;
   }
+  .relative {
+    position: relative;
+  }
 </style>

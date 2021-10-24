@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import router from '../router'
+import router from '../router'
 // import _ from 'lodash'
 Vue.use(Vuex)
 
@@ -221,8 +221,9 @@ export default new Vuex.Store({
     },
     createCompany (_, payload) {
       Vue.axios.post('https://startbase.online/api/web/companies', payload)
-      .then(() => {
-        this._vm.$message.success('Компания создана!');
+      .then(response => {
+        router.push('/companies/' + response.data.c_id)
+        this._vm.$message.success('Компания создана!')
       })
       .catch(error => {
         this._vm.$message.error(error);

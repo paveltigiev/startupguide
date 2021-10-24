@@ -26,33 +26,33 @@
         <el-input v-model="form.web_sites"></el-input>
       </el-form-item>
       <el-form-item label="Рынок">
-        <el-select v-model="form.market_id" placeholder="Выберите рынок" multiple>
-            <el-option
-            v-for="item in markets.items"
-            :key="item.market_id"
-            :label="item.market_name_ru"
-            :value="item.market_id">
-            </el-option>
+        <el-select v-model="form.markets" placeholder="Выберите рынок" multiple>
+          <el-option
+          v-for="item in markets.items"
+          :key="item.market_id"
+          :label="item.market_name_ru"
+          :value="item.market_id">
+          </el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="Статус">
         <el-select v-model="form.status" placeholder="Выберите статус">
-            <el-option
-            v-for="item in statuses.items"
-            :key="item.stat_id"
-            :label="item.status_name"
-            :value="item.stat_id">
-            </el-option>
+          <el-option
+          v-for="item in statuses.items"
+          :key="item.stat_id"
+          :label="item.status_name"
+          :value="item.stat_id">
+          </el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="Стадия">
-        <el-select v-model="form.stage_id" placeholder="Выберите стадию" multiple>
-            <el-option
-            v-for="item in stages.items"
-            :key="item.sid"
-            :label="item.stage_name_ru"
-            :value="item.sid">
-            </el-option>
+        <el-select v-model="form.stage_id" placeholder="Выберите стадию" >
+          <el-option
+          v-for="item in stages.items"
+          :key="item.sid"
+          :label="item.stage_name_ru"
+          :value="item.sid">
+          </el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="Приватный">
@@ -62,6 +62,7 @@
       <el-form-item>
         <el-button type="primary" @click="updateCompany">Обновить</el-button>
         <el-button @click="resetForm">Вернуть</el-button>
+        <el-button @click="goCompany">Посмотреть</el-button>
       </el-form-item>
     </el-form>
 
@@ -69,7 +70,7 @@
 </template>
 
 <script>
-// import router from '@/router'
+import router from '@/router'
 export default {
   name: 'Profile',
   props: ['id'],
@@ -85,9 +86,9 @@ export default {
         add_okveds: '',
         logo_url: '',
         web_sites: '',
-        market_id: [],
+        markets: [],
         status: '',
-        stage_id: [],
+        stage_id: '',
         isprivate: ''
       }
     }
@@ -97,7 +98,27 @@ export default {
       this.form = Object.assign({}, this.company)
     },
     updateCompany() {
+      delete this.form.market_id
+      delete this.form.inno_id
+
+      if (this.form.markets) {
+        this.form.markets.forEach((item, index) => {
+          if (item == null) {
+            this.form.markets.splice(index, 1)
+          }
+        }) 
+      }
+      if (this.form.innos) {
+        this.form.innos.forEach((item, index) => {
+          if (item == null) {
+            this.form.innos.splice(index, 1)
+          }
+        })
+      }
       this.$store.dispatch('updateCompany', this.form)
+    },
+    goCompany() {
+      router.push('/companies/' + this.id)
     }
   },
   computed: {

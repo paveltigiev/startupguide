@@ -27,12 +27,12 @@
       </el-form-item>
       <el-form-item label="Рынок">
         <el-select v-model="form.market_id" placeholder="Выберите рынок" multiple>
-            <el-option
-            v-for="item in markets.items"
-            :key="item.market_id"
-            :label="item.market_name_ru"
-            :value="item.market_id">
-            </el-option>
+          <el-option
+          v-for="item in markets.items"
+          :key="item.market_id"
+          :label="item.market_name_ru"
+          :value="item.market_id">
+          </el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="Статус">
@@ -46,13 +46,13 @@
         </el-select>
       </el-form-item>
       <el-form-item label="Стадия">
-        <el-select v-model="form.stage_id" placeholder="Выберите стадию" multiple>
-            <el-option
-            v-for="item in stages.items"
-            :key="item.sid"
-            :label="item.stage_name_ru"
-            :value="item.sid">
-            </el-option>
+        <el-select v-model="form.stage_id" placeholder="Выберите стадию">
+          <el-option
+          v-for="item in stages.items"
+          :key="item.sid"
+          :label="item.stage_name_ru"
+          :value="item.sid">
+          </el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="Приватный">
@@ -85,7 +85,7 @@ export default {
         web_sites: '',
         market_id: [],
         status: '',
-        stage_id: [],
+        stage_id: '',
         isprivate: ''
       }
     }
