@@ -35,10 +35,8 @@
         <h5 class="index_helpers-grid_title">ПОДБОР<br> акселерационных<br> программ</h5>
         <p class="">Перейти &gt;</p>
       </div>
-      <figure class="index_helpers-grid_img">
-        <img src="/static/img/content/helpers/accel-prog.jpg" class="img-fluid" alt="">
-      </figure>
-      <i class="fal fa-arrow-right"></i>
+      <img src="/img/support.png" class="supportImage" alt="">
+      <span class="icon">→</span>
     </a>
 
     <div class="nav-grid" role="grid">
@@ -155,6 +153,10 @@ export default {
     background-color: #1F5EFF;
     border: none;
     display: block;
+    text-decoration: none;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
     .index_helpers-grid_inner {
       padding: 3rem 3rem 2.5rem;
     }
@@ -166,21 +168,16 @@ export default {
       color: #fff;
       font-size: 20px;
     }
-    .index_helpers-grid_img {
-      overflow: hidden;
-      position: relative;
-      margin-bottom: 0;
-      img {
-        position: absolute;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto;
-      }
+    .supportImage {
+      height: 347px;
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      margin: auto;
     }
-    i {
+    .icon {
+      position: relative;
       display: flex;
       margin-left: auto;
       align-items: center;
@@ -191,6 +188,7 @@ export default {
       font-size: 1.6rem;
       color: #fff;
       transition: background-color .2s ease-out;
+      z-index: 2;
     }
     .fa-arrow-right:before {
       content: "\f061";
