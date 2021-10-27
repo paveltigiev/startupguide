@@ -2,7 +2,7 @@
   <div class="startup-page">
     <div class="row-box pb-0">
       <el-row :gutter="20">
-        <el-col :span="6">
+        <el-col :xs="24" :sm="6" :lg="6">
           <a href="/companies" class="btn-back" onclick="back()">
             <span class="img-span">
               <img src="/img/leftchevron.svg" alt="">
@@ -10,7 +10,7 @@
             <span class="span-back">Назад</span>
           </a>
         </el-col>
-        <el-col :span="18">
+        <el-col :xs="24" :sm="18" :lg="18">
           <div class="breadcrumbs">
             <a href="/companies">Компании</a>
             <span>
@@ -23,10 +23,10 @@
     </div>
     <div class="row-box bordered pt-0">
       <el-row :gutter="20">
-        <el-col :span="6">
+        <el-col :xs="24" :sm="18" :lg="6">
           <img src="https://api.freelogodesign.org/assets/thumb/logo/22192360_400.png" class="img-fluid" :alt="company.c_name">
         </el-col>
-        <el-col :span="18">
+        <el-col :xs="24" :sm="18" :lg="18">
           <div class="">
             <h1 class="startup-title">{{company.c_name}}</h1>
             <div class="company-description-icon" v-if="isOwner">
@@ -43,7 +43,7 @@
             </div> -->
           </div>
           <el-row :gutter="20">
-            <el-col :span="4">
+            <el-col :xs="24" :sm="12" :lg="4">
               <div class="startup-year-title">
                 ИНН
               </div>
@@ -51,7 +51,7 @@
                 {{company.c_inn}}
               </div>
             </el-col>
-            <el-col :span="4">
+            <el-col :xs="24" :sm="12" :lg="4">
               <div class="startup-year-title">
                 Основана
               </div>
@@ -66,10 +66,10 @@
 
     <div class="row-box bordered">
       <el-row :gutter="20">
-        <el-col :span="6">
+        <el-col :xs="24" :sm="6" :lg="6">
           <div class="btn">InnoTech</div>
         </el-col>
-        <el-col :span="18">
+        <el-col :xs="24" :sm="18" :lg="18">
           <div class="startup-desc">
             {{company.c_desc}}
           </div>
@@ -79,7 +79,7 @@
 
     <div class="row-box bordered">
       <el-row :gutter="20">
-        <el-col :span="9" :offset="6">
+        <el-col  :xs="24" :sm="9" :lg="{span: 9, offset:6}">
           <h3 class="contacts-title">
             Контакты
           </h3>
@@ -116,7 +116,7 @@
             <a target="_blank" rel="nofollow" href="https://www.skmenergy.com/">www.skmenergy.com/</a>
           </div> -->
         </el-col>
-        <el-col :span="9">
+        <el-col :xs="24" :sm="9" :lg="9">
           <div class="contacts-column">
             <h3 class="contacts-title">
               Продукты

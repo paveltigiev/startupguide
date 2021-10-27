@@ -2,7 +2,7 @@
   <div class="startup-page">
     <div class="row-box pb-0">
       <el-row :gutter="20">
-        <el-col :span="6">
+        <el-col :xs="24" :sm="6" :lg="6">
           <a href="/supportentities" class="btn-back" onclick="back()">
             <span class="img-span">
               <img src="/img/leftchevron.svg" alt="">
@@ -10,7 +10,7 @@
             <span class="span-back">Назад</span>
           </a>
         </el-col>
-        <el-col :span="18">
+        <el-col :xs="24" :sm="18" :lg="18">
           <div class="breadcrumbs">
             <a href="/supportentities">Акселерационные программы</a>
             <span>
@@ -23,15 +23,15 @@
     </div>
     <div class="row-box bordered pt-0">
       <el-row :gutter="20">
-        <el-col :span="6">
+        <el-col :xs="24" :sm="18" :lg="6">
           <img src="https://seeklogo.com/images/B/business-company-logo-C561B48365-seeklogo.com.png" class="img-fluid" :alt="supportentity.Name">
         </el-col>
-        <el-col :span="18">
+        <el-col :xs="24" :sm="18" :lg="18">
           <div class="">
             <h1 class="startup-title">{{supportentity.Name}}</h1>
           </div>
           <el-row :gutter="20">
-            <el-col :span="8">
+            <el-col :xs="24" :sm="12" :lg="8">
               <div class="startup-year-title">
                 СТАТУС
               </div>
@@ -39,7 +39,7 @@
                 {{supportentity.status}}
               </div>
             </el-col>
-            <el-col :span="8">
+            <el-col :xs="24" :sm="12" :lg="8">
               <div class="startup-year-title">
                 Сумма поддержки
               </div>
@@ -54,10 +54,10 @@
 
     <div class="row-box bordered">
       <el-row :gutter="20">
-        <el-col :span="6">
+        <el-col :xs="24" :sm="6" :lg="6">
           <div class="btn">{{supportentity.support_type_name}}</div>
         </el-col>
-        <el-col :span="18">
+        <el-col :xs="24" :sm="18" :lg="18">
           <div class="startup-desc">
             {{supportentity.Desc}}
           </div>
@@ -67,14 +67,14 @@
 
     <div class="row-box bordered">
       <el-row :gutter="20">
-        <el-col :span="9" :offset="6">
+        <el-col  :xs="24" :sm="9" :lg="{span: 9, offset:6}">
           <h3 class="contacts-title">
             Контакты
           </h3>
-          <div class="contacts-row">
+          <div class="contacts-row" style="overflow: hidden">
             – &nbsp;{{supportentity.address}}
           </div>
-          <div class="contacts-row">
+          <div class="contacts-row" style="overflow: hidden">
             – &nbsp; <a :href="supportentity.website">{{supportentity.website}}</a>
           </div>
 <!--
@@ -99,7 +99,7 @@
             <a target="_blank" rel="nofollow" href="https://www.skmenergy.com/">www.skmenergy.com/</a>
           </div> -->
         </el-col>
-        <el-col :span="9">
+        <el-col :xs="24" :sm="9" :lg="9">
           <div class="contacts-column">
             <h3 class="contacts-title">
               ДЛЯ КОГО

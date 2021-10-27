@@ -58,7 +58,7 @@
             <el-col :span="18" class="main-header-logo">
               <input type="search" class="search-bar" placeholder="Найти стартап, инвестора, сервисы">
             </el-col>
-            <el-col :span="6" class="login-box">
+            <el-col  :xs="24" :sm="6" class="login-box">
               <Regform></Regform>
             </el-col>
           </el-row>
@@ -73,7 +73,7 @@
 
     <footer class="main-footer">
       <el-row :gutter="0">
-        <el-col :span="6" class="footer-logo-box" justify="center" align="middle">
+        <el-col :span="6" class="footer-logo-box" justify="center" align="middle" hidden-sm-and-down>
           <a href="/" target="_blank" class="footer-logo">
               <img src="/img/aim-logo.svg" width="180" height="65" class="img-fluid" alt="Агентство инноваций города Москвы">
           </a>
@@ -81,13 +81,13 @@
         <el-col :span="6" class="footer-content partners">
           <h5>Наши партнеры</h5>
           <el-row :gutter="0">
-            <el-col :span="12">
+            <el-col :xs="24" :sm="12">
               <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwj9v7Sg8uPzAhUTi8MKHVt2ChwQFnoECAcQAQ&url=https%3A%2F%2Ffondatom.ru%2Fabout%2F&usg=AOvVaw2n256RCg26miZqxvpeS_UF" target="_blank">Фонд "Атом"</a>
               <a href="https://connectim.pro" target="_blank">Connect +</a>
               <a href="https://startech.vc/en" target="_blank">Startech.vc</a>
               <a href="https://www.napoleonit.com" target="_blank">Napoleon.it</a>
             </el-col>
-            <el-col :span="12">
+            <el-col :xs="24" :sm="12">
               <a href="#" target="_blank">Meetsapp</a>
               <a href="http://sberbank.ru" target="_blank">Sber</a>
               <a href="https://sk.ru" target="_blank">Skolkovo</a>
@@ -129,248 +129,5 @@ export default {
 </script>
 
 <style lang="scss">
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Open Sans', sans-serif;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #000;
-    background: #0458FE;
-  }
-  .datatable-page {
-    background: #F2F3F6;
-    .el-table {
-      padding-bottom: 20px;
-      td.el-table__cell {
-        border: 0;
-        cursor: pointer;
-      }
-    }
-  }
-  .main-container {
-    max-width: 1740px;
-    margin: 0 auto;
-    background: #24314A;
-  }
-  .main-header {
-    width: 100%;
-    height: 93px;
 
-    .search-bar {
-      padding: 10px 16px;
-      margin: 21px 40px;
-      width: 90%;
-      font-size: 1.6em;
-    }
-
-    .login-box {
-      background: #FF1F55;
-      height: 93px;
-      text-align: center;
-      padding-top: 28px;
-      a.dialogbtn {
-        display: block;
-        text-transform: uppercase;
-        color: #fff;
-        text-decoration: none;
-        font-size: 14px;
-        line-height: 18px;
-      }
-    }
-  }
-  .main-sidebar {
-    .main-logo {
-      width: 100%;
-      background: #fff;
-      img {
-        padding: 28px 22px;
-      }
-    }
-    .main-nav {
-      background: #fff;
-      padding: 20px 0;
-      a {
-        display: inline-flex;
-        align-items: center;
-        padding: 16px 32px 16px 28px;
-        text-decoration: none;
-        span {
-          font-style: normal;
-          font-weight: normal;
-          font-size: 16px;
-          text-transform: uppercase;
-          color: #1D2435;
-          position: relative;
-        }
-
-         svg {
-          flex: 0 0 auto;
-          fill: none;
-          text-align: center;
-          margin-right: 1.75rem;
-          margin-top: 2px;
-          stroke: #1D2435;
-          transition: stroke .2s ease-out, fill .2s ease-out;
-        }
-
-        // &:before {
-        //   position: absolute;
-        //   content: '';
-        //   left: 32px;
-        //   top: 13px;
-        //   width: 22px;
-        //   height: 15px;
-        //   background: url(/img/st-icon.svg) left top no-repeat;
-        // }
-
-        &.active {
-          background: #E1E4F4;
-        }
-        &:hover {
-          // background: #E1E4F4;
-          text-decoration: underline;
-        }
-      }
-      &.dark {
-        background: none;
-        a {
-          span {
-            color: #fff;
-          }
-          svg {
-            stroke: #FF1F55;
-          }
-          &:before {
-            filter: invert(50%);
-          }
-        }
-        &:hover {
-          background: none;
-        }
-      }
-    }
-  }
-  .main-content {
-    background: #fff url(/img/bg.png) left top no-repeat;
-    background-size: 100%;
-    .content-wrapper {
-      padding: 40px 20px;
-    }
-  }
-  .main-footer {
-    width: 100%;
-    height: 179px;
-    background: #1D2435;
-    color: #878B95;
-
-    .footer-content {
-      color: rgba(242, 243, 246, 0.5);
-      padding: 32px 50px !important;
-      font-size: 13px;
-
-      h5 {
-        font-weight: bold;
-        margin: 8px 0 16px;
-        font-size: 14px;
-        line-height: 1.28;
-        text-transform: uppercase;
-      }
-
-      a {
-        display: block;
-        text-decoration-line: underline;
-        color: rgba(242, 243, 246, 0.5);
-      }
-    }
-
-    .footer-logo-box {
-      height: 179px;
-      background: #171E2D;
-
-      .footer-logo {
-        opacity: .5;
-        color: #F2F3F6;
-        img {
-          margin-top: 60px;
-        }
-      }
-    }
-  }
-
-  a {
-    transition-property: color, background-color, border-color, opacity;
-    transition-duration: .2s;
-    transition-timing-function: ease-in-out;
-  }
-  img {
-    vertical-align: middle;
-    border-style: none;
-  }
-  .img-fluid {
-    max-width: 100%;
-    height: auto;
-  }
-  .btn {
-    display: inline-block;
-    padding: 0.4375rem 0.8125rem 0.75rem 0.75rem;
-    border-radius: 2.9375rem;
-    box-shadow: 0px 10px 10px #e1e4f4, 0px -3px 10px #ffffff;
-    color: #0459FF;
-    font-weight: 500;
-    font-style: normal;
-    margin-bottom: 0.8125rem;
-    margin-right: 0.8125rem;
-    font-size: 0.75rem;
-    cursor: pointer;
-  }
-
-  .pt-0 {
-    padding-top: 0 !important;
-  }
-  .pb-0 {
-    padding-bottom: 0 !important;
-  }
-  .pull-right {
-    float: right;
-  }
-  .supportentities {
-    padding: 10px;
-    .supportentity-row {
-      background: #fff;
-      border-bottom: 1px solid #c0c0c0;
-      cursor: pointer;
-      transition: none;
-      color: #1D2435;
-      font-size: .875rem;
-      padding: 16px;
-      .name {
-        img {
-          margin-right: 16px;
-        }
-      }
-      &:hover {
-        color: #1d2435;
-        background: #f8f4df;
-      }
-    }
-    .supportentity-row-header {
-      background: #fff;
-      border-bottom: 1px solid #c0c0c0;
-      color: #1D2435;
-      font-size: .875rem;
-      padding: 16px;
-      font-weight: bold;
-    }
-  }
-  .el-pagination {
-    margin: 20px 0;
-    text-align: center;
-  }
-  .relative {
-    position: relative;
-  }
 </style>

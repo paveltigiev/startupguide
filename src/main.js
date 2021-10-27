@@ -6,6 +6,7 @@ import Element from 'element-ui'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import 'element-ui/lib/theme-chalk/index.css'
+import '@/assets/style.scss'
 
 // axios.defaults.baseURL = 'https://startbase.online/api/web/'
 axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.access_token

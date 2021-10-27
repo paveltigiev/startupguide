@@ -2,26 +2,26 @@
   <div class="home-page">
     <div class="home_indicators">
       <el-row :gutter="80">
-        <el-col :span="6" class="home_indicator">
+        <el-col :xs="24" :sm="12" :lg="6" class="home_indicator">
           <h1>2548</h1>
           <h6>
             стартапов и технологических компаний
             <a href="/startups"></a>
           </h6>
         </el-col>
-        <el-col :span="6" class="home_indicator">
+        <el-col :xs="24" :sm="12" :lg="6" class="home_indicator">
           <h1>132</h1>
           <h6>
             венчурных фондов
           </h6>
         </el-col>
-        <el-col :span="6" class="home_indicator">
+        <el-col :xs="24" :sm="12" :lg="6" class="home_indicator">
           <h1>211</h1>
           <h6>
             гибких рабочих пространств
           </h6>
           </el-col>
-        <el-col :span="6" class="home_indicator">
+        <el-col :xs="24" :sm="12" :lg="6" class="home_indicator">
           <h1>89</h1>
           <h6>
             АКСЕЛЕРАЦИОННЫХ ПРОГРАММ
@@ -30,96 +30,96 @@
       </el-row>
     </div>
 
-    <a href="/supportentities" class="supportBox">
+    <router-link to="/supportentities" class="supportBox">
       <div class="index_helpers-grid_inner">
         <h5 class="index_helpers-grid_title">ПОДБОР<br> акселерационных<br> программ</h5>
         <p class="">Перейти &gt;</p>
       </div>
       <img src="/img/support.png" class="supportImage" alt="">
       <span class="icon">→</span>
-    </a>
+    </router-link>
 
     <div class="nav-grid" role="grid">
       <el-row :gutter="0">
-        <el-col :span="6" class="grid-item">
-          <a href="/companies" class="grid-inner">
+        <el-col class="grid-item" :xs="24" :sm="12" :lg="6">
+          <router-link to="/companies" class="grid-inner">
             <figure class="icon-box">
               <svg width="34" height="48">
                 <use xlink:href="/img/svg-symbols.svg#rocket"></use>
               </svg>
             </figure>
             <h5 class="inner_title">Найти стартапы<br> и&nbsp;технологические<br> компании</h5>
-          </a>
+          </router-link>
         </el-col>
-        <el-col :span="6" class="grid-item">
-          <a href="/companies" class="grid-inner">
+        <el-col class="grid-item" :xs="24" :sm="12" :lg="6">
+          <router-link to="/companies" class="grid-inner">
             <figure class="icon-box">
               <svg width="44" height="46">
                 <use xlink:href="/img/svg-symbols.svg#investments"></use>
               </svg>
             </figure>
             <h5 class="inner_title">Где получить<br> инвестиции</h5>
-          </a>
+          </router-link>
         </el-col>
-        <el-col :span="6" class="grid-item">
-          <a href="/companies" class="grid-inner">
+        <el-col class="grid-item" :xs="24" :sm="12" :lg="6">
+          <router-link to="/companies" class="grid-inner">
             <figure class="icon-box">
               <svg width="44" height="50">
                 <use xlink:href="/img/svg-symbols.svg#market-box"></use>
               </svg>
             </figure>
             <h5 class="inner_title">КАК ВЫЙТИ НА РЫНОК<br> И ГДЕ НАЙТИ КЛИЕНТОВ</h5>
-          </a>
+          </router-link>
         </el-col>
-        <el-col :span="6" class="grid-item">
-            <a href="/companies" class="grid-inner">
-              <figure class="icon-box">
-                <svg width="40" height="36">
-                  <use xlink:href="/img/svg-symbols.svg#rooms"></use>
-                </svg>
-              </figure>
-              <h5 class="inner_title">ГДЕ НАЙТИ<br> ПОМЕЩЕНИЕ ДЛЯ<br> ОФИСА/РАБОЧЕЕ МЕСТО</h5>
-            </a>
+        <el-col class="grid-item" :xs="24" :sm="12" :lg="6">
+          <router-link to="/companies" class="grid-inner">
+            <figure class="icon-box">
+              <svg width="40" height="36">
+                <use xlink:href="/img/svg-symbols.svg#rooms"></use>
+              </svg>
+            </figure>
+            <h5 class="inner_title">ГДЕ НАЙТИ<br> ПОМЕЩЕНИЕ ДЛЯ<br> ОФИСА/РАБОЧЕЕ МЕСТО</h5>
+          </router-link>
         </el-col>
-        <el-col :span="6" class="grid-item">
-          <a href="/companies" class="grid-inner">
+        <el-col class="grid-item" :xs="24" :sm="12" :lg="6">
+          <router-link to="/companies" class="grid-inner">
             <figure class="icon-box">
               <svg width="37" height="37">
                 <use xlink:href="/img/svg-symbols.svg#prototype"></use>
               </svg>
             </figure>
             <h5 class="inner_title">ГДЕ ДОРАБОТАТЬ<br> ПРОТОТИП</h5>
-          </a>
+          </router-link>
         </el-col>
-        <el-col :span="6" class="grid-item">
-          <a href="/companies" class="grid-inner">
+        <el-col class="grid-item" :xs="24" :sm="12" :lg="6">
+          <router-link to="/companies" class="grid-inner">
             <figure class="icon-box">
               <svg width="38" height="38">
                 <use xlink:href="/img/svg-symbols.svg#expand"></use>
               </svg>
             </figure>
             <h5 class="inner_title">ГДЕ ПРОКАЧАТЬ<br> КОМПЕТЕНЦИИ/<br> РАСШИРИТЬ НЕТВОРК</h5>
-          </a>
+          </router-link>
         </el-col>
-        <el-col :span="6" class="grid-item">
-          <a href="/companies" class="grid-inner">
+        <el-col class="grid-item" :xs="24" :sm="12" :lg="6">
+          <router-link to="/companies" class="grid-inner">
             <figure class="icon-box">
               <svg width="44" height="42">
                 <use xlink:href="/img/svg-symbols.svg#question"></use>
               </svg>
             </figure>
             <h5 class="inner_title">ГДЕ ПОЛУЧИТЬ<br> КОНСУЛЬТАЦИЮ<br> ПО БИЗНЕС-ВОПРОСАМ</h5>
-          </a>
+          </router-link>
         </el-col>
-        <el-col :span="6" class="grid-item">
-          <a href="/companies" class="grid-inner">
+        <el-col class="grid-item" :xs="24" :sm="12" :lg="6">
+          <router-link to="/companies" class="grid-inner">
             <figure class="icon-box">
               <svg width="35" height="35">
                 <use xlink:href="/img/svg-symbols.svg#checklist"></use>
               </svg>
             </figure>
             <h5 class="inner_title">ГДЕ ПРОТЕСТИРОВАТЬ<br> ПРОДУКТ</h5>
-          </a>
+          </router-link>
         </el-col>
       </el-row>
     </div>
@@ -139,8 +139,6 @@ export default {
   computed: {
   },
   created() {
-    // this.$store.dispatch('getSupportactions')
-    // this.$store.dispatch('getInnovations')
   }
 }
 </script>
