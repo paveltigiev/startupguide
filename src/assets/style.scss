@@ -243,6 +243,14 @@ img {
   position: relative;
 }
 
+.loading-box {
+  img {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+  }
+}
+
 
 @media only screen and (max-width: 1200px) {
 
@@ -311,14 +319,14 @@ img {
       // }
     }
 
-    .grid-item {
-      .grid-inner {
-        // height: 200px !important;
-        // h5 {
-        //   font-size: 0.8rem !important;
-        // }
-      }
-    }
+    // .grid-item {
+    //   .grid-inner {
+    //     height: 200px !important;
+    //     h5 {
+    //       font-size: 0.8rem !important;
+    //     }
+    //   }
+    // }
 
     .main-footer {
       height: 270px;

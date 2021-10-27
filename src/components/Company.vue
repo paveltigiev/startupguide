@@ -177,6 +177,11 @@
       </el-pagination>
     </div>
 
+    <div v-else-if="isLogged" class="loading-box supportentities bordered">
+      <h2>Подходящие акселерационные программы для компании</h2>
+      <img src="/img/loading.gif" alt="">
+    </div>
+
     <div class="findata-table" style="overflow: hidden">
       <el-button type="primary" @click="findataDialog = true" class="btn pull-right" v-if="isOwner">Добавить запись</el-button>
       <el-dialog :visible="findataDialog">
@@ -392,6 +397,9 @@ export default {
     },
     isOwner () {
       return this.company.owner_id == localStorage.id
+    },
+    isLogged () {
+      return localStorage.id
     },
     findata () {
       return this.$store.getters.findata

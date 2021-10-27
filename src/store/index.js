@@ -20,7 +20,8 @@ export default new Vuex.Store({
     supportentities: {},
     supportentity: {},
     markets: {},
-    isAuthenticated: false
+    isAuthenticated: false,
+    loading: false
   },
   mutations: {
     setUser (state, payload) {
@@ -78,6 +79,9 @@ export default new Vuex.Store({
       localStorage.role = payload.role
       localStorage.city = payload.city
       state.isAuthenticated = true
+    },
+    setLoading(state, payload) {
+      state.loading = payload
     }
   },
   actions: {
@@ -124,8 +128,8 @@ export default new Vuex.Store({
         commit('setSupportactions', response.data)
       })
       // .catch(error => {
-      //   this._vm.$message.error(error);
-      // })
+        //   this._vm.$message.error(error);
+        // })
     },
     getSupportentities ({commit}, payload) {
       Vue.axios.get('https://startbase.online/api/web/supportentities?page=' + payload.page)
@@ -137,13 +141,15 @@ export default new Vuex.Store({
       // })
     },
     getSupportentitiesForCompany ({commit}, payload) {
-      Vue.axios.get('https://startbase.online/api/web/supportentities/relevant/' + payload.id + '?page=' + payload.page)
-      .then(response => {
-        commit('setSupportentities', response.data)
-      })
-      // .catch(error => {
-      //   this._vm.$message.error(error);
-      // })
+      setTimeout(function() {
+        Vue.axios.get('https://startbase.online/api/web/supportentities/relevant/' + payload.id + '?page=' + payload.page)
+        .then(response => {
+          commit('setSupportentities', response.data)
+        })
+        // .catch(error => {
+        //   this._vm.$message.error(error);
+        // })
+      }, 1000)
     },
     getSupportentity ({commit}, id) {
       Vue.axios.get('https://startbase.online/api/web/supportentities/' + id)
@@ -240,8 +246,10 @@ export default new Vuex.Store({
       // })
     },
     getCompany ({commit}, id) {
+      commit('setLoading', true)
       Vue.axios.get('https://startbase.online/api/web/companies/' + id)
       .then(response => {
+        commit('setLoading', false)
         commit('setCompany', response.data)
       })
       // .catch(error => {
@@ -333,6 +341,9 @@ export default new Vuex.Store({
     },
     innovations (state) {
       return state.innovations
+    },
+    loading (state) {
+      return state.loading
     }
   }
 })
