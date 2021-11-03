@@ -206,6 +206,34 @@ img {
 .pull-right {
   float: right;
 }
+
+.filter-box {
+  padding: 2.5rem;
+  .filter-title {
+    margin: 20px 0;
+  }
+  .filter-subtitle {
+    margin: 20px 0 10px;
+  }
+  .el-select {
+    width: 100%;
+  }
+  .accelerator-button {
+    color: #fff;
+    background-color: #FF1F55;
+    box-shadow: none;
+    border: none;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 2rem;
+    padding: 12px 32px;
+    font-size: .875rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, transform 0.15s ease-out;
+  }
+}
+
 .supportentities {
   padding: 10px;
   .supportentity-row {
@@ -249,6 +277,11 @@ img {
     margin: 0 auto;
     width: 200px;
   }
+}
+
+.bg-dark {
+  background-color: #1d2435 !important;
+  color: #fff !important;
 }
 
 

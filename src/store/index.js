@@ -14,6 +14,7 @@ export default new Vuex.Store({
     findata: {},
     company: {},
     supportactions: {},
+    supportproviders: {},
     innovations: {},
     stages: [],
     statuses: [],
@@ -68,6 +69,9 @@ export default new Vuex.Store({
     setSupportentities (state, payload) {
       state.supportentities = payload
     },
+    setSupportproviders (state, payload) {
+      state.supportproviders = payload
+    },
     setSupportentity (state, payload) {
       state.supportentity = payload
     },
@@ -118,27 +122,27 @@ export default new Vuex.Store({
         this._vm.$message.success('Запись добавлена!')
         dispatch('getFindata', {id: payload.company_id, page: 1})
       })
-      // .catch(error => {
-      //   this._vm.$message.error(error.message);
-      // })
     },
+    // справочник по типам сущностей
+    getSupportproviders ({commit}) {
+      Vue.axios.get('https://startbase.online/api/web/supportproviders')
+      .then(response => {
+        commit('setSupportproviders', response.data)
+      })
+    },
+    // типы оказываемой поддержки
     getSupportactions ({commit}) {
       Vue.axios.get('https://startbase.online/api/web/supportactions')
       .then(response => {
         commit('setSupportactions', response.data)
       })
-      // .catch(error => {
-        //   this._vm.$message.error(error);
-        // })
     },
     getSupportentities ({commit}, payload) {
-      Vue.axios.get('https://startbase.online/api/web/supportentities?page=' + payload.page)
+      console.log(payload)
+      Vue.axios.get('https://startbase.online/api/web/supportentities/search?support=' + payload.filterParams.support + '&service=' + payload.filterParams.service + '&page=' + payload.page)
       .then(response => {
         commit('setSupportentities', response.data)
       })
-      // .catch(error => {
-      //   this._vm.$message.error(error);
-      // })
     },
     getSupportentitiesForCompany ({commit}, payload) {
       setTimeout(function() {
@@ -163,11 +167,17 @@ export default new Vuex.Store({
     getInnovations ({commit}) {
       Vue.axios.get('GET https://startbase.online/api/web/innovations')
       .then(response => {
-        commit('setiInnovations', response.data)
+        commit('setInnovations', response.data)
       })
       // .catch(error => {
       //   this._vm.$message.error(error);
       // })
+    },
+    getExistSupportentity ({commit}, id) {
+      Vue.axios.get('https://startbase.online/api/web/supportentities/existedforcompany/' + id)
+      .then(response => {
+        commit('setSupportentity', response.data)
+      })
     },
     regUser ({commit}, user) {
       Vue.axios.post('https://startbase.online/api/web/users/signup', user).then(response => {
@@ -332,6 +342,9 @@ export default new Vuex.Store({
     },
     supportactions (state) {
       return state.supportactions
+    },
+    supportproviders (state) {
+      return state.supportproviders
     },
     supportentities (state) {
       return state.supportentities
