@@ -8,6 +8,7 @@ export default new Vuex.Store({
   state: {
     user: null,
     users: [],
+    search: [],
     companies: [],
     myCompanies: [],
     myProfile: {},
@@ -90,6 +91,9 @@ export default new Vuex.Store({
     },
     setLoading(state, payload) {
       state.loading = payload
+    },
+    setSearch(state, payload) {
+      state.search = payload
     }
   },
   actions: {
@@ -97,6 +101,12 @@ export default new Vuex.Store({
       Vue.axios.get('http://startbase.online/api/web/users')
       .then(response => {
         commit('setUsers', {payload: response.data})
+      })
+    },
+    getSearch ({commit}, q) {
+      Vue.axios.get('http://startbase.online/api/web/search?find=' + q)
+      .then(response => {
+        commit('setSearch', {payload: response.data})
       })
     },
     getUser ({commit}, id) {
@@ -340,6 +350,9 @@ export default new Vuex.Store({
     },
     loading (state) {
       return state.loading
+    },
+    search (state) {
+      return state.search
     }
   }
 })

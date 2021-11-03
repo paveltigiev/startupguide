@@ -56,7 +56,9 @@
         <header class="main-header">
           <el-row :gutter="0">
             <el-col :span="18" class="main-header-logo">
-              <input type="search" class="search-bar" placeholder="Найти стартап, инвестора, сервисы">
+              <el-input class="search-bar input-with-select" placeholder="Найти стартап, инвестора, сервисы" v-model="searchQuery">
+                <el-button @click="findIt" slot="append" icon="el-icon-search"></el-button>
+              </el-input>
             </el-col>
             <el-col  :xs="24" :sm="6" class="login-box">
               <Regform></Regform>
@@ -104,7 +106,7 @@
 </template>
 
 <script>
-// import router from '@/router'
+import router from '@/router'
 const Regform = () => import('@/components/Regform')
 export default {
   name: 'App',
@@ -113,9 +115,14 @@ export default {
   },
   data() {
     return {
+      searchQuery: ''
     }
   },
   methods: {
+    findIt() {
+      this.$store.dispatch('getSearch', this.searchQuery)
+      router.push('/search')
+    }
   },
   computed: {
     myProfile () {
