@@ -28,10 +28,10 @@
         allow-create
         placeholder="Выберите навыки">
         <el-option
-          v-for="item in skils"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
+          v-for="item in skills.items"
+          :key="item.skill_id"
+          :label="item.name"
+          :value="item.skill_id">
         </el-option>
       </el-select>
       </el-form-item>
@@ -54,7 +54,6 @@
         <h1>Мои компании</h1>
       <h2 v-if="myCompanies.items == []">У вас пока нет компаний. Но вы можете <a href="/newcompany">создать её</a>.</h2>
       </div>
-
 
       <el-row
         :gutter="20"
@@ -119,21 +118,7 @@ export default {
         contact: '',
         skils: '',
         role: 0
-      },
-      skils: [
-        {
-          value: 'html',
-          label: 'html'
-        },
-        {
-          value: 'js',
-          label: 'js'
-        },
-        {
-          value: 'css',
-          label: 'css'
-        }
-      ]
+      }
     }
   },
   methods: {
@@ -157,6 +142,9 @@ export default {
     },
     markets () {
       return this.$store.getters.markets
+    },
+    skills () {
+      return this.$store.getters.skills
     }
   },
   watch: {
@@ -179,6 +167,7 @@ export default {
     this.$store.dispatch('getMarkets')
     this.$store.dispatch('getMyProfile')
     this.$store.dispatch('getMyCompanies')
+    this.$store.dispatch('getSkills')
   }
 }
 </script>

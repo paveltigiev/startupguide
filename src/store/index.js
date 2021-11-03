@@ -11,6 +11,7 @@ export default new Vuex.Store({
     companies: [],
     myCompanies: [],
     myProfile: {},
+    skills: {},
     findata: {},
     company: {},
     supportactions: {},
@@ -39,6 +40,9 @@ export default new Vuex.Store({
     },
     setCompany (state, payload) {
       state.company = payload
+    },
+    setSkills (state, payload) {
+      state.skills = payload
     },
     setMyProfile (state, payload) {
       state.myProfile = payload
@@ -223,9 +227,12 @@ export default new Vuex.Store({
       .then(response => {
         commit('setMyProfile', response.data)
       })
-      // .catch(error => {
-      //   this._vm.$message.error(error);
-      // })
+    },
+    getSkills ({commit}) {
+      Vue.axios.get('https://startbase.online/api/web/skills')
+      .then(response => {
+        commit('setSkills', response.data)
+      })
     },
     updateUser (_, payload) {
       Vue.axios.put('https://startbase.online/api/web/users/' + payload.id, payload)
@@ -324,6 +331,9 @@ export default new Vuex.Store({
     },
     myProfile (state) {
       return state.myProfile
+    },
+    skills (state) {
+      return state.skills
     },
     company (state) {
       return state.company
