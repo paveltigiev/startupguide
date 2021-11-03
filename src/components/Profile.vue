@@ -22,16 +22,17 @@
       <el-form-item label="Навыки">
       <el-select
         class="skills-selector"
-        v-model="form.skils"
+        v-model="selected_skills"
         multiple
         filterable
         allow-create
+        value-key="id"
         placeholder="Выберите навыки">
         <el-option
           v-for="item in skills.items"
-          :key="item.skill_id"
+          :key="item.id"
           :label="item.name"
-          :value="item.skill_id">
+          :value="item">
         </el-option>
       </el-select>
       </el-form-item>
@@ -118,15 +119,38 @@ export default {
         contact: '',
         skils: '',
         role: 0
-      }
+      },
+      selected_skills: []
     }
   },
   methods: {
     resetForm() {
       this.form = Object.assign({}, this.myProfile)
+      this.selected_skills = []
+      this.myProfile.skills.forEach(item => {
+        let sk = {
+          id: item.skill_id,
+          name: item.name
+        }
+        this.selected_skills.push(sk)
+      })
     },
     updateUser() {
+      this.form.skills = []
+      if (this.selected_skills) {
+        this.selected_skills.forEach((item) => {
+          let sk = {
+            skill_id: item.id,
+            name: item.name,
+            is_main: false
+          }
+          this.form.skills.push(sk)
+        }) 
+      } else {
+        this.form.skills = []
+      }
       this.$store.dispatch('updateUser', this.form)
+      // console.log(this.form)
     },
     goCompany(id) {
       router.push('/companies/' + id)
@@ -137,7 +161,6 @@ export default {
       return this.$store.getters.myProfile
     },
     myCompanies () {
-      console.log(this.$store.getters.myCompanies)
       return this.$store.getters.myCompanies
     },
     markets () {
@@ -150,6 +173,14 @@ export default {
   watch: {
     myProfile() {
       this.form = Object.assign({}, this.myProfile)
+      this.selected_skills = []
+      this.myProfile.skills.forEach(item => {
+        let sk = {
+          id: item.skill_id,
+          name: item.name
+        }
+        this.selected_skills.push(sk)
+      })
     },
     myCompanies () {
       this.myCompanies.items.forEach(comp => {

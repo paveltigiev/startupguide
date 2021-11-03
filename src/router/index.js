@@ -16,9 +16,20 @@ const routes = [
     component: () => import('@/components/Startup.vue')
   },
   {
-    path: '/startups',
     name: 'Startups',
+    path: '/startups',
     component: () => import('@/components/Startups.vue')
+  },
+  {
+    name: 'users',
+    path: '/users',
+    component: () => import('@/components/Users.vue')
+  },
+  {
+    name: 'user',
+    path: '/users/:id',
+    props: true,
+    component: () => import('@/components/User')
   },
   {
     path: '/companies',

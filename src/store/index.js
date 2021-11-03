@@ -98,27 +98,18 @@ export default new Vuex.Store({
       .then(response => {
         commit('setUsers', {payload: response.data})
       })
-      // .catch(error => {
-      //   this._vm.$message.error(error);
-      // })
     },
     getUser ({commit}, id) {
       Vue.axios.get('http://startbase.online/api/web/users/' + id)
       .then(response => {
         commit('setUser', {payload: response.data})
       })
-      // .catch(error => {
-      //   this._vm.$message.error(error);
-      // })
     },
     getFindata ({commit}, payload) {
       Vue.axios.get('https://startbase.online/api/web/findata/getbycompany/' + payload.id + '?page=' + payload.page)
       .then(response => {
         commit('setFindata', response.data)
       })
-      // .catch(error => {
-      //   this._vm.$message.error(error);
-      // })
     },
     addFindata ({dispatch}, payload) {
       Vue.axios.post('https://startbase.online/api/web/findata', payload)
@@ -239,9 +230,6 @@ export default new Vuex.Store({
       .then(() => {
         this._vm.$message.success('Профиль обновлен!');
       })
-      // .catch(error => {
-      //   this._vm.$message.error(error);
-      // })
     },
     createCompany (_, payload) {
       Vue.axios.post('https://startbase.online/api/web/companies', payload)
@@ -258,9 +246,6 @@ export default new Vuex.Store({
       .then(() => {
         this._vm.$message.success('Компания обновлена!');
       })
-      // .catch(error => {
-      //   this._vm.$message.error(error);
-      // })
     },
     getCompany ({commit}, id) {
       commit('setLoading', true)
@@ -269,36 +254,24 @@ export default new Vuex.Store({
         commit('setLoading', false)
         commit('setCompany', response.data)
       })
-      // .catch(error => {
-      //   this._vm.$message.error(error);
-      // })
     },
     getStages ({commit}) {
       Vue.axios.get('https://startbase.online/api/web/stages')
       .then(response => {
         commit('setStages', response.data)
       })
-      // .catch(error => {
-      //   this._vm.$message.error(error);
-      // })
     },
     getStatuses ({commit}) {
       Vue.axios.get('https://startbase.online/api/web/statuses')
       .then(response => {
         commit('setStatuses', response.data)
       })
-      // .catch(error => {
-      //   this._vm.$message.error(error);
-      // })
     },
     getMarkets ({commit}) {
       Vue.axios.get('https://startbase.online/api/web/markets')
       .then(response => {
         commit('setMarkets', response.data)
       })
-      // .catch(error => {
-      //   this._vm.$message.error(error);
-      // })
     },
     logOut ({commit}) {
       localStorage.clear()
