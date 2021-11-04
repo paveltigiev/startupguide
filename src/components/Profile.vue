@@ -50,7 +50,7 @@
     </el-row> -->
 
     <div class="companies">
-      <div class="content-wrapper">
+      <div class="content-wrapper" style="padding-bootom:0">
         <a href="/newcompany" class="createCompanyBtn bnt">Создать компанию</a>
         <h1>Мои компании</h1>
       <h2 v-if="myCompanies.items == []">У вас пока нет компаний. Но вы можете <a href="/newcompany">создать её</a>.</h2>
@@ -236,6 +236,13 @@ export default {
   .companies {
     padding: 0 10px 20px;
     .company-row {
+      background: #fff;
+      border-bottom: 1px solid #c0c0c0;
+      cursor: pointer;
+      transition: none;
+      color: #1D2435;
+      font-size: 0.875rem;
+      padding: 16px;
       cursor: pointer;
       transition: none;
       color: #1D2435;

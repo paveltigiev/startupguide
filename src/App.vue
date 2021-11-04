@@ -14,25 +14,25 @@
             </svg>
             <span>Стартапы и тех.компании</span>
           </router-link>
-          <router-link to="/companies">
+          <router-link to="/supportentities">
             <svg width="28" height="30">
               <use xlink:href="/img/svg-symbols.svg#startup_type_15"></use>
             </svg>
             <span>Корпорации</span>
           </router-link>
-          <router-link to="/companies">
+          <router-link to="/supportentities">
             <svg width="28" height="15">
               <use xlink:href="/img/svg-symbols.svg#startup_type_3"></use>
             </svg>
             <span>Венчурные фонды</span>
           </router-link>
-          <router-link to="/companies">
+          <router-link to="/supportentities">
             <svg width="28" height="30">
               <use xlink:href="/img/svg-symbols.svg#startup_type_5"></use>
             </svg>
             <span>Акселераторы и инкубаторы</span>
           </router-link>
-          <router-link to="/companies">
+          <router-link to="/supportentities">
             <svg width="28" height="30">
               <use xlink:href="/img/svg-symbols.svg#startup_type_4"></use>
             </svg>
@@ -65,10 +65,6 @@
             </el-col>
           </el-row>
         </header>
-        <!-- <div class="content-wrapper">
-          <h1>СТАРТАП-НАВИГАТОР МОСКВЫ</h1>
-          <h3>Вся информация, необходимая для роста бизнеса</h3>
-        </div> -->
         <router-view></router-view>
       </el-col>
     </el-row>

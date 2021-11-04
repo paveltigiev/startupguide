@@ -104,6 +104,12 @@ export default new Vuex.Store({
         this._vm.$message.success('Ваш запрос на добавления в друзья отправлен!');
       })
     },
+    getNalogdata (_, inn) {
+      Vue.axios.get('https://startbase.online:19999/' + inn)
+      .then(response => {
+        this._vm.$message.success(response.data.buh)
+      })
+    },
     getUsers (commit) {
       Vue.axios.get('http://startbase.online/api/web/users')
       .then(response => {
@@ -262,6 +268,13 @@ export default new Vuex.Store({
       Vue.axios.put('https://startbase.online/api/web/companies/' + payload.c_id, payload)
       .then(() => {
         this._vm.$message.success('Компания обновлена!');
+      })
+    },
+    deleteCompany (_, id) {
+      Vue.axios.delete('https://startbase.online/api/web/companies/' + id)
+      .then(() => {
+        router.push('/profile')
+        this._vm.$message.success('Компания удалена!');
       })
     },
     getCompany ({commit}, id) {

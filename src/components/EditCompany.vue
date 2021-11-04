@@ -61,6 +61,7 @@
       
       <el-form-item>
         <el-button type="primary" @click="updateCompany">Обновить</el-button>
+        <el-button type="danger" @click="deleteCompany">Удалить</el-button>
         <el-button @click="resetForm">Вернуть</el-button>
         <el-button @click="goCompany">Посмотреть</el-button>
       </el-form-item>
@@ -96,6 +97,9 @@ export default {
   methods: {
     resetForm() {
       this.form = Object.assign({}, this.company)
+    },
+    deleteCompany() {
+      this.$store.dispatch('deleteCompany', this.id)
     },
     updateCompany() {
       delete this.form.market_id

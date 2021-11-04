@@ -188,7 +188,7 @@ img {
   padding: 0.4375rem 0.8125rem 0.75rem 0.75rem;
   border-radius: 2.9375rem;
   box-shadow: 0px 10px 10px #e1e4f4, 0px -3px 10px #ffffff;
-  color: #0459FF;
+  // color: #0459FF;
   font-weight: 500;
   font-style: normal;
   margin-bottom: 0.8125rem;
@@ -426,6 +426,10 @@ img {
     }
   }
   .findata-table {
+    .btn {
+      margin-top: 18px;
+      padding: 12px;
+    }
     h2 {
       margin: 16px 0 16px 20px;
       line-height: 40px;
@@ -444,7 +448,6 @@ img {
     }
   }
 }
-
 
 @media only screen and (max-width: 1200px) {
 

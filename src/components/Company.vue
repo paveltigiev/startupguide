@@ -30,10 +30,10 @@
           <div class="">
             <h1 class="startup-title">{{company.c_name}}</h1>
             <div class="company-description-icon" v-if="isOwner">
-              <a href="#" class="add-to-favorite btn" @click="goCompany(company.c_id)">
+              <div class="add-to-favorite btn" @click="goCompany(company.c_id)">
                 <img src="/img/edit.svg" alt="">
                 <span>Редактировать</span>
-              </a>
+              </div>
             </div>
             <!-- <div class="company-description-icon" v-else>
               <a href="#" class="add-to-favorite btn">
@@ -129,59 +129,6 @@
       </el-row>
     </div>
 
-    <div class="supportentities bordered" v-if="supportentities.items">
-      <h2>Подходящие акселерационные программы для компании</h2>
-      <el-row
-        :gutter="20"
-        class="supportentity-row-header"
-      >
-        <el-col :span="9" class="name">
-          Название
-        </el-col>
-        <el-col :span="12" class="">
-          Описание
-        </el-col>
-        <el-col :span="3" class="">
-          Статус
-        </el-col>
-      </el-row>
-      <div
-        v-for="(item, index) in supportentities.items"
-        :key="index"
-        @click="goSupportentity(item.sp_id)"
-      >
-        <el-row
-          :gutter="20"
-          class="supportentity-row"
-        >
-          <el-col :span="9" class="name">
-            <img src="https://seeklogo.com/images/B/business-company-logo-C561B48365-seeklogo.com.png" :alt="item.Name" width="60">
-            {{item.Name}}
-          </el-col>
-          <el-col :span="12" class="">
-            {{item.Desc}} &nbsp;
-          </el-col>
-          <el-col :span="3" class="">
-            {{item.status}} &nbsp;
-          </el-col>
-        </el-row>
-      </div>
-      <el-pagination
-        background
-        @current-change="changeSupportentitiesForCompany"
-        layout="prev, pager, next"
-        :page-size="20"
-        :pager-count="10"
-        :total="supportentities._meta.totalCount"
-        >
-      </el-pagination>
-    </div>
-
-    <div v-else-if="isLogged" class="loading-box supportentities bordered">
-      <h2>Подходящие акселерационные программы для компании</h2>
-      <img src="/img/loading.gif" alt="">
-    </div>
-
     <div class="findata-table" style="overflow: hidden">
       <el-button type="primary" @click="findataDialog = true" class="btn pull-right" v-if="isOwner">Добавить запись</el-button>
       <el-dialog :visible="findataDialog">
@@ -254,7 +201,7 @@
           <el-button type="primary" @click="addFindata()" class="sendBtn">Добавить</el-button>
         </div>
       </el-dialog>
-      <el-button type="secondary" @click="getContur()" class="btn pull-right">Запросить данные из системы Контур</el-button>
+      <el-button type="secondary" @click="getNalogData()" class="btn pull-right">Запросить данные из налоговой</el-button>
       <h2 v-if="findata.items">Финансовая отчетность</h2>
       <div v-if="findata.items">
         <el-table
@@ -349,6 +296,59 @@
       </div>
     </div>
 
+    <div class="supportentities bordered" v-if="supportentities.items">
+      <h2>Подходящие акселерационные программы для компании</h2>
+      <el-row
+        :gutter="20"
+        class="supportentity-row-header"
+      >
+        <el-col :span="9" class="name">
+          Название
+        </el-col>
+        <el-col :span="12" class="">
+          Описание
+        </el-col>
+        <el-col :span="3" class="">
+          Статус
+        </el-col>
+      </el-row>
+      <div
+        v-for="(item, index) in supportentities.items"
+        :key="index"
+        @click="goSupportentity(item.sp_id)"
+      >
+        <el-row
+          :gutter="20"
+          class="supportentity-row"
+        >
+          <el-col :span="9" class="name">
+            <img src="https://seeklogo.com/images/B/business-company-logo-C561B48365-seeklogo.com.png" :alt="item.Name" width="60">
+            {{item.Name}}
+          </el-col>
+          <el-col :span="12" class="">
+            {{item.Desc}} &nbsp;
+          </el-col>
+          <el-col :span="3" class="">
+            {{item.status}} &nbsp;
+          </el-col>
+        </el-row>
+      </div>
+      <el-pagination
+        background
+        @current-change="changeSupportentitiesForCompany"
+        layout="prev, pager, next"
+        :page-size="20"
+        :pager-count="10"
+        :total="supportentities._meta.totalCount"
+        >
+      </el-pagination>
+    </div>
+
+    <div v-else-if="isLogged" class="loading-box supportentities bordered">
+      <h2>Подходящие акселерационные программы для компании</h2>
+      <img src="/img/loading.gif" alt="">
+    </div>
+
     <div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/33/vladikavkaz/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Владикавказ</a><a href="https://yandex.ru/maps/33/vladikavkaz/?ll=44.687550%2C43.035209&utm_medium=mapframe&utm_source=maps&z=17" style="color:#eee;font-size:12px;position:absolute;top:14px;">Яндекс.Карты — транспорт, навигация, поиск мест</a><iframe src="https://yandex.ru/map-widget/v1/-/CCUqRTUh8B" width="100%" height="340" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
 
   </div>
@@ -415,8 +415,8 @@ export default {
     goSupportentity(id) {
       router.push('/supportentities/' + id)
     },
-    getContur() {
-      this.$message.error('Ошибка возобновления подписки.');
+    getNalogData() {
+      this.$store.dispatch('getNalogdata', this.company.c_inn)
     },
     addFindata() {
       this.findataDialog = false
