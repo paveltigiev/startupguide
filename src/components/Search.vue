@@ -57,28 +57,27 @@ export default {
   },
   methods: {
     goToItem(item) {
-      console.log(item)
       switch(item.entity_type_id) {
         case 0:
-          router.push('/users/' + item.result_id)
+          router.push('/companies/' + item.result_id)
           break
         case 1:
-          router.push('/users/' + item.result_id)
+          router.push('/supportentities/' + item.result_id)
           break
         case 2:
           router.push('/users/' + item.result_id)
           break
         case 3:
-          router.push('/users/' + item.result_id)
+          router.push('/?/' + item.result_id)
           break
         case 4:
-          router.push('/users/' + item.result_id)
+          router.push('/companies/' + item.result_id)
           break
         case 5:
-          router.push('/users/' + item.result_id)
+          router.push('/companies/' + item.result_id)
           break
         case 6:
-          router.push('/users/' + item.result_id)
+          router.push('/supportentities/' + item.result_id)
           break
       }
     }
