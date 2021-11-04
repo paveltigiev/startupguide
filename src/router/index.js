@@ -6,13 +6,18 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
     name: 'Home',
+    path: '/',
     component: () => import('@/views/Home.vue')
   },
   {
-    path: '/startup',
+    name: 'Search',
+    path: '/search',
+    component: () => import('@/components/Search.vue')
+  },
+  {
     name: 'Startup',
+    path: '/startup',
     component: () => import('@/components/Startup.vue')
   },
   {
@@ -29,47 +34,47 @@ const routes = [
     name: 'user',
     path: '/users/:id',
     props: true,
-    component: () => import('@/components/User')
+    component: () => import('@/components/User.vue')
   },
   {
-    path: '/companies',
     name: 'Companies',
+    path: '/companies',
     component: () => import('@/components/Companies.vue')
   },
   {
     name: 'company',
     path: '/companies/:id',
     props: true,
-    component: () => import('@/components/Company')
+    component: () => import('@/components/Company.vue')
   },
   {
     name: 'editCompany',
     path: '/companies/edit/:id',
     props: true,
-    component: () => import('@/components/EditCompany')
+    component: () => import('@/components/EditCompany.vue')
   },
   {
     name: 'profile',
     path: '/profile',
-    component: () => import('@/components/Profile'),
+    component: () => import('@/components/Profile.vue'),
     meta: {requiresAuth: true}
   },
   {
     name: 'newCompany',
     path: '/newcompany',
-    component: () => import('@/components/NewCompany'),
+    component: () => import('@/components/NewCompany.vue'),
     meta: {requiresAuth: true}
   },
   {
     name: 'Supportentity',
     props: true,
     path: '/supportentities/:id',
-    component: () => import('@/components/Supportentity')
+    component: () => import('@/components/Supportentity.vue')
   },
   {
     name: 'Supportentities',
     path: '/supportentities',
-    component: () => import('@/components/Supportentities')
+    component: () => import('@/components/Supportentities.vue')
   }
 ]
 

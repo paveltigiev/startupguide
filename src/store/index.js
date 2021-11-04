@@ -97,6 +97,13 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    addToFriends (_, id) {
+      console.log(id)
+      Vue.axios.post('https://startbase.online/api/web/users/connect/' + id)
+      .then(() => {
+        this._vm.$message.success('Ваш запрос на добавления в друзья отправлен!');
+      })
+    },
     getUsers (commit) {
       Vue.axios.get('http://startbase.online/api/web/users')
       .then(response => {
@@ -104,13 +111,13 @@ export default new Vuex.Store({
       })
     },
     getSearch ({commit}, q) {
-      Vue.axios.get('http://startbase.online/api/web/search?find=' + q)
+      Vue.axios.get('https://startbase.online/api/web/search?find=' + q)
       .then(response => {
         commit('setSearch', {payload: response.data})
       })
     },
     getUser ({commit}, id) {
-      Vue.axios.get('http://startbase.online/api/web/users/' + id)
+      Vue.axios.get('https://startbase.online/api/web/users/' + id)
       .then(response => {
         commit('setUser', {payload: response.data})
       })
