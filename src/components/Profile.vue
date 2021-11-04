@@ -3,51 +3,77 @@
     <div class="content-wrapper">
       <h1>Личный кабинет</h1>
     </div>
-    <el-form :model="form" label-width="120px" class="profile-form">
-      <el-form-item label="ФИО">
-        <el-input v-model="form.fio"></el-input>
-      </el-form-item>
-      <el-form-item label="email">
-        <el-input v-model="form.email"></el-input>
-      </el-form-item>
-      <el-form-item label="Город">
-        <el-input v-model="form.city"></el-input>
-      </el-form-item>
-      <el-form-item label="Должность">
-        <el-input v-model="form.position"></el-input>
-      </el-form-item>
-      <el-form-item label="Опыт">
-        <el-input v-model="form.experience"></el-input>
-      </el-form-item>
-      <el-form-item label="Навыки">
-      <el-select
-        class="skills-selector"
-        v-model="selected_skills"
-        multiple
-        filterable
-        allow-create
-        value-key="id"
-        placeholder="Выберите навыки">
-        <el-option
-          v-for="item in skills.items"
-          :key="item.id"
-          :label="item.name"
-          :value="item">
-        </el-option>
-      </el-select>
-      </el-form-item>
-      <el-form-item label="Контакты">
-        <el-input type="textarea" v-model="form.contact"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="updateUser">Обновить</el-button>
-        <el-button @click="resetForm">Вернуть</el-button>
-      </el-form-item>
-    </el-form>
-    <!-- <el-row :gutter="20">
-      <el-col :span="6">
+    <el-row :gutter="20">
+      <el-col :span="18">
+        <el-form :model="form" label-width="120px" class="profile-form">
+          <el-form-item label="ФИО">
+            <el-input v-model="form.fio"></el-input>
+          </el-form-item>
+          <el-form-item label="email">
+            <el-input v-model="form.email"></el-input>
+          </el-form-item>
+          <el-form-item label="Город">
+            <el-input v-model="form.city"></el-input>
+          </el-form-item>
+          <el-form-item label="Должность">
+            <el-input v-model="form.position"></el-input>
+          </el-form-item>
+          <el-form-item label="Опыт">
+            <el-input v-model="form.experience"></el-input>
+          </el-form-item>
+          <el-form-item label="Навыки">
+          <el-select
+            class="skills-selector"
+            v-model="selected_skills"
+            multiple
+            filterable
+            allow-create
+            value-key="id"
+            placeholder="Выберите навыки">
+            <el-option
+              v-for="item in skills.items"
+              :key="item.id"
+              :label="item.name"
+              :value="item">
+            </el-option>
+          </el-select>
+          </el-form-item>
+          <el-form-item label="Контакты">
+            <el-input type="textarea" v-model="form.contact"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="updateUser">Обновить</el-button>
+            <el-button @click="resetForm">Вернуть</el-button>
+          </el-form-item>
+        </el-form>
       </el-col>
-    </el-row> -->
+      <el-col :span="6">
+        <h3>Ваши друзья</h3>
+        <div v-if="friends.length > 0">
+          <div class="friend" v-for="(item, i) in friends" :key="i">
+            <router-link :to="'/users/' + item.user1_id" class="userName">
+              {{item.user1_name}}
+            </router-link>
+          </div>
+        </div>
+        <p v-else>
+          У вас пока нет друзей. Вы можете найти их пользуясь поиском в верхней части сайта.
+        </p>
+
+        <h3 style="margin-top: 32px">Ваши заявки в друзья</h3>
+        <div v-if="reqs.length > 0">
+          <div class="friend" v-for="(item, i) in reqs" :key="i">
+            <router-link :to="'/users/' + item.user1_id" class="userName">{{item.user1_name}}</router-link>
+            &nbsp;
+            <span @click="acceptFriend(item.user1_id)" class="fr_actions">✅</span>
+            <span @click="denyFriend(item.user1_id)" class="fr_actions">❌</span>
+          </div>
+        </div>
+        <p v-else>
+          У вас пока нет заявок в друзья.
+        </p>
+      </el-col>
+    </el-row>
 
     <div class="companies">
       <div class="content-wrapper" style="padding-bootom:0">
@@ -120,10 +146,18 @@ export default {
         skils: '',
         role: 0
       },
-      selected_skills: []
+      selected_skills: [],
+      friends: [],
+      reqs: []
     }
   },
   methods: {
+    acceptFriend(id) {
+      this.$store.dispatch('acceptFriend', id)
+    },
+    denyFriend(id) {
+      this.$store.dispatch('denyFriend', id)
+    },
     resetForm() {
       this.form = Object.assign({}, this.myProfile)
       this.selected_skills = []
@@ -150,7 +184,6 @@ export default {
         this.form.skills = []
       }
       this.$store.dispatch('updateUser', this.form)
-      // console.log(this.form)
     },
     goCompany(id) {
       router.push('/companies/' + id)
@@ -180,6 +213,18 @@ export default {
           name: item.name
         }
         this.selected_skills.push(sk)
+      })
+      this.friends = []
+      this.reqs = []
+      this.myProfile.connections.forEach(item => {
+        if (item.status_id == 1) {
+          this.friends.push(item)
+        }
+      })
+      this.myProfile.connections.forEach(item => {
+        if (item.status_id == 3) {
+          this.reqs.push(item)
+        }
       })
     },
     myCompanies () {
@@ -264,6 +309,14 @@ export default {
       padding: 16px;
       font-weight: bold;
     }
+  }
+
+  .fr_actions {
+    cursor: pointer;
+    margin-left: 8px;
+  }
+  .userName {
+    color: blue !important;
   }
 
 </style>

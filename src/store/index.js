@@ -104,6 +104,22 @@ export default new Vuex.Store({
         this._vm.$message.success('Ваш запрос на добавления в друзья отправлен!');
       })
     },
+    acceptFriend ({dispatch}, id) {
+      let payload = {"accept": true}
+      Vue.axios.put('https://startbase.online/api/web/users/connect/' + id, payload)
+      .then(() => {
+        this._vm.$message.success('Вы одобрили заявку в друзья!');
+        dispatch('getMyProfile')
+      })
+    },
+    denyFriend ({dispatch}, id) {
+      let payload = {"accept": false}
+      Vue.axios.put('https://startbase.online/api/web/users/connect/' + id, payload)
+      .then(() => {
+        this._vm.$message.success('Вы отклонили заявку в друзья!');
+        dispatch('getMyProfile')
+      })
+    },
     getNalogdata (_, inn) {
       Vue.axios.get('https://startbase.online:19999/' + inn)
       .then(response => {

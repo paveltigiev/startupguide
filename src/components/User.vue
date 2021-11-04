@@ -9,10 +9,10 @@
           <div class="">
             <h1 class="startup-title">{{user.payload.fio}}</h1>
             <div class="company-description-icon">
-              <a href="#" class="add-to-favorite btn" @click="addToFriends">
+              <div class="add-to-favorite btn" @click="addToFriends">
                 <img src="/img/download.svg" alt="">
                 <span>Добавить в друзья</span>
-              </a>
+              </div>
             </div>
           </div>
           <el-row :gutter="20">
