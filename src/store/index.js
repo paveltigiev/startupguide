@@ -124,10 +124,11 @@ export default new Vuex.Store({
         dispatch('getMyProfile')
       })
     },
-    getNalogdata (_, inn) {
-      Vue.axios.get('https://startbase.online/api/web/taxes/' + inn)
-      .then(response => {
-        this._vm.$message.success(response.data.buh)
+    getNalogdata ({dispatch}, payload) {
+      Vue.axios.get('https://startbase.online/api/web/taxes/' + payload.c_inn)
+      .then(() => {
+        this._vm.$message.success('Финансовая отчетность обновлена')
+        dispatch('getFindata', {id: payload.c_id, page: 1})
       })
     },
     getUsers (commit) {

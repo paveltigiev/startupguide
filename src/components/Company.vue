@@ -420,7 +420,7 @@ export default {
       router.push('/supportentities/' + id)
     },
     getNalogData() {
-      this.$store.dispatch('getNalogdata', this.company.c_inn)
+      this.$store.dispatch('getNalogdata', this.company)
     },
     addFindata() {
       this.findataDialog = false
