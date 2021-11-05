@@ -10,9 +10,8 @@
             <el-input v-model="form.fio"></el-input>
           </el-form-item>
           <el-form-item label="Фото">
-            <!-- <el-input v-model="form.avatar" type="file" accept="image/*"></el-input> -->
 
-            <input type="file" @change="assignFile" accept="image/*" >
+            <input type="file" id="file" ref="file" v-on:change="handleFileUpload()" accept="image/*" />
             <button type="submit" @click.prevent="sendFile">Загрузить</button>
 
           </el-form-item>
@@ -20,9 +19,9 @@
           <el-form-item label="email">
             <el-input v-model="form.email"></el-input>
           </el-form-item>
-          <el-form-item label="avatar">
+          <!-- <el-form-item label="avatar">
             <el-input v-model="form.avatar"></el-input>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item label="Город">
             <el-input v-model="form.city"></el-input>
           </el-form-item>
@@ -148,7 +147,7 @@ export default {
   },
   data() {
     return {
-      fileObject: null,
+      file: null,
       form: {
         email: '',
         fio: '',
@@ -166,13 +165,13 @@ export default {
     }
   },
   methods: {
-    assignFile(event) {
-      this.fileObject = event.target.files[0]
+    handleFileUpload(){
+      this.file = this.$refs.file.files[0];
     },
     sendFile () {
-      let formData = new FormData()
-      formData.append('avatar', this.fileObject)
-      Vue.axios.put('https://startbase.online/api/web/users/updava',
+      let formData = new FormData();
+      formData.append('avatar', this.file);
+      Vue.axios.post( 'https://startbase.online/api/web/users/updava',
         formData,
         {
           headers: {
@@ -180,10 +179,9 @@ export default {
           }
         }
       ).then(response => {
-        console.log(response)
-        this.avatar = response.data
+        this.form.avatar = response.data
       }).catch(error => {
-        console.log(error)
+        this.$message.error(error)
       })
     },
     acceptFriend(id) {
