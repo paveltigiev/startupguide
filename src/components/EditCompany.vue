@@ -10,6 +10,7 @@
       <el-form-item label="Логотип">
         <input type="file" id="file" ref="file" v-on:change="handleFileUpload()" accept="image/*" />
         <button type="submit" @click.prevent="sendFile">Загрузить</button>
+        <img :src="form.logo_url" :alt="form.c_name" v-if="form.logo_url" class="companyFormLogo img-fluid">
       </el-form-item>
       <el-form-item label="Описание">
         <el-input type="textarea" v-model="form.c_desc"></el-input>
@@ -29,18 +30,38 @@
       <el-form-item label="Рынок">
         <el-select v-model="form.markets" placeholder="Выберите рынок" multiple>
           <el-option
-          v-for="item in markets.items"
-          :key="item.market_id"
+          v-for="(item, i) in markets.items"
+          :key="'m'+i"
           :label="item.market_name_ru"
           :value="item.market_id">
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="Инновация">
+        <el-select v-model="form.innos" placeholder="Выберите инновацию" multiple>
+          <el-option
+          v-for="(item, i) in innovations.items"
+          :key="'i'+i"
+          :label="item.topic_name_ru"
+          :value="item.topic_id">
+          </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="Технопарки">
+        <el-select v-model="form.technoparks" placeholder="Выберите технопарк" multiple>
+          <el-option
+          v-for="(item, i) in technoparks.items"
+          :key="'i'+i"
+          :label="item.tp_name"
+          :value="item.tp_id">
           </el-option>
         </el-select>
       </el-form-item>
       <el-form-item label="Статус">
         <el-select v-model="form.status" placeholder="Выберите статус">
           <el-option
-          v-for="item in statuses.items"
-          :key="item.stat_id"
+          v-for="(item, i) in statuses.items"
+          :key="'ss'+i"
           :label="item.status_name"
           :value="item.stat_id">
           </el-option>
@@ -49,8 +70,8 @@
       <el-form-item label="Стадия">
         <el-select v-model="form.stage_id" placeholder="Выберите стадию" >
           <el-option
-          v-for="item in stages.items"
-          :key="item.sid"
+          v-for="(item, i) in stages.items"
+          :key="'s'+i"
           :label="item.stage_name_ru"
           :value="item.sid">
           </el-option>
@@ -91,6 +112,9 @@ export default {
         logo_url: '',
         web_sites: '',
         markets: [],
+        technoparks: [],
+        innos: [],
+        inno_id: '',
         status: '',
         stage_id: '',
         isprivate: ''
@@ -126,21 +150,6 @@ export default {
     updateCompany() {
       delete this.form.market_id
       delete this.form.inno_id
-
-      if (this.form.markets) {
-        this.form.markets.forEach((item, index) => {
-          if (item == null) {
-            this.form.markets.splice(index, 1)
-          }
-        }) 
-      }
-      if (this.form.innos) {
-        this.form.innos.forEach((item, index) => {
-          if (item == null) {
-            this.form.innos.splice(index, 1)
-          }
-        })
-      }
       this.$store.dispatch('updateCompany', this.form)
     },
     goCompany() {
@@ -157,18 +166,47 @@ export default {
     stages () {
       return this.$store.getters.stages
     },
+    innovations () {
+      return this.$store.getters.innovations
+    },
     company () {
       return this.$store.getters.company
+    },
+    technoparks () {
+      return this.$store.getters.technoparks
     }
   },
   watch: {
     company() {
       this.form = Object.assign({}, this.company)
+      let _markets = []
+      let _technoparks= []
+      let _innos = []
+      if (this.form.markets) {
+        this.form.markets.forEach((item) => {
+          _markets.push(item.market_id)
+        }) 
+      }
+      this.form.markets = _markets
+      if (this.form.innos) {
+        this.form.innos.forEach((item) => {
+          _innos.push(item.inno_id)
+        }) 
+      }
+      this.form.innos = _innos
+      if (this.form.technoparks) {
+        this.form.technoparks.forEach((item) => {
+          _technoparks.push(item.tp_id)
+        }) 
+      }
+      this.form.technoparks = _technoparks
     }
   },
   created() {
     this.$store.dispatch('getMarkets')
     this.$store.dispatch('getStatuses')
+    this.$store.dispatch('getInnovations')
+    this.$store.dispatch('getTechnoparks')
     this.$store.dispatch('getStages')
     this.$store.dispatch('getCompany', this.id)
   }
@@ -182,6 +220,10 @@ export default {
       padding: 40px 20px;
       .el-select {
         width: 100%;
+      }
+      .companyFormLogo {
+        float: right;
+        height: 40px;
       }
     }
   }

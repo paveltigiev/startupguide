@@ -18,6 +18,7 @@ export default new Vuex.Store({
     supportactions: {},
     supportproviders: {},
     innovations: {},
+    technoparks: {},
     stages: [],
     statuses: [],
     supportentities: {},
@@ -67,6 +68,9 @@ export default new Vuex.Store({
     },
     setInnovations (state, payload) {
       state.innovations = payload
+    },
+    setTechnoparks (state, payload) {
+      state.technoparks = payload
     },
     setSupportactions (state, payload) {
       state.supportactions = payload
@@ -121,7 +125,7 @@ export default new Vuex.Store({
       })
     },
     getNalogdata (_, inn) {
-      Vue.axios.get('https://startbase.online:19999/' + inn)
+      Vue.axios.get('https://startbase.online/api/web/taxes/' + inn)
       .then(response => {
         this._vm.$message.success(response.data.buh)
       })
@@ -199,13 +203,16 @@ export default new Vuex.Store({
       // })
     },
     getInnovations ({commit}) {
-      Vue.axios.get('GET https://startbase.online/api/web/innovations')
+      Vue.axios.get('https://startbase.online/api/web/innovations')
       .then(response => {
         commit('setInnovations', response.data)
       })
-      // .catch(error => {
-      //   this._vm.$message.error(error);
-      // })
+    },
+    getTechnoparks ({commit}) {
+      Vue.axios.get('https://startbase.online/api/web/technoparks')
+      .then(response => {
+        commit('setTechnoparks', response.data)
+      })
     },
     getExistSupportentity ({commit}, id) {
       Vue.axios.get('https://startbase.online/api/web/supportentities/existedforcompany/' + id)
@@ -383,6 +390,9 @@ export default new Vuex.Store({
     },
     innovations (state) {
       return state.innovations
+    },
+    technoparks (state) {
+      return state.technoparks
     },
     loading (state) {
       return state.loading

@@ -68,7 +68,10 @@
     <div class="row-box bordered">
       <el-row :gutter="20">
         <el-col :xs="24" :sm="6" :lg="6">
-          <div class="btn">InnoTech</div>
+          <div class="btn" v-for="(item, i) in company.markets" :key="i">{{item.market_name_ru}}</div>
+          <div class="btn" v-for="(item, i) in company.innos" :key="i">{{item.topic_name_ru}}</div>
+          <div class="btn" v-for="(item, i) in company.technoparks" :key="i">{{item.tp_name}}</div>
+          &nbsp;
         </el-col>
         <el-col :xs="24" :sm="18" :lg="18">
           <div class="startup-desc">
