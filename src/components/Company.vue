@@ -24,7 +24,8 @@
     <div class="row-box bordered pt-0">
       <el-row :gutter="20">
         <el-col :xs="24" :sm="18" :lg="6">
-          <img src="https://api.freelogodesign.org/assets/thumb/logo/22192360_400.png" class="img-fluid" :alt="company.c_name">
+          <img :src="company.logo_url" class="img-fluid" :alt="company.c_name" v-if="company.logo_url">
+          <img src="https://api.freelogodesign.org/assets/thumb/logo/22192360_400.png" class="img-fluid" :alt="company.c_name" v-else>
         </el-col>
         <el-col :xs="24" :sm="18" :lg="18">
           <div class="">

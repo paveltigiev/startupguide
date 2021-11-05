@@ -7,6 +7,10 @@
       <el-form-item label="Название">
         <el-input v-model="form.c_name"></el-input>
       </el-form-item>
+      <el-form-item label="Логотип">
+        <input type="file" id="file" ref="file" v-on:change="handleFileUpload()" accept="image/*" />
+        <button type="submit" @click.prevent="sendFile">Загрузить</button>
+      </el-form-item>
       <el-form-item label="Описание">
         <el-input type="textarea" v-model="form.c_desc"></el-input>
       </el-form-item>
@@ -18,9 +22,6 @@
       </el-form-item>
       <el-form-item label="ОКВЭДЫ">
         <el-input v-model="form.add_okveds"></el-input>
-      </el-form-item>
-      <el-form-item label="Адрес логотипа">
-        <el-input v-model="form.logo_url"></el-input>
       </el-form-item>
       <el-form-item label="Веб-саты">
         <el-input v-model="form.web_sites"></el-input>
@@ -71,6 +72,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import router from '@/router'
 export default {
   name: 'Profile',
@@ -79,6 +81,7 @@ export default {
   },
   data() {
     return {
+      file: null,
       form: {
         c_name: '',
         c_desc: '',
@@ -95,6 +98,25 @@ export default {
     }
   },
   methods: {
+    handleFileUpload(){
+      this.file = this.$refs.file.files[0];
+    },
+    sendFile () {
+      let formData = new FormData();
+      formData.append('avatar', this.file);
+      Vue.axios.post( 'https://startbase.online/api/web/users/updava',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      ).then(response => {
+        this.form.logo_url = response.data
+      }).catch(error => {
+        this.$message.error(error)
+      })
+    },
     resetForm() {
       this.form = Object.assign({}, this.company)
     },
