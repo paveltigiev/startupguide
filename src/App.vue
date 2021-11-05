@@ -59,6 +59,7 @@
               <SearchBox/>
             </el-col>
             <el-col  :xs="24" :sm="6" class="login-box">
+              <div class="reqsBadge" v-if="freqs > 0">{{freqs}}</div>
               <Regform></Regform>
             </el-col>
           </el-row>
@@ -111,7 +112,8 @@ export default {
   },
   data() {
     return {
-      searchQuery: ''
+      freqs: 0,
+      creqs: 0,
     }
   },
   methods: {
@@ -121,6 +123,16 @@ export default {
       return this.$store.getters.myProfile
     }
   },
+  watch: {
+    myProfile() {
+      this.freqs = 0
+      this.myProfile.connections.forEach(item => {
+        if (item.status_id == 3) {
+          this.freqs++
+        }
+      })
+    }
+  },
   created() {
     this.$store.dispatch('getMyProfile')
   }
@@ -128,5 +140,16 @@ export default {
 </script>
 
 <style lang="scss">
-
+  .reqsBadge {
+    position: absolute;
+    right: 73px;
+    top: 27px;
+    font-size: 12px;
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    color: #000;
+    border-radius: 50%;
+    border: 1px solid red;
+  }
 </style>

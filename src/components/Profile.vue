@@ -180,7 +180,7 @@ export default {
           }
         }
       ).then(response => {
-        console.log(response.data)
+        console.log(response)
         this.avatar = response.data
       }).catch(error => {
         console.log(error)
