@@ -9,6 +9,9 @@
           <el-form-item label="ФИО">
             <el-input v-model="form.fio"></el-input>
           </el-form-item>
+          <el-form-item label="Фото">
+            <el-input v-model="form.avatar" type="file" accept="image/*"></el-input>
+          </el-form-item>
           <el-form-item label="email">
             <el-input v-model="form.email"></el-input>
           </el-form-item>
@@ -48,6 +51,7 @@
         </el-form>
       </el-col>
       <el-col :span="6">
+        <img :src="form.avatar" :alt="form.fio" v-if="form.avatar" class="mb-4">
         <h3>Ваши друзья</h3>
         <div v-if="friends.length > 0">
           <div class="friend" v-for="(item, i) in friends" :key="i">
@@ -59,7 +63,6 @@
         <p v-else>
           У вас пока нет друзей. Вы можете найти их пользуясь поиском в верхней части сайта.
         </p>
-
         <h3 style="margin-top: 32px">Ваши заявки в друзья</h3>
         <div v-if="reqs.length > 0">
           <div class="friend" v-for="(item, i) in reqs" :key="i">

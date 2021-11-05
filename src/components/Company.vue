@@ -297,7 +297,7 @@
     </div>
 
     <div class="supportentities bordered" v-if="supportentities.items">
-      <h2>Подходящие акселерационные программы для компании</h2>
+      <h2>Подходящие программы поддержки</h2>
       <el-row
         :gutter="20"
         class="supportentity-row-header"
