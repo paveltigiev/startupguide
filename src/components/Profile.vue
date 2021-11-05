@@ -10,10 +10,18 @@
             <el-input v-model="form.fio"></el-input>
           </el-form-item>
           <el-form-item label="Фото">
-            <el-input v-model="form.avatar" type="file" accept="image/*"></el-input>
+            <!-- <el-input v-model="form.avatar" type="file" accept="image/*"></el-input> -->
+
+            <input type="file" @change="assignFile" accept="image/*" >
+            <button type="submit" @click.prevent="sendFile">Загрузить</button>
+
           </el-form-item>
+
           <el-form-item label="email">
             <el-input v-model="form.email"></el-input>
+          </el-form-item>
+          <el-form-item label="avatar">
+            <el-input v-model="form.avatar"></el-input>
           </el-form-item>
           <el-form-item label="Город">
             <el-input v-model="form.city"></el-input>
@@ -51,7 +59,7 @@
         </el-form>
       </el-col>
       <el-col :span="6">
-        <img :src="form.avatar" :alt="form.fio" v-if="form.avatar" class="mb-4">
+        <img :src="form.avatar" :alt="form.fio" v-if="form.avatar" class="avatarImage">
         <h3>Ваши друзья</h3>
         <div v-if="friends.length > 0">
           <div class="friend" v-for="(item, i) in friends" :key="i">
@@ -102,8 +110,9 @@
           Основана
         </el-col>
       </el-row>
+
       <div
-        v-for="(item, index) in myCompanies.items"
+        v-for="(item, index) in myCompanies"
         :key="index"
         @click="goCompany(item.c_id)"
       >
@@ -131,6 +140,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import router from '@/router'
 export default {
   name: 'Profile',
@@ -138,6 +148,7 @@ export default {
   },
   data() {
     return {
+      fileObject: null,
       form: {
         email: '',
         fio: '',
@@ -155,6 +166,26 @@ export default {
     }
   },
   methods: {
+    assignFile(event) {
+      this.fileObject = event.target.files[0]
+    },
+    sendFile () {
+      let formData = new FormData()
+      formData.append('avatar', this.fileObject)
+      Vue.axios.put('https://startbase.online/api/web/users/updava',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      ).then(response => {
+        console.log(response.data)
+        this.avatar = response.data
+      }).catch(error => {
+        console.log(error)
+      })
+    },
     acceptFriend(id) {
       this.$store.dispatch('acceptFriend', id)
     },
@@ -231,7 +262,7 @@ export default {
       })
     },
     myCompanies () {
-      this.myCompanies.items.forEach(comp => {
+      this.myCompanies.forEach(comp => {
         comp.logo_url = 'https://api.freelogodesign.org/assets/thumb/logo/22192360_400.png'
 
         this.markets.items.forEach(market => {
@@ -320,6 +351,12 @@ export default {
   }
   .userName {
     color: blue !important;
+  }
+
+  .avatarImage {
+    width: 90%;
+    margin-bottom: 16px;
+    border: 4px solid #fff;
   }
 
 </style>
