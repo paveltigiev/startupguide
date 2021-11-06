@@ -14,32 +14,37 @@
             </svg>
             <span>Стартапы и тех.компании</span>
           </router-link>
-          <router-link to="/supportentities">
+          <router-link to="/corporates">
             <svg width="28" height="30">
               <use xlink:href="/img/svg-symbols.svg#startup_type_15"></use>
             </svg>
             <span>Корпорации</span>
           </router-link>
-          <router-link to="/supportentities">
+          <router-link to="/venture">
             <svg width="28" height="15">
               <use xlink:href="/img/svg-symbols.svg#startup_type_3"></use>
             </svg>
             <span>Венчурные фонды</span>
           </router-link>
-          <router-link to="/supportentities">
+          <router-link to="/accelerators">
             <svg width="28" height="30">
               <use xlink:href="/img/svg-symbols.svg#startup_type_5"></use>
             </svg>
             <span>Акселераторы и инкубаторы</span>
           </router-link>
-          <router-link to="/supportentities">
+          <router-link to="/incubators">
             <svg width="28" height="30">
               <use xlink:href="/img/svg-symbols.svg#startup_type_4"></use>
             </svg>
             <span>Бизнес-инкубаторы</span>
           </router-link>
-          <!-- <router-link to="/">Площадки пилотное тестирова...</router-link>
-          <router-link to="/">Инжиниринговые центры </router-link>
+          <router-link to="/pilot">
+            <svg width="28" height="30">
+              <use xlink:href="/img/svg-symbols.svg#startup_type_7"></use>
+            </svg>
+            <span>Площадки пилотного тестирования</span>
+          </router-link>
+          <!-- <router-link to="/">Инжиниринговые центры </router-link>
           <router-link to="/">Коворкинги и офисы</router-link>
           <router-link to="/">Институты развития / ассоциац...</router-link> -->
         </div>

@@ -52,7 +52,7 @@
           </router-link>
         </el-col>
         <el-col class="grid-item" :xs="24" :sm="12" :lg="6">
-          <router-link to="/companies" class="grid-inner">
+          <router-link to="/supportentities" class="grid-inner">
             <figure class="icon-box">
               <svg width="44" height="46">
                 <use xlink:href="/img/svg-symbols.svg#investments"></use>
@@ -62,7 +62,7 @@
           </router-link>
         </el-col>
         <el-col class="grid-item" :xs="24" :sm="12" :lg="6">
-          <router-link to="/companies" class="grid-inner">
+          <router-link to="/pilot" class="grid-inner">
             <figure class="icon-box">
               <svg width="44" height="50">
                 <use xlink:href="/img/svg-symbols.svg#market-box"></use>
@@ -72,7 +72,7 @@
           </router-link>
         </el-col>
         <el-col class="grid-item" :xs="24" :sm="12" :lg="6">
-          <router-link to="/companies" class="grid-inner">
+          <router-link to="/coworkings" class="grid-inner">
             <figure class="icon-box">
               <svg width="40" height="36">
                 <use xlink:href="/img/svg-symbols.svg#rooms"></use>
@@ -82,7 +82,7 @@
           </router-link>
         </el-col>
         <el-col class="grid-item" :xs="24" :sm="12" :lg="6">
-          <router-link to="/companies" class="grid-inner">
+          <router-link to="/accelerators" class="grid-inner">
             <figure class="icon-box">
               <svg width="37" height="37">
                 <use xlink:href="/img/svg-symbols.svg#prototype"></use>
@@ -92,7 +92,7 @@
           </router-link>
         </el-col>
         <el-col class="grid-item" :xs="24" :sm="12" :lg="6">
-          <router-link to="/companies" class="grid-inner">
+          <router-link to="/accelerators" class="grid-inner">
             <figure class="icon-box">
               <svg width="38" height="38">
                 <use xlink:href="/img/svg-symbols.svg#expand"></use>
@@ -102,7 +102,7 @@
           </router-link>
         </el-col>
         <el-col class="grid-item" :xs="24" :sm="12" :lg="6">
-          <router-link to="/companies" class="grid-inner">
+          <router-link to="/accelerators" class="grid-inner">
             <figure class="icon-box">
               <svg width="44" height="42">
                 <use xlink:href="/img/svg-symbols.svg#question"></use>
@@ -112,7 +112,7 @@
           </router-link>
         </el-col>
         <el-col class="grid-item" :xs="24" :sm="12" :lg="6">
-          <router-link to="/companies" class="grid-inner">
+          <router-link to="/pilot" class="grid-inner">
             <figure class="icon-box">
               <svg width="35" height="35">
                 <use xlink:href="/img/svg-symbols.svg#checklist"></use>

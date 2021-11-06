@@ -75,6 +75,36 @@ const routes = [
     name: 'Supportentities',
     path: '/supportentities',
     component: () => import('@/components/Supportentities.vue')
+  },
+  {
+    name: 'Corporates',
+    path: '/corporates',
+    component: () => import('@/components/Supportentities/Corporates.vue')
+  },
+  {
+    name: 'Venture',
+    path: '/venture',
+    component: () => import('@/components/Supportentities/Venture.vue')
+  },
+  {
+    name: 'Accelerators',
+    path: '/accelerators',
+    component: () => import('@/components/Supportentities/Accelerators.vue')
+  },
+  {
+    name: 'Incubators',
+    path: '/incubators',
+    component: () => import('@/components/Supportentities/Incubators.vue')
+  },
+  {
+    name: 'Pilot',
+    path: '/pilot',
+    component: () => import('@/components/Supportentities/Pilot.vue')
+  },
+  {
+    name: 'Coworkings',
+    path: '/coworkings',
+    component: () => import('@/components/Supportentities/Coworkings.vue')
   }
 ]
 
