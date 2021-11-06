@@ -86,6 +86,20 @@
             У вас пока нет заявок в друзья.
           </p>
         </div>
+        <div class="borderBox">
+          <h3>Компании в которые вы приглашены</h3>
+          <div v-if="invites.length > 0">
+            <div class="friend" v-for="(item, i) in invites" :key="i">
+              <router-link :to="'/users/' + item.company_id" class="userName">{{item.c_name}}</router-link>
+              &nbsp;
+              <span @click="acceptCompany(item.company_id)" class="fr_actions">✅</span>
+              <span @click="denyCompany(item.company_id)" class="fr_actions">❌</span>
+            </div>
+          </div>
+          <p v-else>
+            У вас пока нет приглашений.
+          </p>
+        </div>
       </el-col>
     </el-row>
 
@@ -119,25 +133,28 @@
         :key="index"
         @click="goCompany(item.c_id)"
       >
-        <el-row
-          :gutter="20"
-          class="company-row"
-        >
-          <el-col :span="6" class="name">
-            <img :src="item.full_logo" class="img-fluid" :alt="item.c_name" v-if="item.full_logo" width="60">
-            <img src="https://api.freelogodesign.org/assets/thumb/logo/22192360_400.png" class="img-fluid" :alt="item.c_name" width="60" v-else>
-            {{item.c_name}}
-          </el-col>
-          <el-col :span="12" class="">
-            {{item.c_desc}} &nbsp;
-          </el-col>
-          <el-col :span="3" class="">
-            {{item.market_id}} &nbsp;
-          </el-col>
-          <el-col :span="3" class="">
-            {{item.reg_date}}
-          </el-col>
-        </el-row>
+        <div v-bind:class="{ pending: item.app_status == 0 }">
+          <el-row
+            :gutter="20"
+            class="company-row"
+          >
+            <el-col :span="6" class="name">
+              <img :src="item.full_logo" class="img-fluid" :alt="item.c_name" v-if="item.full_logo" width="60">
+              <img src="https://api.freelogodesign.org/assets/thumb/logo/22192360_400.png" class="img-fluid" :alt="item.c_name" width="60" v-else>
+              {{item.c_name}}
+              <p v-if="item.app_status == 0" class="error">Ожидает подтверждения</p>
+            </el-col>
+            <el-col :span="12" class="">
+              {{item.c_desc}} &nbsp;
+            </el-col>
+            <el-col :span="3" class="">
+              {{item.market_id}} &nbsp;
+            </el-col>
+            <el-col :span="3" class="">
+              {{item.reg_date}}
+            </el-col>
+          </el-row>
+        </div>
       </div>
     </div>
   </div>
@@ -166,7 +183,8 @@ export default {
       },
       selected_skills: [],
       friends: [],
-      reqs: []
+      reqs: [],
+      invites: [],
     }
   },
   methods: {
@@ -194,6 +212,12 @@ export default {
     },
     denyFriend(id) {
       this.$store.dispatch('denyFriend', id)
+    },
+    acceptCompany(id) {
+      this.$store.dispatch('acceptCompany', id)
+    },
+    denyCompany(id) {
+      this.$store.dispatch('denyCompany', id)
     },
     resetForm() {
       this.form = Object.assign({}, this.myProfile)
@@ -253,6 +277,7 @@ export default {
       })
       this.friends = []
       this.reqs = []
+      this.invites = []
       this.myProfile.connections.forEach(item => {
         if (item.status_id == 1) {
           this.friends.push(item)
@@ -261,6 +286,11 @@ export default {
       this.myProfile.connections.forEach(item => {
         if (item.status_id == 3) {
           this.reqs.push(item)
+        }
+      })
+      this.myProfile.invite_companies.forEach(item => {
+        if (item.status == 0) {
+          this.invites.push(item)
         }
       })
     },
@@ -369,6 +399,9 @@ export default {
     .userName {
       color: #409EFF !important;
     }
+  }
+  .pending {
+    opacity: 0.5;
   }
 
 </style>

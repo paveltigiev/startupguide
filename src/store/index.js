@@ -133,6 +133,30 @@ export default new Vuex.Store({
         dispatch('getMyProfile')
       })
     },
+    acceptCompany ({dispatch}, id) {
+      let payload = {
+        accept: true,
+        company_id: id
+      }
+      Vue.axios.put('https://startbase.online/api/web/companies/updinvitation', payload)
+      .then(() => {
+        this._vm.$message.success('Вы одобрили приглашение в компанию!');
+        dispatch('getMyProfile')
+        dispatch('myCompanies')
+      })
+    },
+    denyCompany ({dispatch}, id) {
+      let payload = {
+        accept: false,
+        company_id: id
+      }
+      Vue.axios.put('https://startbase.online/api/web/companies/updinvitation', payload)
+      .then(() => {
+        this._vm.$message.success('Вы отклонили приглашение в компанию!');
+        dispatch('getMyProfile')
+        dispatch('myCompanies')
+      })
+    },
     getNalogdata ({dispatch}, payload) {
       Vue.axios.get('https://startbase.online/api/web/taxes/' + payload.c_inn)
       .then(() => {

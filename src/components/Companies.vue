@@ -31,7 +31,8 @@
           class="company-row"
         >
           <el-col :span="6" class="name">
-            <img :src="item.logo_url" :alt="item.c_name" width="60">
+          <img :src="item.logo_url" class="img-fluid" :alt="item.logo_url" v-if="item.logo_url" width="60">
+          <img src="https://api.freelogodesign.org/assets/thumb/logo/22192360_400.png" class="img-fluid" :alt="item.c_name" v-else width="60">
             {{item.c_name}}
           </el-col>
           <el-col :span="12" class="">
@@ -87,8 +88,6 @@ export default {
   watch: {
     companies () {
       this.companies.items.forEach(comp => {
-        comp.logo_url = 'https://api.freelogodesign.org/assets/thumb/logo/22192360_400.png'
-
         this.markets.items.forEach(market => {
           if (market.market_id == comp.market_id) {
             comp.market_id = market.market_name_ru
