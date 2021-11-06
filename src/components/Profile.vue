@@ -59,29 +59,33 @@
       </el-col>
       <el-col :span="6">
         <img :src="form.avatar" :alt="form.fio" v-if="form.avatar" class="avatarImage">
-        <h3>Ваши друзья</h3>
-        <div v-if="friends.length > 0">
-          <div class="friend" v-for="(item, i) in friends" :key="i">
-            <router-link :to="'/users/' + item.user1_id" class="userName">
-              {{item.user1_name}}
-            </router-link>
+        <div class="borderBox">
+          <h3>Ваши друзья</h3>
+          <div v-if="friends.length > 0">
+            <div class="friend" v-for="(item, i) in friends" :key="i">
+              <router-link :to="'/users/' + item.user1_id" class="userName">
+                {{item.user1_name}}
+              </router-link>
+            </div>
           </div>
+          <p v-else>
+            У вас пока нет друзей. Вы можете найти их пользуясь поиском в верхней части сайта.
+          </p>
         </div>
-        <p v-else>
-          У вас пока нет друзей. Вы можете найти их пользуясь поиском в верхней части сайта.
-        </p>
-        <h3 style="margin-top: 32px">Ваши заявки в друзья</h3>
-        <div v-if="reqs.length > 0">
-          <div class="friend" v-for="(item, i) in reqs" :key="i">
-            <router-link :to="'/users/' + item.user1_id" class="userName">{{item.user1_name}}</router-link>
-            &nbsp;
-            <span @click="acceptFriend(item.user1_id)" class="fr_actions">✅</span>
-            <span @click="denyFriend(item.user1_id)" class="fr_actions">❌</span>
+        <div class="borderBox">
+          <h3>Ваши заявки в друзья</h3>
+          <div v-if="reqs.length > 0">
+            <div class="friend" v-for="(item, i) in reqs" :key="i">
+              <router-link :to="'/users/' + item.user1_id" class="userName">{{item.user1_name}}</router-link>
+              &nbsp;
+              <span @click="acceptFriend(item.user1_id)" class="fr_actions">✅</span>
+              <span @click="denyFriend(item.user1_id)" class="fr_actions">❌</span>
+            </div>
           </div>
+          <p v-else>
+            У вас пока нет заявок в друзья.
+          </p>
         </div>
-        <p v-else>
-          У вас пока нет заявок в друзья.
-        </p>
       </el-col>
     </el-row>
 
@@ -347,14 +351,23 @@ export default {
     cursor: pointer;
     margin-left: 8px;
   }
-  .userName {
-    color: blue !important;
-  }
 
   .avatarImage {
-    width: 90%;
+    width: 94%;
     margin-bottom: 16px;
     border: 4px solid #fff;
+    box-sizing: border-box;
+  }
+  .borderBox {
+    padding: 8px 16px 24px;
+    margin-bottom: 16px;
+    width: 94%;
+    background: #fff;
+    box-sizing: border-box;
+    font-size: 12px;
+    .userName {
+      color: #409EFF !important;
+    }
   }
 
 </style>
