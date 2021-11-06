@@ -20,6 +20,7 @@ export default new Vuex.Store({
     innovations: {},
     technoparks: {},
     stages: [],
+    bmodels: [],
     statuses: [],
     supportentities: {},
     supportentity: {},
@@ -71,6 +72,9 @@ export default new Vuex.Store({
     },
     setTechnoparks (state, payload) {
       state.technoparks = payload
+    },
+    setBmodels(state, payload) {
+      state.bmodels = payload
     },
     setSupportactions (state, payload) {
       state.supportactions = payload
@@ -218,6 +222,12 @@ export default new Vuex.Store({
       Vue.axios.get('https://startbase.online/api/web/technoparks')
       .then(response => {
         commit('setTechnoparks', response.data)
+      })
+    },
+    getBmodels ({commit}) {
+      Vue.axios.get('https://startbase.online/api/web/bmodels')
+      .then(response => {
+        commit('setBmodels', response.data)
       })
     },
     getExistSupportentity ({commit}, id) {
@@ -405,6 +415,9 @@ export default new Vuex.Store({
     },
     search (state) {
       return state.search
+    },
+    bmodels (state) {
+      return state.bmodels
     }
   }
 })

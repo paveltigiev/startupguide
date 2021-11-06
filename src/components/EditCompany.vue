@@ -59,6 +59,16 @@
               </el-option>
             </el-select>
           </el-form-item>
+          <el-form-item label="Бизнес модель">
+            <el-select v-model="form.bmodel_id" placeholder="Выберите бизнес модель">
+              <el-option
+              v-for="(item, i) in bmodels.items"
+              :key="'i'+i"
+              :label="item.bdmod_name"
+              :value="item.bmod_id">
+              </el-option>
+            </el-select>
+          </el-form-item>
           <el-form-item label="Статус">
             <el-select v-model="form.status" placeholder="Выберите статус">
               <el-option
@@ -133,6 +143,7 @@ export default {
         technoparks: [],
         innos: [],
         inno_id: '',
+        bmodel_id: '',
         status: '',
         stage_id: '',
         isprivate: ''
@@ -199,6 +210,9 @@ export default {
     company () {
       return this.$store.getters.company
     },
+    bmodels () {
+      return this.$store.getters.bmodels
+    },
     technoparks () {
       return this.$store.getters.technoparks
     },
@@ -238,6 +252,7 @@ export default {
     this.$store.dispatch('getInnovations')
     this.$store.dispatch('getTechnoparks')
     this.$store.dispatch('getStages')
+    this.$store.dispatch('getBmodels')
     this.$store.dispatch('getCompany', this.id)
     this.$store.dispatch('getUsers', 1)
   }

@@ -343,6 +343,9 @@
         <el-col :span="3" class="">
           Статус
         </el-col>
+        <el-col :span="3" class="">
+          Вероятность
+        </el-col>
       </el-row>
       <div
         v-for="(item, index) in supportentities.items"
@@ -357,11 +360,14 @@
             <img src="https://seeklogo.com/images/B/business-company-logo-C561B48365-seeklogo.com.png" :alt="item.Name" width="60">
             {{item.Name}}
           </el-col>
-          <el-col :span="12" class="">
+          <el-col :span="11" class="">
             {{item.Desc}} &nbsp;
           </el-col>
-          <el-col :span="3" class="">
+          <el-col :span="2" class="">
             {{item.status}} &nbsp;
+          </el-col>
+          <el-col :span="2" class="">
+            {{Math.round(item.match_value)}} %
           </el-col>
         </el-row>
       </div>
