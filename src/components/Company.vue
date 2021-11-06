@@ -206,6 +206,12 @@
           <el-form-item>
             <el-input v-model="newFindata.com_costs" placeholder="Коммерческие расходы"></el-input>
           </el-form-item>
+          <el-form-item>
+            <el-input v-model="newFindata.intengibles" placeholder="Нематериальные активы"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-input v-model="newFindata.management_costs" placeholder="Расходы на управление"></el-input>
+          </el-form-item>
         </el-form>
         <div class="dialog-footer">
           <el-button type="primary" @click="addFindata()" class="sendBtn">Добавить</el-button>
@@ -301,6 +307,14 @@
             prop="com_costs"
             label="Коммерческие расходы">
           </el-table-column>
+          <el-table-column
+            prop="intengibles"
+            label="Нематериальные активы">
+          </el-table-column>
+          <el-table-column
+            prop="management_costs"
+            label="Расходы на управление ">
+          </el-table-column>
         </el-table>
         <el-pagination
           background
@@ -392,6 +406,7 @@ export default {
         core_funds: '',
         gross_profit: '',
         investments: '',
+        intengibles: '',
         other_income: '',
         net_profit: '',
         profit_tax: '',
@@ -404,6 +419,7 @@ export default {
         moscow_profit_tax: '',
         federal_profit_tax: '',
         wage_fund: '',
+        management_costs: '',
         com_costs: ''
       }
     }
