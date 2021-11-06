@@ -147,8 +147,8 @@ export default {
 <style lang="scss">
   .reqsBadge {
     position: absolute;
-    right: 73px;
-    top: 27px;
+    right: 8px;
+    top: 8px;
     font-size: 12px;
     width: 18px;
     height: 18px;

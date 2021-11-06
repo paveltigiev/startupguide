@@ -101,8 +101,13 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    addUserToCompany (_, payload) {
+      Vue.axios.post('https://startbase.online/api/web/companies/join', payload)
+      .then(() => {
+        this._vm.$message.success('Ваш запрос на добавления в компанию отправлен!');
+      })
+    },
     addToFriends (_, id) {
-      console.log(id)
       Vue.axios.post('https://startbase.online/api/web/users/connect/' + id)
       .then(() => {
         this._vm.$message.success('Ваш запрос на добавления в друзья отправлен!');
@@ -131,10 +136,10 @@ export default new Vuex.Store({
         dispatch('getFindata', {id: payload.c_id, page: 1})
       })
     },
-    getUsers (commit) {
-      Vue.axios.get('http://startbase.online/api/web/users')
+    getUsers ({commit}) {
+      Vue.axios.get('https://startbase.online/api/web/users')
       .then(response => {
-        commit('setUsers', {payload: response.data})
+        commit('setUsers', response.data)
       })
     },
     getSearch ({commit}, q) {

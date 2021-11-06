@@ -93,19 +93,21 @@ export default {
       this.searchQuery = ''
     },
     findIt: _.debounce(function () {
-      this.showResults = true
-      this.loading = true
-      this.nothingFind = false
-      this.links = []
-      Vue.axios.get('https://startbase.online/api/web/search?find=' + this.searchQuery)
-      .then(response => {
-        this.loading = false
-        if (response.data.length < 1) {
-          this.nothingFind = true
-        } else {  
-          this.links = response.data
-        }
-      })
+      if (this.searchQuery.length > 3) {
+        this.showResults = true
+        this.loading = true
+        this.nothingFind = false
+        this.links = []
+        Vue.axios.get('https://startbase.online/api/web/search?find=' + this.searchQuery)
+        .then(response => {
+          this.loading = false
+          if (response.data.length < 1) {
+            this.nothingFind = true
+          } else {  
+            this.links = response.data
+          }
+        })
+      }
     }, 200),
     goToItem(item) {
       this.searchQuery = ''

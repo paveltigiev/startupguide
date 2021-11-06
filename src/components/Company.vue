@@ -24,7 +24,7 @@
     <div class="row-box bordered pt-0">
       <el-row :gutter="20">
         <el-col :xs="24" :sm="18" :lg="6">
-          <img :src="company.logo_url" class="img-fluid" :alt="company.c_name" v-if="company.logo_url">
+          <img :src="company.full_logo" class="img-fluid" :alt="company.c_name" v-if="company.full_logo">
           <img src="https://api.freelogodesign.org/assets/thumb/logo/22192360_400.png" class="img-fluid" :alt="company.c_name" v-else>
         </el-col>
         <el-col :xs="24" :sm="18" :lg="18">
@@ -200,6 +200,12 @@
           <el-form-item>
             <el-input v-model="newFindata.federal_profit_tax" placeholder="Федеральный налог на прибыль"></el-input>
           </el-form-item>
+          <el-form-item>
+            <el-input v-model="newFindata.wage_fund" placeholder="Фонд оплаты труда"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-input v-model="newFindata.com_costs" placeholder="Коммерческие расходы"></el-input>
+          </el-form-item>
         </el-form>
         <div class="dialog-footer">
           <el-button type="primary" @click="addFindata()" class="sendBtn">Добавить</el-button>
@@ -286,6 +292,14 @@
           <el-table-column
             prop="federal_profit_tax"
             label="Федеральный налог на прибыль">
+          </el-table-column>
+          <el-table-column
+            prop="wage_fund"
+            label="Фонд оплаты труда">
+          </el-table-column>
+          <el-table-column
+            prop="com_costs"
+            label="Коммерческие расходы">
           </el-table-column>
         </el-table>
         <el-pagination
@@ -388,7 +402,9 @@ export default {
         pension_costs: '',
         trade_fee: '',
         moscow_profit_tax: '',
-        federal_profit_tax: ''
+        federal_profit_tax: '',
+        wage_fund: '',
+        com_costs: ''
       }
     }
   },
@@ -451,4 +467,7 @@ export default {
 </script>
 
 <style lang="scss">
+  .el-table th.el-table__cell>.cell {
+    font-size: 10px !important;
+  }
 </style>

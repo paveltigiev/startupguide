@@ -124,7 +124,8 @@
           class="company-row"
         >
           <el-col :span="6" class="name">
-            <img :src="item.logo_url" :alt="item.c_name" width="60">
+            <img :src="item.full_logo" class="img-fluid" :alt="item.c_name" v-if="item.full_logo" width="60">
+            <img src="https://api.freelogodesign.org/assets/thumb/logo/22192360_400.png" class="img-fluid" :alt="item.c_name" width="60" v-else>
             {{item.c_name}}
           </el-col>
           <el-col :span="12" class="">

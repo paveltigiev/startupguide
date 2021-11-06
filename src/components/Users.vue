@@ -72,7 +72,7 @@ export default {
     }
   },
   computed: {
-    companies () {
+    users () {
       return this.$store.getters.users
     }
   },

@@ -3,92 +3,109 @@
     <div class="content-wrapper">
       <h1>Редактирование компании</h1>
     </div>
-    <el-form :model="form" label-width="120px" class="newcompany-form">
-      <el-form-item label="Название">
-        <el-input v-model="form.c_name"></el-input>
-      </el-form-item>
-      <el-form-item label="Логотип">
-        <input type="file" id="file" ref="file" v-on:change="handleFileUpload()" accept="image/*" />
-        <button type="submit" @click.prevent="sendFile">Загрузить</button>
-        <img :src="form.logo_url" :alt="form.c_name" v-if="form.logo_url" class="companyFormLogo img-fluid">
-      </el-form-item>
-      <el-form-item label="Описание">
-        <el-input type="textarea" v-model="form.c_desc"></el-input>
-      </el-form-item>
-      <el-form-item label="Продукт">
-        <el-input type="textarea" v-model="form.products_desc"></el-input>
-      </el-form-item>
-      <el-form-item label="ИНН">
-        <el-input v-model="form.c_inn"></el-input>
-      </el-form-item>
-      <el-form-item label="ОКВЭДЫ">
-        <el-input v-model="form.add_okveds"></el-input>
-      </el-form-item>
-      <el-form-item label="Веб-саты">
-        <el-input v-model="form.web_sites"></el-input>
-      </el-form-item>
-      <el-form-item label="Рынок">
-        <el-select v-model="form.markets" placeholder="Выберите рынок" multiple>
-          <el-option
-          v-for="(item, i) in markets.items"
-          :key="'m'+i"
-          :label="item.market_name_ru"
-          :value="item.market_id">
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="Инновация">
-        <el-select v-model="form.innos" placeholder="Выберите инновацию" multiple>
-          <el-option
-          v-for="(item, i) in innovations.items"
-          :key="'i'+i"
-          :label="item.topic_name_ru"
-          :value="item.topic_id">
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="Технопарки">
-        <el-select v-model="form.technoparks" placeholder="Выберите технопарк" multiple>
-          <el-option
-          v-for="(item, i) in technoparks.items"
-          :key="'i'+i"
-          :label="item.tp_name"
-          :value="item.tp_id">
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="Статус">
-        <el-select v-model="form.status" placeholder="Выберите статус">
-          <el-option
-          v-for="(item, i) in statuses.items"
-          :key="'ss'+i"
-          :label="item.status_name"
-          :value="item.stat_id">
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="Стадия">
-        <el-select v-model="form.stage_id" placeholder="Выберите стадию" >
-          <el-option
-          v-for="(item, i) in stages.items"
-          :key="'s'+i"
-          :label="item.stage_name_ru"
-          :value="item.sid">
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="Приватный">
-        <el-checkbox v-model="form.isprivate"></el-checkbox>
-      </el-form-item>
-      
-      <el-form-item>
-        <el-button type="primary" @click="updateCompany">Обновить</el-button>
-        <el-button type="danger" @click="deleteCompany">Удалить</el-button>
-        <el-button @click="resetForm">Вернуть</el-button>
-        <el-button @click="goCompany">Посмотреть</el-button>
-      </el-form-item>
-    </el-form>
-
+    <el-row :gutter="20">
+      <el-col :span="18">
+        <el-form :model="form" label-width="120px" class="newcompany-form">
+          <el-form-item label="Название">
+            <el-input v-model="form.c_name"></el-input>
+          </el-form-item>
+          <el-form-item label="Логотип">
+            <input type="file" id="file" ref="file" v-on:change="handleFileUpload()" accept="image/*" />
+            <button type="submit" @click.prevent="sendFile">Загрузить</button>
+            <img :src="form.full_logo" :alt="form.c_name" v-if="form.full_logo" class="companyFormLogo img-fluid">
+          </el-form-item>
+          <el-form-item label="Описание">
+            <el-input type="textarea" v-model="form.c_desc"></el-input>
+          </el-form-item>
+          <el-form-item label="Продукт">
+            <el-input type="textarea" v-model="form.products_desc"></el-input>
+          </el-form-item>
+          <el-form-item label="ИНН">
+            <el-input v-model="form.c_inn"></el-input>
+          </el-form-item>
+          <el-form-item label="ОКВЭДЫ">
+            <el-input v-model="form.add_okveds"></el-input>
+          </el-form-item>
+          <el-form-item label="Веб-саты">
+            <el-input v-model="form.web_sites"></el-input>
+          </el-form-item>
+          <el-form-item label="Рынок">
+            <el-select v-model="form.markets" placeholder="Выберите рынок" multiple>
+              <el-option
+              v-for="(item, i) in markets.items"
+              :key="'m'+i"
+              :label="item.market_name_ru"
+              :value="item.market_id">
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="Инновация">
+            <el-select v-model="form.innos" placeholder="Выберите инновацию" multiple>
+              <el-option
+              v-for="(item, i) in innovations.items"
+              :key="'i'+i"
+              :label="item.topic_name_ru"
+              :value="item.topic_id">
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="Технопарки">
+            <el-select v-model="form.technoparks" placeholder="Выберите технопарк" multiple>
+              <el-option
+              v-for="(item, i) in technoparks.items"
+              :key="'i'+i"
+              :label="item.tp_name"
+              :value="item.tp_id">
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="Статус">
+            <el-select v-model="form.status" placeholder="Выберите статус">
+              <el-option
+              v-for="(item, i) in statuses.items"
+              :key="'ss'+i"
+              :label="item.status_name"
+              :value="item.stat_id">
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="Стадия">
+            <el-select v-model="form.stage_id" placeholder="Выберите стадию" >
+              <el-option
+              v-for="(item, i) in stages.items"
+              :key="'s'+i"
+              :label="item.stage_name_ru"
+              :value="item.sid">
+              </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="Приватный">
+            <el-checkbox v-model="form.isprivate"></el-checkbox>
+          </el-form-item>
+          
+          <el-form-item>
+            <el-button type="primary" @click="updateCompany">Обновить</el-button>
+            <el-button type="danger" @click="deleteCompany">Удалить</el-button>
+            <el-button @click="resetForm">Вернуть</el-button>
+            <el-button @click="goCompany">Посмотреть</el-button>
+          </el-form-item>
+        </el-form>
+      </el-col>
+      <el-col :span="6">
+        <div class="addUser">
+          <h3 for="addingUser">Добавить пользователя в компанию</h3>
+          <el-select v-model="addingUser" placeholder="Выберите пользователя">
+            <el-option
+            v-for="(item, i) in users.items"
+            :key="'us'+i"
+            :label="item.fio"
+            :value="item.id">
+            </el-option>
+          </el-select>
+          <el-button type="success" @click="addUser">Пригласить пользователя</el-button>
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -102,6 +119,7 @@ export default {
   },
   data() {
     return {
+      addingUser: '',
       file: null,
       form: {
         c_name: '',
@@ -109,7 +127,7 @@ export default {
         products_desc: '',
         c_inn: '',
         add_okveds: '',
-        logo_url: '',
+        full_logo: '',
         web_sites: '',
         markets: [],
         technoparks: [],
@@ -122,13 +140,21 @@ export default {
     }
   },
   methods: {
+    addUser() {
+      let payload = {
+        company_id: this.id,
+        users: this.addingUser
+      }
+      this.$store.dispatch('addUserToCompany', payload)
+    },
     handleFileUpload(){
       this.file = this.$refs.file.files[0];
     },
     sendFile () {
       let formData = new FormData();
-      formData.append('avatar', this.file);
-      Vue.axios.post( 'https://startbase.online/api/web/users/updava',
+      formData.append('logo', this.file);
+      formData.append('company_id', this.id);
+      Vue.axios.post( 'https://startbase.online/api/web/companies/updlogo',
         formData,
         {
           headers: {
@@ -136,7 +162,7 @@ export default {
           }
         }
       ).then(response => {
-        this.form.logo_url = response.data
+        this.form.full_logo = response.data
       }).catch(error => {
         this.$message.error(error)
       })
@@ -150,6 +176,7 @@ export default {
     updateCompany() {
       delete this.form.market_id
       delete this.form.inno_id
+      delete this.form.logo_url
       this.$store.dispatch('updateCompany', this.form)
     },
     goCompany() {
@@ -174,6 +201,9 @@ export default {
     },
     technoparks () {
       return this.$store.getters.technoparks
+    },
+    users () {
+      return this.$store.getters.users
     }
   },
   watch: {
@@ -209,6 +239,7 @@ export default {
     this.$store.dispatch('getTechnoparks')
     this.$store.dispatch('getStages')
     this.$store.dispatch('getCompany', this.id)
+    this.$store.dispatch('getUsers', 1)
   }
 }
 </script>
@@ -224,6 +255,15 @@ export default {
       .companyFormLogo {
         float: right;
         height: 40px;
+      }
+    }
+    .addUser {
+      width: 96%;
+      box-sizing: border-box;
+      padding: 20px;
+      background: #fff;
+      .el-input {
+        margin-bottom: 20px;
       }
     }
   }
