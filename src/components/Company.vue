@@ -367,7 +367,8 @@
             {{item.status}} &nbsp;
           </el-col>
           <el-col :span="2" class="">
-            {{Math.round(item.match_value)}} %
+            <div v-if="item.match_value > 0">{{parseFloat(item.match_value).toFixed(2)}} %</div>
+            <div v-else>@</div>
           </el-col>
         </el-row>
       </div>

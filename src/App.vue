@@ -4,7 +4,9 @@
       <el-col :span="6" class="main-sidebar">
         <div class="main-logo">
           <a href="/">
-            <img src="/img/logo.svg" width="180" height="65" class="img-fluid" alt="Агентство инноваций города Москвы">
+            STARTBASE
+            <span>.online</span>
+            <!-- <img src="/img/logo.svg" width="180" height="65" class="img-fluid" alt="Агентство инноваций города Москвы"> -->
           </a>
         </div>
         <div class="main-nav">
@@ -76,9 +78,16 @@
     <footer class="main-footer">
       <el-row :gutter="0">
         <el-col :span="6" class="footer-logo-box" justify="center" align="middle" hidden-sm-and-down>
-          <a href="/" target="_blank" class="footer-logo">
-              <img src="/img/aim-logo.svg" width="180" height="65" class="img-fluid" alt="Агентство инноваций города Москвы">
-          </a>
+          <!-- <a href="/" target="_blank" class="footer-logo">
+            <img src="/img/aim-logo.svg" width="180" height="65" class="img-fluid" alt="Агентство инноваций города Москвы">
+          </a> -->
+          <div class="footer-logo">
+            <a href="/">
+              STARTBASE
+              <span>.online</span>
+              <!-- <img src="/img/logo.svg" width="180" height="65" class="img-fluid" alt="Агентство инноваций города Москвы"> -->
+            </a>
+          </div>
         </el-col>
         <el-col :span="6" class="footer-content partners">
           <h5>Наши партнеры</h5>
@@ -145,6 +154,34 @@ export default {
 </script>
 
 <style lang="scss">
+  .main-logo {
+    a {
+      display: block;
+      text-decoration: none !important;
+      text-transform: uppercase;
+      font-size: 40px;
+      padding: 20px 0 10px 30px;
+      font-weight: bold;
+      color: #1F5EFF;
+      span {
+        font-size: 16px;
+      }
+    }
+  }
+  .footer-logo {
+    a {
+      display: block;
+      text-decoration: none !important;
+      text-transform: uppercase;
+      font-size: 40px;
+      padding: 30px 0 10px 0px;
+      font-weight: bold;
+      color: #fff;
+      span {
+        font-size: 16px;
+      }
+    }
+  }
   .reqsBadge {
     position: absolute;
     right: 8px;
